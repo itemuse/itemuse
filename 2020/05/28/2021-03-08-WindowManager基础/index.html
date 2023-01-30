@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一.代码位置XTester-WindowManagerxlib-Screen此文是在此基础上做的讲解,用于加深印象 二.WindowManager介绍Android为我们提供的用于与窗口管理器进行交互的一个API！我们都知道App的界面都是 由一个个的Acitivty组成，而Activity又由View组成，当我们想显示一个界面的时候， 第一时间想起的是:Activity，对吧？又或者是Dialo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WindowManager基础">
+<meta property="og:url" content="http://example.com/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="一.代码位置XTester-WindowManagerxlib-Screen此文是在此基础上做的讲解,用于加深印象 二.WindowManager介绍Android为我们提供的用于与窗口管理器进行交互的一个API！我们都知道App的界面都是 由一个个的Acitivty组成，而Activity又由View组成，当我们想显示一个界面的时候， 第一时间想起的是:Activity，对吧？又或者是Dialo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/img3.gif">
+<meta property="article:published_time" content="2020-05-28T01:29:19.000Z">
+<meta property="article:modified_time" content="2023-01-30T14:05:08.288Z">
+<meta property="article:author" content="项勇">
+<meta property="article:tag" content="WindowManager">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/img3.gif">
+
+
+<link rel="canonical" href="http://example.com/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/","path":"2020/05/28/2021-03-08-WindowManager基础/","title":"WindowManager基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>WindowManager基础 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E4%BB%A3%E7%A0%81%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">一.代码位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-WindowManager%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">二.WindowManager介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97WindowManager%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">三.如何获得WindowManager实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97WindowManager%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.1.</span> <span class="nav-text">获得WindowManager对象:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97WindowManager-LayoutParams%E5%AF%B9%E8%B1%A1%EF%BC%8C%E4%B8%BA%E5%90%8E%E7%BB%AD%E6%93%8D%E4%BD%9C%E5%81%9A%E5%87%86%E5%A4%87"><span class="nav-number">3.2.</span> <span class="nav-text">获得WindowManager.LayoutParams对象，为后续操作做准备</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-WindowManager%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">四.WindowManager使用实例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B1%EF%BC%9A%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95%E5%AE%BD%E9%AB%98"><span class="nav-number">4.1.</span> <span class="nav-text">实例1：获取屏幕宽高</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="WindowManager基础 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WindowManager基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-28 09:29:19" itemprop="dateCreated datePublished" datetime="2020-05-28T09:29:19+08:00">2020-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-30 22:05:08" itemprop="dateModified" datetime="2023-01-30T22:05:08+08:00">2023-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="WindowManager基础" href="/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::440148a0339ad8e241e7929fe895a19c" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><p><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/windowmanager">XTester-WindowManager</a><br><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/screen/XScreen.java">xlib-Screen</a><br>此文是在此基础上做的讲解,用于加深印象</p>
+<h3 id="二-WindowManager介绍"><a href="#二-WindowManager介绍" class="headerlink" title="二.WindowManager介绍"></a>二.WindowManager介绍</h3><p>Android为我们提供的用于与窗口管理器进行交互的一个API！我们都知道App的界面都是 由一个个的Acitivty组成，而Activity又由View组成，当我们想显示一个界面的时候， 第一时间想起的是:Activity，对吧？又或者是Dialog和Toast。</p>
+<p>但是有些情况下，前面这三者可能满足不了我们的需求，比如我们仅仅是一个简单的显示 用Activity显得有点多余了，而Dialog又需要Context对象，Toast又不可以点击… 对于以上的情况我们可以利用WindowManager这个东东添加View到屏幕上， 或者从屏幕上移除View！他就是管理Android窗口机制的一个接口，显示View的最底层！</p>
+<h3 id="三-如何获得WindowManager实例"><a href="#三-如何获得WindowManager实例" class="headerlink" title="三.如何获得WindowManager实例"></a>三.如何获得WindowManager实例</h3><ul>
+<li><h4 id="获得WindowManager对象"><a href="#获得WindowManager对象" class="headerlink" title="获得WindowManager对象:"></a>获得WindowManager对象:</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WindowManager wManager = getApplicationContext().getSystemService(Context. WINDOW_ SERVICE);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="获得WindowManager-LayoutParams对象，为后续操作做准备"><a href="#获得WindowManager-LayoutParams对象，为后续操作做准备" class="headerlink" title="获得WindowManager.LayoutParams对象，为后续操作做准备"></a>获得WindowManager.LayoutParams对象，为后续操作做准备</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WindowManager.LayoutParams wmParams=new WindowManager.LayoutParams();</span><br></pre></td></tr></table></figure>
+
+<h3 id="四-WindowManager使用实例："><a href="#四-WindowManager使用实例：" class="headerlink" title="四.WindowManager使用实例："></a>四.WindowManager使用实例：</h3><ul>
+<li><h4 id="实例1：获取屏幕宽高"><a href="#实例1：获取屏幕宽高" class="headerlink" title="实例1：获取屏幕宽高"></a>实例1：获取屏幕宽高</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the width of screen, in pixel.</span><br><span class="line"> *</span><br><span class="line"> * @return the width of screen, in pixel</span><br><span class="line"> */</span><br><span class="line">public static int getScreenWidth() &#123;</span><br><span class="line">    WindowManager wm = (WindowManager) getApp().getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">    if (wm == null) return -1;</span><br><span class="line">    Point point = new Point();</span><br><span class="line">    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.JELLY_BEAN_MR1) &#123;</span><br><span class="line">        wm.getDefaultDisplay().getRealSize(point);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        wm.getDefaultDisplay().getSize(point);</span><br><span class="line">    &#125;</span><br><span class="line">    return point.x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Return the height of screen, in pixel.</span><br><span class="line"> *</span><br><span class="line"> * @return the height of screen, in pixel</span><br><span class="line"> */</span><br><span class="line">public static int getScreenHeight() &#123;</span><br><span class="line">    WindowManager wm = (WindowManager) getApp().getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">    if (wm == null) return -1;</span><br><span class="line">    Point point = new Point();</span><br><span class="line">    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.JELLY_BEAN_MR1) &#123;</span><br><span class="line">        wm.getDefaultDisplay().getRealSize(point);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        wm.getDefaultDisplay().getSize(point);</span><br><span class="line">    &#125;</span><br><span class="line">    return point.y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取应用宽高<br>    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s width of screen, in pixel.</span><br><span class="line"> *</span><br><span class="line"> * @return the application&#x27;s width of screen, in pixel</span><br><span class="line"> */</span><br><span class="line">public static int getAppScreenWidth() &#123;</span><br><span class="line">    WindowManager wm = (WindowManager) getApp().getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">    if (wm == null) return -1;</span><br><span class="line">    Point point = new Point();</span><br><span class="line">    wm.getDefaultDisplay().getSize(point);</span><br><span class="line">    return point.x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s height of screen, in pixel.</span><br><span class="line"> *</span><br><span class="line"> * @return the application&#x27;s height of screen, in pixel</span><br><span class="line"> */</span><br><span class="line">public static int getAppScreenHeight() &#123;</span><br><span class="line">    WindowManager wm = (WindowManager) getApp().getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">    if (wm == null) return -1;</span><br><span class="line">    Point point = new Point();</span><br><span class="line">    wm.getDefaultDisplay().getSize(point);</span><br><span class="line">    return point.y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<img src="/2020/05/28/2021-03-08-WindowManager%E5%9F%BA%E7%A1%80/img3.gif" class="img1.jpg) - #### 实例2：设置窗口全屏显示 <figure class=" highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</span><br><span class="line">                WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br><span class="line">        getSupportActionBar().hide();</span><br></pre></td></tr></table> 运行结果： {% asset_img img2.jpg) - #### 实例3：保持屏幕常亮 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param activity</span><br><span class="line"> * @param keepScreenOn 是否开启屏幕常亮</span><br><span class="line"> */</span><br><span class="line">public void setKeepScreenOn(Activity activity, boolean keepScreenOn) &#123;</span><br><span class="line">    if(keepScreenOn)&#123;</span><br><span class="line">        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> - #### 实例4：简单悬浮框的实现 实现代码： 一个触摸图标工具类：EasyTouchView.class <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br></pre></td><td class="code"><pre><span class="line">package cn.xy.windowmanager;</span><br><span class="line"></span><br><span class="line">import android.annotation.SuppressLint;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.graphics.PixelFormat;</span><br><span class="line">import android.os.Build;</span><br><span class="line">import android.util.DisplayMetrics;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.view.Gravity;</span><br><span class="line">import android.view.MotionEvent;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.WindowManager;</span><br><span class="line">import android.widget.Button;</span><br><span class="line"></span><br><span class="line">public class EasyTouchView&#123;</span><br><span class="line"></span><br><span class="line">    public static final String TAG = &quot;EasyTouch&quot;;</span><br><span class="line">    private static EasyTouchView mEasyTouchView;</span><br><span class="line">    private Context mContext;</span><br><span class="line"></span><br><span class="line">    public static EasyTouchView getInstance() &#123;</span><br><span class="line">        if (mEasyTouchView == null) &#123;</span><br><span class="line">            mEasyTouchView = new EasyTouchView();</span><br><span class="line">        &#125;</span><br><span class="line">        return mEasyTouchView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private WindowManager mWindowManager;</span><br><span class="line">    private int width, height;</span><br><span class="line">    private double stateHeight;</span><br><span class="line">    private WindowManager.LayoutParams layoutParams;</span><br><span class="line">    private Button iconView;</span><br><span class="line">    private float startX = 0, startY = 0;</span><br><span class="line">    private float startRawX = 0, startRawY = 0;</span><br><span class="line">    private int iconViewX = 0, iconViewY = 0;</span><br><span class="line">    private boolean isIconView = false;</span><br><span class="line"></span><br><span class="line">    private DisplayMetrics mDisplayMetrics;</span><br><span class="line"></span><br><span class="line">    public void initEasyTouch(Context mContext, DisplayMetrics displayMetrics) &#123;</span><br><span class="line">        this.mDisplayMetrics = displayMetrics;</span><br><span class="line">        this.mContext = mContext;</span><br><span class="line">        width = mDisplayMetrics.widthPixels;</span><br><span class="line">        height = mDisplayMetrics.heightPixels;</span><br><span class="line">        stateHeight = Math.ceil(25 * displayMetrics.density);</span><br><span class="line">        createWM();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void createWM() &#123;</span><br><span class="line">        mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);</span><br><span class="line">        layoutParams = new WindowManager.LayoutParams();</span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M)&#123;</span><br><span class="line">            layoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            layoutParams.type =  WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;</span><br><span class="line">        &#125;</span><br><span class="line">        layoutParams.format = PixelFormat.TRANSLUCENT;</span><br><span class="line">        layoutParams.flags = WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @SuppressLint(&quot;ClickableViewAccessibility&quot;)</span><br><span class="line">    public void addIconView() &#123;</span><br><span class="line">        if (isIconView) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        isIconView = true;</span><br><span class="line">        if (iconView == null) &#123;</span><br><span class="line">            iconView = new Button(mContext);</span><br><span class="line">            iconView.setBackgroundResource(R.mipmap.ic_launcher);</span><br><span class="line">            iconView.setOnTouchListener(new View.OnTouchListener() &#123;</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public boolean onTouch(View v, MotionEvent event) &#123;</span><br><span class="line">                    float rawX = event.getRawX();</span><br><span class="line">                    float rawY = (float) (event.getRawY() - stateHeight);</span><br><span class="line"></span><br><span class="line">                    int sumX = (int) (rawX - startRawX);</span><br><span class="line">                    int sumY = (int) (event.getRawY() - startRawY);</span><br><span class="line"></span><br><span class="line">                    switch (event.getAction()) &#123;</span><br><span class="line">                    case MotionEvent.ACTION_DOWN:</span><br><span class="line">                        Log.i(&quot;Log&quot;, &quot;Action_Down&quot;);</span><br><span class="line">                        startX = event.getX();</span><br><span class="line">                        startY = event.getY();</span><br><span class="line">                        startRawX = event.getRawX();</span><br><span class="line">                        startRawY = event.getRawY();</span><br><span class="line"></span><br><span class="line">                        layoutParams.alpha = 1f;</span><br><span class="line">                        mWindowManager.updateViewLayout(iconView, layoutParams);</span><br><span class="line">                        break;</span><br><span class="line">                    case MotionEvent.ACTION_UP:</span><br><span class="line">/*                        layoutParams.alpha = 0.6f;</span><br><span class="line">                        mWindowManager.updateViewLayout(iconView, layoutParams);</span><br><span class="line">                        if (sumX &gt; -10 &amp;&amp; sumX &lt; 10 &amp;&amp; sumY &gt; -10 &amp;&amp; sumY &lt; 10) &#123;</span><br><span class="line">                            removeIcon();</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            float endRawX = rawX - startX;</span><br><span class="line">                            float endRawY = rawY - startY;</span><br><span class="line">                            if (endRawX &lt; width / 2) &#123;</span><br><span class="line">                                if (endRawX &gt; endRawY) &#123;</span><br><span class="line">                                    if (rawY &gt; iconView.getHeight() * 2) &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, endRawY);</span><br><span class="line">                                    &#125; else &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, 0);</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125; else if (endRawX &gt; height - event.getRawY() - 98) &#123;</span><br><span class="line">                                    if ((float) (height - stateHeight - endRawY - 98) &gt; iconView.getHeight() * 2) &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, endRawY);</span><br><span class="line">                                    &#125; else &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, (float) (height - stateHeight - 98));</span><br><span class="line"></span><br><span class="line">                                    &#125;</span><br><span class="line"></span><br><span class="line">                                &#125; else &#123;</span><br><span class="line">                                    if (endRawX &gt; iconView.getWidth() * 2) &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, endRawY);</span><br><span class="line"></span><br><span class="line">                                    &#125; else &#123;</span><br><span class="line">                                        updateIconViewPosition(0, endRawY);</span><br><span class="line"></span><br><span class="line">                                    &#125;</span><br><span class="line"></span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125; else &#123;</span><br><span class="line">                                if (width - endRawX - 98 &gt; endRawY) &#123;</span><br><span class="line">                                    if (rawY &gt; iconView.getHeight() * 2) &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, endRawY);</span><br><span class="line">                                    &#125; else &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, 0);</span><br><span class="line"></span><br><span class="line">                                    &#125;</span><br><span class="line"></span><br><span class="line">                                &#125; else if (width - endRawX - 98 &gt; height - event.getRawY() - 98) &#123;</span><br><span class="line">                                    if ((float) (height - stateHeight - endRawY - 98) &gt; iconView.getHeight() * 2) &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, endRawY);</span><br><span class="line">                                    &#125; else &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, (float) (height - stateHeight - 98));</span><br><span class="line">                                    &#125;</span><br><span class="line"></span><br><span class="line">                                &#125; else &#123;</span><br><span class="line">                                    if (width - endRawX - 98 &gt; iconView.getWidth() * 2) &#123;</span><br><span class="line">                                        updateIconViewPosition(endRawX, endRawY);</span><br><span class="line"></span><br><span class="line">                                    &#125; else &#123;</span><br><span class="line">                                        updateIconViewPosition(width, endRawY);</span><br><span class="line">                                    &#125;</span><br><span class="line"></span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        startX = 0;</span><br><span class="line">                        startY = 0;</span><br><span class="line">                        startRawX = 0;</span><br><span class="line">                        startRawY = 0;*/</span><br><span class="line">                        break;</span><br><span class="line">                    case MotionEvent.ACTION_MOVE:</span><br><span class="line">                        if (sumX &lt; -10 || sumX &gt; 10 || sumY &lt; -10 || sumY &gt; 10) &#123;</span><br><span class="line">                            updateIconViewPosition(rawX - startX, rawY - startY);</span><br><span class="line">                        &#125;</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        layoutParams.alpha = 0.5f;</span><br><span class="line">        layoutParams.x = iconViewX;</span><br><span class="line">        layoutParams.y = iconViewY;</span><br><span class="line">        layoutParams.width = 170;</span><br><span class="line">        layoutParams.height = 170;</span><br><span class="line">        layoutParams.gravity = Gravity.LEFT | Gravity.TOP;</span><br><span class="line">        mWindowManager.addView(iconView, layoutParams);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void updateIconViewPosition(float x, float y) &#123;</span><br><span class="line">        iconViewX = (int) x;</span><br><span class="line">        iconViewY = (int) y;</span><br><span class="line">        layoutParams.x = (int) x;</span><br><span class="line">        layoutParams.y = (int) y;</span><br><span class="line">        mWindowManager.updateViewLayout(iconView, layoutParams);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void removeIcon() &#123;</span><br><span class="line">        if (isIconView &amp;&amp; iconView != null) &#123;</span><br><span class="line">            mWindowManager.removeView(iconView);</span><br><span class="line">            isIconView = false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 开关控制 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void onClick(View view)&#123;</span><br><span class="line">    switch (view.getId())&#123;</span><br><span class="line">        case R.id.open:</span><br><span class="line">            EasyTouchView.getInstance().addIconView();</span><br><span class="line">            break;</span><br><span class="line">        case R.id.close:</span><br><span class="line">            EasyTouchView.getInstance().removeIcon();</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 接着AndroidManifest.xml加上权限，以及为MainService进行注册： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.SYSTEM_ALERT_WINDOW&quot;/&gt;</span><br></pre></td></tr></table></figure> 运行效果图： {% asset_img" title="This is an example image">
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/WindowManager/" rel="tag"># WindowManager</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/26/2021-03-11-%E5%B9%BF%E6%92%AD%E5%9F%BA%E7%A1%80/" rel="prev" title="广播基础">
+                  <i class="fa fa-chevron-left"></i> 广播基础
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/05/29/2021-03-09-Fragment%E5%9F%BA%E7%A1%80/" rel="next" title="Fragment基础">
+                  Fragment基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="440148a0339ad8e241e7929fe895a19c"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一.效果图  二.代码位置 XTester-Dialog此文是在此基础上做的讲解,用于加深印象  三.主要方法及监听器 collapseGroup( int position)收起 position 位置的分组  expandGroup(int position)展开position位置的分组  isGroupExpanded(int position)判断position位置的分组是否展开  s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二级选择框使用笔记">
+<meta property="og:url" content="http://example.com/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="一.效果图  二.代码位置 XTester-Dialog此文是在此基础上做的讲解,用于加深印象  三.主要方法及监听器 collapseGroup( int position)收起 position 位置的分组  expandGroup(int position)展开position位置的分组  isGroupExpanded(int position)判断position位置的分组是否展开  s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/device.gif">
+<meta property="article:published_time" content="2021-02-26T16:40:15.000Z">
+<meta property="article:modified_time" content="2023-01-30T13:51:47.469Z">
+<meta property="article:author" content="项勇">
+<meta property="article:tag" content="ExpandableListView">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/device.gif">
+
+
+<link rel="canonical" href="http://example.com/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/","path":"2021/02/27/2021-03-06-二级选择框使用笔记/","title":"二级选择框使用笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>二级选择框使用笔记 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">一.效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E4%BB%A3%E7%A0%81%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">二.代码位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95%E5%8F%8A%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">三.主要方法及监听器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-%E5%87%A0%E4%B8%AAXML%E5%B1%9E%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">四.几个XML属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-%E7%94%A8%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">五.用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD-%E5%B8%B8%E7%94%A8%E5%AF%B9%E8%AF%9D%E6%A1%86%E7%AC%94%E8%AE%B0"><span class="nav-number">6.</span> <span class="nav-text">六.常用对话框笔记</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="二级选择框使用笔记 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          二级选择框使用笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-27 00:40:15" itemprop="dateCreated datePublished" datetime="2021-02-27T00:40:15+08:00">2021-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-30 21:51:47" itemprop="dateModified" datetime="2023-01-30T21:51:47+08:00">2023-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="二级选择框使用笔记" href="/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::a54a353165d74da52676a3ab8850ec33" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一-效果图"><a href="#一-效果图" class="headerlink" title="一.效果图"></a>一.效果图</h3><img src="/2021/02/27/2021-03-06-%E4%BA%8C%E7%BA%A7%E9%80%89%E6%8B%A9%E6%A1%86%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/device.gif" class title="This is an example image">
+
+<h3 id="二-代码位置"><a href="#二-代码位置" class="headerlink" title="二.代码位置"></a>二.代码位置</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/dialog">XTester-Dialog</a><br>此文是在此基础上做的讲解,用于加深印象</li>
+</ul>
+<h3 id="三-主要方法及监听器"><a href="#三-主要方法及监听器" class="headerlink" title="三.主要方法及监听器"></a>三.主要方法及监听器</h3><ul>
+<li><p><strong>collapseGroup( int position)</strong><br>收起 position 位置的分组</p>
+</li>
+<li><p><strong>expandGroup(int position)</strong><br>展开position位置的分组</p>
+</li>
+<li><p><strong>isGroupExpanded(int position)</strong><br>判断position位置的分组是否展开</p>
+</li>
+<li><p><strong>setAdapter(ExpandableListAdapter adapter)</strong><br>给ExpandableListView 设置适配器</p>
+</li>
+<li><p><strong>setOnChildClickListener(OnChildClickListener listener)</strong><br>设置分组中子条目的点击监听器</p>
+</li>
+<li><p><strong>setOnGroupClickListener(OnGroupClickListener listener)</strong><br>设置分组的点击监听器</p>
+</li>
+<li><p><strong>setOnGroupCollapseListener(OnGroupCollapseListener listener)</strong><br>设置分组收起的监听器</p>
+</li>
+<li><p><strong>setOnGroupExpandListener(OnGroupExpandListener listener)</strong><br>设置分组展开的监听器</p>
+</li>
+</ul>
+<h3 id="四-几个XML属性"><a href="#四-几个XML属性" class="headerlink" title="四.几个XML属性"></a>四.几个XML属性</h3><ul>
+<li><p><strong>android:groupIndicator</strong><br>组指示器，取值可以是任意的Drawable对象。显示在 该分组的最左侧。如果不设置的话，默认是一个向下的箭头，点击展开内容之后会变成向上的箭头</p>
+</li>
+<li><p><strong>android:childIndicator</strong><br>子条目指示器，取值可以是任意的Drawable 对象。显示在分组中的每一个 子条目 的最左侧。没有默认图标。</p>
+</li>
+</ul>
+<h3 id="五-用法"><a href="#五-用法" class="headerlink" title="五.用法"></a>五.用法</h3><ul>
+<li><strong>首先要准备好要填充的一级列表的的数据和对应的二级列表数据</strong><br>demo一级列表一共是三个选项<br>所以会有三个子选项的选项集合</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ParentList = new ArrayList&lt;&gt;();</span><br><span class="line">for (CharSequence ss : getResources().getTextArray(R.array.parent_item))&#123;</span><br><span class="line">    ParentList.add((String)ss);</span><br><span class="line">&#125;</span><br><span class="line">ArrayList&lt;String&gt; childLists1 = new ArrayList&lt;&gt;();</span><br><span class="line">for (CharSequence ss : getResources().getTextArray(R.array.child_1))&#123;</span><br><span class="line">    childLists1.add((String)ss);</span><br><span class="line">&#125;</span><br><span class="line">ArrayList&lt;String&gt; childLists2 = new ArrayList&lt;&gt;();</span><br><span class="line">for (CharSequence ss : getResources().getTextArray(R.array.child_2))&#123;</span><br><span class="line">    childLists2.add((String)ss);</span><br><span class="line">&#125;</span><br><span class="line">ArrayList&lt;String&gt; childLists3 = new ArrayList&lt;&gt;();</span><br><span class="line">for (CharSequence ss : getResources().getTextArray(R.array.child_3))&#123;</span><br><span class="line">    childLists3.add((String)ss);</span><br><span class="line">&#125;</span><br><span class="line">ChildLists = new ArrayList&lt;&gt;();</span><br><span class="line">ChildLists.add(childLists1);</span><br><span class="line">ChildLists.add(childLists2);</span><br><span class="line">ChildLists.add(childLists3);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>把准备好的一级二级数据传入adapter</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">mExpandableListView = dialogView.findViewById(R.id.expandablelistview);</span><br><span class="line">final MultistageAdapter moAdapter = new MultistageAdapter(this,ParentList, ChildLists, mParentmValue, mChildValue);</span><br><span class="line">mExpandableListView.setAdapter(moAdapter);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>监听点击事件</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//一级选项点击回调</span><br><span class="line">mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) &#123;</span><br><span class="line">        mParentmValue2 =  groupPosition;</span><br><span class="line">        mChildValue2 = 0;</span><br><span class="line">        moAdapter.notifyDataSetChanged(mParentmValue2,mChildValue2); //更新选中状态</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//二级选项点击回调</span><br><span class="line">mExpandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onChildClick(ExpandableListView parent, View v, int reverseTypePosition, int reverseCisPosition, long id) &#123;</span><br><span class="line">        mParentmValue2 =  reverseTypePosition;</span><br><span class="line">        mChildValue2 =  reverseCisPosition;</span><br><span class="line">        moAdapter.notifyDataSetChanged(mParentmValue2,mChildValue2);//更新选中状态</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>确认框中处理</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private void showConfirmDialog()&#123;</span><br><span class="line">    final AlertDialog.Builder normalDialog = new AlertDialog.Builder(this);</span><br><span class="line">    final String value = ParentList.get(mParentmValue2)+&quot;/&quot;+ChildLists.get(mParentmValue2).get(mChildValue);</span><br><span class="line">    normalDialog.setTitle(value);</span><br><span class="line">    normalDialog.setPositiveButton(&quot;OK&quot;,</span><br><span class="line">            new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">                    mParentmValue =  mParentmValue2;</span><br><span class="line">                    mChildValue =  mChildValue2;</span><br><span class="line">                    Toast.makeText(getApplicationContext(),value,Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">    ...</span><br><span class="line">    normalDialog.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六-常用对话框笔记"><a href="#六-常用对话框笔记" class="headerlink" title="六.常用对话框笔记"></a>六.常用对话框笔记</h3><p><a target="_blank" rel="noopener" href="https://freedomyouth.gitee.io/2020/12/14/%E5%B8%B8%E7%94%A8%E5%BC%B9%E5%87%BA%E5%AF%B9%E8%AF%9D%E6%A1%86%E6%95%B4%E7%90%86/">常用对话框笔记</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ExpandableListView/" rel="tag"># ExpandableListView</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/26/2021-03-05-MVP%E6%A1%86%E6%9E%B6%E7%A4%BA%E4%BE%8B%E8%AE%B2%E8%A7%A3/" rel="prev" title="MVP框架示例讲解">
+                  <i class="fa fa-chevron-left"></i> MVP框架示例讲解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/10/2021-03-10-XTab%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="next" title="XTab使用笔记">
+                  XTab使用笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="a54a353165d74da52676a3ab8850ec33"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

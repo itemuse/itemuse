@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一.代码XTester-networkxlib-Network 二.demo  三.方法 打开网络设置界面     123456789&#x2F;** * Open the settings of wireless. *&#x2F;public static void openWirelessSettings() &amp;#123;    getApp().startActivity(            new Int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XNewWork使用笔记">
+<meta property="og:url" content="http://example.com/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="一.代码XTester-networkxlib-Network 二.demo  三.方法 打开网络设置界面     123456789&#x2F;** * Open the settings of wireless. *&#x2F;public static void openWirelessSettings() &amp;#123;    getApp().startActivity(            new Int">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img.gif">
+<meta property="article:published_time" content="2021-03-31T06:28:08.000Z">
+<meta property="article:modified_time" content="2023-01-30T14:06:16.857Z">
+<meta property="article:author" content="项勇">
+<meta property="article:tag" content="xlib">
+<meta property="article:tag" content="NetWork">
+<meta property="article:tag" content="TelephonyManager">
+<meta property="article:tag" content="WifiManager">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img.gif">
+
+
+<link rel="canonical" href="http://example.com/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/","path":"2021/03/31/2021-03-31-XNewWork使用笔记/","title":"XNewWork使用笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>XNewWork使用笔记 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">一.代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-demo"><span class="nav-number">2.</span> <span class="nav-text">二.demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">三.方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E7%95%8C%E9%9D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">打开网络设置界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.2.</span> <span class="nav-text">判断网络是否连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E5%8F%AF%E7%94%A8"><span class="nav-number">3.3.</span> <span class="nav-text">判断网络是否可用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%A7%BB%E5%8A%A8%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80"><span class="nav-number">3.4.</span> <span class="nav-text">判断移动数据是否打开</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E6%98%AF%E7%A7%BB%E5%8A%A8%E6%95%B0%E6%8D%AE"><span class="nav-number">3.5.</span> <span class="nav-text">判断网络是否是移动数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E6%98%AF-4G%E3%80%815G"><span class="nav-number">3.6.</span> <span class="nav-text">判断网络是否是 4G、5G</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD-wifi-%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80"><span class="nav-number">3.7.</span> <span class="nav-text">判断 wifi 是否打开</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E6%88%96%E5%85%B3%E9%97%AD-wifi"><span class="nav-number">3.8.</span> <span class="nav-text">打开或关闭 wifi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%AD-wifi-%E6%98%AF%E5%90%A6%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81"><span class="nav-number">3.9.</span> <span class="nav-text">判断 wifi 是否连接状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.10.</span> <span class="nav-text">获取当前网络类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">3.11.</span> <span class="nav-text">获取 IP 地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%9F%9F%E5%90%8D-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">3.12.</span> <span class="nav-text">获取域名 IP 地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE-WiFi-%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9C-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">3.13.</span> <span class="nav-text">根据 WiFi 获取网络 IP 地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E6%94%B9%E5%8F%98%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-number">3.14.</span> <span class="nav-text">网络状态改变监听器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wifi%E5%88%97%E8%A1%A8%E6%9B%B4%E6%96%B0%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-number">3.15.</span> <span class="nav-text">wifi列表更新监听器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-WIFI-%E5%88%97%E8%A1%A8"><span class="nav-number">3.16.</span> <span class="nav-text">获取 WIFI 列表</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="XNewWork使用笔记 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          XNewWork使用笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-31 14:28:08" itemprop="dateCreated datePublished" datetime="2021-03-31T14:28:08+08:00">2021-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-30 22:06:16" itemprop="dateModified" datetime="2023-01-30T22:06:16+08:00">2023-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="XNewWork使用笔记" href="/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::33b4b02506644860dcfbffae218b8308" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一-代码"><a href="#一-代码" class="headerlink" title="一.代码"></a>一.代码</h3><p><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/network">XTester-network</a><br><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/network/XNetwork.java">xlib-Network</a></p>
+<h3 id="二-demo"><a href="#二-demo" class="headerlink" title="二.demo"></a>二.demo</h3><img src="/2021/03/31/2021-03-31-XNewWork%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img.gif" class title="This is an example image">
+
+<h3 id="三-方法"><a href="#三-方法" class="headerlink" title="三.方法"></a>三.方法</h3><ul>
+<li><h4 id="打开网络设置界面"><a href="#打开网络设置界面" class="headerlink" title="打开网络设置界面"></a>打开网络设置界面</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Open the settings of wireless.</span><br><span class="line"> */</span><br><span class="line">public static void openWirelessSettings() &#123;</span><br><span class="line">    getApp().startActivity(</span><br><span class="line">            new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)</span><br><span class="line">                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断网络是否连接"><a href="#判断网络是否连接" class="headerlink" title="判断网络是否连接"></a>判断网络是否连接</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">public static boolean isConnected() &#123;</span><br><span class="line">    NetworkInfo info = getActiveNetworkInfo();</span><br><span class="line">    return info != null &amp;&amp; info.isConnected();</span><br><span class="line">&#125;</span><br><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">private static NetworkInfo getActiveNetworkInfo() &#123;</span><br><span class="line">    ConnectivityManager cm =</span><br><span class="line">            (ConnectivityManager) getApp().getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line">    if (cm == null) return null;</span><br><span class="line">    return cm.getActiveNetworkInfo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断网络是否可用"><a href="#判断网络是否可用" class="headerlink" title="判断网络是否可用"></a>判断网络是否可用</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(INTERNET)</span><br><span class="line">public static boolean isAvailableByDns(final String domain) &#123;</span><br><span class="line">    final String realDomain = TextUtils.isEmpty(domain) ? &quot;www.baidu.com&quot; : domain;</span><br><span class="line">    InetAddress inetAddress;</span><br><span class="line">    try &#123;</span><br><span class="line">        inetAddress = InetAddress.getByName(realDomain);</span><br><span class="line">        return inetAddress != null;</span><br><span class="line">    &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断移动数据是否打开"><a href="#判断移动数据是否打开" class="headerlink" title="判断移动数据是否打开"></a>判断移动数据是否打开</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(MODIFY_PHONE_STATE)</span><br><span class="line">public static boolean getMobileDataEnabled() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        TelephonyManager tm =</span><br><span class="line">                (TelephonyManager) getApp().getSystemService(Context.TELEPHONY_SERVICE);</span><br><span class="line">        if (tm == null) return false;</span><br><span class="line">        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O)  &#123;</span><br><span class="line">                return tm.isDataEnabled();</span><br><span class="line">        &#125;</span><br><span class="line">        @SuppressLint(&quot;PrivateApi&quot;)</span><br><span class="line">        Method getMobileDataEnabledMethod =</span><br><span class="line">                tm.getClass().getDeclaredMethod(&quot;getDataEnabled&quot;);</span><br><span class="line">        if (null != getMobileDataEnabledMethod) &#123;</span><br><span class="line">            return (boolean) getMobileDataEnabledMethod.invoke(tm);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断网络是否是移动数据"><a href="#判断网络是否是移动数据" class="headerlink" title="判断网络是否是移动数据"></a>判断网络是否是移动数据</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">public static boolean isMobileData() &#123;</span><br><span class="line">    NetworkInfo info = getActiveNetworkInfo();</span><br><span class="line">    return null != info</span><br><span class="line">            &amp;&amp; info.isAvailable()</span><br><span class="line">            &amp;&amp; info.getType() == ConnectivityManager.TYPE_MOBILE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断网络是否是-4G、5G"><a href="#判断网络是否是-4G、5G" class="headerlink" title="判断网络是否是 4G、5G"></a>判断网络是否是 4G、5G</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return whether using 4G.</span><br><span class="line"> * &lt;p&gt;Must hold &#123;@code &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;&#125;&lt;/p&gt;</span><br><span class="line"> *</span><br><span class="line"> * @return &#123;@code true&#125;: yes&lt;br&gt;&#123;@code false&#125;: no</span><br><span class="line"> */</span><br><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">public static boolean is4G() &#123;</span><br><span class="line">    NetworkInfo info = getActiveNetworkInfo();</span><br><span class="line">    return info != null</span><br><span class="line">            &amp;&amp; info.isAvailable()</span><br><span class="line">            &amp;&amp; info.getSubtype() == TelephonyManager.NETWORK_TYPE_LTE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Return whether using 4G.</span><br><span class="line"> * &lt;p&gt;Must hold &#123;@code &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;&#125;&lt;/p&gt;</span><br><span class="line"> *</span><br><span class="line"> * @return &#123;@code true&#125;: yes&lt;br&gt;&#123;@code false&#125;: no</span><br><span class="line"> */</span><br><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">public static boolean is5G() &#123;</span><br><span class="line">    NetworkInfo info = getActiveNetworkInfo();</span><br><span class="line">    return info != null</span><br><span class="line">            &amp;&amp; info.isAvailable()</span><br><span class="line">            &amp;&amp; info.getSubtype() == TelephonyManager.NETWORK_TYPE_NR;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">private static NetworkInfo getActiveNetworkInfo() &#123;</span><br><span class="line">    ConnectivityManager cm =</span><br><span class="line">            (ConnectivityManager) getApp().getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line">    if (cm == null) return null;</span><br><span class="line">    return cm.getActiveNetworkInfo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断-wifi-是否打开"><a href="#判断-wifi-是否打开" class="headerlink" title="判断 wifi 是否打开"></a>判断 wifi 是否打开</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(ACCESS_WIFI_STATE)</span><br><span class="line">public static boolean getWifiEnabled() &#123;</span><br><span class="line">    @SuppressLint(&quot;WifiManagerLeak&quot;)</span><br><span class="line">    WifiManager manager = (WifiManager) getApp().getSystemService(WIFI_SERVICE);</span><br><span class="line">    if (manager == null) return false;</span><br><span class="line">    return manager.isWifiEnabled();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="打开或关闭-wifi"><a href="#打开或关闭-wifi" class="headerlink" title="打开或关闭 wifi"></a>打开或关闭 wifi</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(CHANGE_WIFI_STATE)</span><br><span class="line">public static void setWifiEnabled(final boolean enabled) &#123;</span><br><span class="line">    @SuppressLint(&quot;WifiManagerLeak&quot;)</span><br><span class="line">    WifiManager manager = (WifiManager) getApp().getSystemService(WIFI_SERVICE);</span><br><span class="line">    if (manager == null) return;</span><br><span class="line">    if (enabled == manager.isWifiEnabled()) return;</span><br><span class="line">    manager.setWifiEnabled(enabled);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断-wifi-是否连接状态"><a href="#判断-wifi-是否连接状态" class="headerlink" title="判断 wifi 是否连接状态"></a>判断 wifi 是否连接状态</h4></li>
+</ul>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">public static boolean isWifiConnected() &#123;</span><br><span class="line">    ConnectivityManager cm =</span><br><span class="line">            (ConnectivityManager) getApp().getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line">    if (cm == null) return false;</span><br><span class="line">    NetworkInfo ni = cm.getActiveNetworkInfo();</span><br><span class="line">    return ni != null &amp;&amp; ni.getType() == ConnectivityManager.TYPE_WIFI;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li><h4 id="获取当前网络类型"><a href="#获取当前网络类型" class="headerlink" title="获取当前网络类型"></a>获取当前网络类型</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(ACCESS_NETWORK_STATE)</span><br><span class="line">public static NetworkType getNetworkType() &#123;</span><br><span class="line">    if (isEthernet()) &#123;</span><br><span class="line">        return NetworkType.NETWORK_ETHERNET;</span><br><span class="line">    &#125;</span><br><span class="line">    NetworkInfo info = getActiveNetworkInfo();</span><br><span class="line">    if (info != null &amp;&amp; info.isAvailable()) &#123;</span><br><span class="line">        if (info.getType() == ConnectivityManager.TYPE_WIFI) &#123;</span><br><span class="line">            return NetworkType.NETWORK_WIFI;</span><br><span class="line">        &#125; else if (info.getType() == ConnectivityManager.TYPE_MOBILE) &#123;</span><br><span class="line">            switch (info.getSubtype()) &#123;</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_GSM:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_GPRS:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_CDMA:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_EDGE:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_1xRTT:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_IDEN:</span><br><span class="line">                    return NetworkType.NETWORK_2G;</span><br><span class="line"></span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_TD_SCDMA:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_EVDO_A:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_UMTS:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_EVDO_0:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_HSDPA:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_HSUPA:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_HSPA:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_EVDO_B:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_EHRPD:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_HSPAP:</span><br><span class="line">                    return NetworkType.NETWORK_3G;</span><br><span class="line"></span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_IWLAN:</span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_LTE:</span><br><span class="line">                    return NetworkType.NETWORK_4G;</span><br><span class="line"></span><br><span class="line">                case TelephonyManager.NETWORK_TYPE_NR:</span><br><span class="line">                    return NetworkType.NETWORK_5G;</span><br><span class="line">                default:</span><br><span class="line">                    String subtypeName = info.getSubtypeName();</span><br><span class="line">                    if (subtypeName.equalsIgnoreCase(&quot;TD-SCDMA&quot;)</span><br><span class="line">                            || subtypeName.equalsIgnoreCase(&quot;WCDMA&quot;)</span><br><span class="line">                            || subtypeName.equalsIgnoreCase(&quot;CDMA2000&quot;)) &#123;</span><br><span class="line">                        return NetworkType.NETWORK_3G;</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        return NetworkType.NETWORK_UNKNOWN;</span><br><span class="line">                    &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return NetworkType.NETWORK_UNKNOWN;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return NetworkType.NETWORK_NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="获取-IP-地址"><a href="#获取-IP-地址" class="headerlink" title="获取 IP 地址"></a>获取 IP 地址</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the ip address.</span><br><span class="line"> * &lt;p&gt;Must hold &#123;@code &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;&#125;&lt;/p&gt;</span><br><span class="line"> *</span><br><span class="line"> * @param useIPv4 True to use ipv4, false otherwise.</span><br><span class="line"> * @return the ip address</span><br><span class="line"> */</span><br><span class="line">@RequiresPermission(INTERNET)</span><br><span class="line">public static String getIPAddress(final boolean useIPv4) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        Enumeration&lt;NetworkInterface&gt; nis = NetworkInterface.getNetworkInterfaces();</span><br><span class="line">        LinkedList&lt;InetAddress&gt; adds = new LinkedList&lt;&gt;();</span><br><span class="line">        while (nis.hasMoreElements()) &#123;</span><br><span class="line">            NetworkInterface ni = nis.nextElement();</span><br><span class="line">            // To prevent phone of xiaomi return &quot;10.0.2.15&quot;</span><br><span class="line">            if (!ni.isUp() || ni.isLoopback()) continue;</span><br><span class="line">            Enumeration&lt;InetAddress&gt; addresses = ni.getInetAddresses();</span><br><span class="line">            while (addresses.hasMoreElements()) &#123;</span><br><span class="line">                adds.addFirst(addresses.nextElement());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (InetAddress add : adds) &#123;</span><br><span class="line">            if (!add.isLoopbackAddress()) &#123;</span><br><span class="line">                String hostAddress = add.getHostAddress();</span><br><span class="line">                boolean isIPv4 = hostAddress.indexOf(&#x27;:&#x27;) &lt; 0;</span><br><span class="line">                if (useIPv4) &#123;</span><br><span class="line">                    if (isIPv4) return hostAddress;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    if (!isIPv4) &#123;</span><br><span class="line">                        int index = hostAddress.indexOf(&#x27;%&#x27;);</span><br><span class="line">                        return index &lt; 0</span><br><span class="line">                                ? hostAddress.toUpperCase()</span><br><span class="line">                                : hostAddress.substring(0, index).toUpperCase();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (SocketException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="获取域名-IP-地址"><a href="#获取域名-IP-地址" class="headerlink" title="获取域名 IP 地址"></a>获取域名 IP 地址</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(INTERNET)</span><br><span class="line">public static String getDomainAddress(final String domain) &#123;</span><br><span class="line">    InetAddress inetAddress;</span><br><span class="line">    try &#123;</span><br><span class="line">        inetAddress = InetAddress.getByName(domain);</span><br><span class="line">        return inetAddress.getHostAddress();</span><br><span class="line">    &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="根据-WiFi-获取网络-IP-地址"><a href="#根据-WiFi-获取网络-IP-地址" class="headerlink" title="根据 WiFi 获取网络 IP 地址"></a>根据 WiFi 获取网络 IP 地址</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@RequiresPermission(ACCESS_WIFI_STATE)</span><br><span class="line">public static String getIpAddressByWifi() &#123;</span><br><span class="line">    @SuppressLint(&quot;WifiManagerLeak&quot;)</span><br><span class="line">    WifiManager wm = (WifiManager) getApp().getSystemService(Context.WIFI_SERVICE);</span><br><span class="line">    if (wm == null) return &quot;&quot;;</span><br><span class="line">    return Formatter.formatIpAddress(wm.getDhcpInfo().ipAddress);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="网络状态改变监听器"><a href="#网络状态改变监听器" class="headerlink" title="网络状态改变监听器"></a>网络状态改变监听器</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">XNetwork.registerNetworkStatusChangedListener(new XNetwork.OnNetworkStatusChangedListener() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         public void onDisconnected() &#123;</span><br><span class="line">             </span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         @Override</span><br><span class="line">         public void onConnected(XNetwork.NetworkType networkType) &#123;</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="wifi列表更新监听器"><a href="#wifi列表更新监听器" class="headerlink" title="wifi列表更新监听器"></a>wifi列表更新监听器</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">XNetwork.addOnWifiChangedConsumer(new XApp.Consumer&lt;WifiScanResults&gt;() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         public void accept(WifiScanResults wifiScanResults) &#123;</span><br><span class="line">             </span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="获取-WIFI-列表"><a href="#获取-WIFI-列表" class="headerlink" title="获取 WIFI 列表"></a>获取 WIFI 列表</h4></li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WifiScanResults wifiScanResults = XNetwork.getWifiScanResult();</span><br><span class="line">List&lt;ScanResult&gt; scanResults = wifiScanResults.getFilterResults();</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/xlib/" rel="tag"># xlib</a>
+              <a href="/tags/NetWork/" rel="tag"># NetWork</a>
+              <a href="/tags/TelephonyManager/" rel="tag"># TelephonyManager</a>
+              <a href="/tags/WifiManager/" rel="tag"># WifiManager</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="prev" title="ViewPager2使用笔记">
+                  <i class="fa fa-chevron-left"></i> ViewPager2使用笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/06/05/2021-06-05-XTime%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="next" title="XTime使用笔记">
+                  XTime使用笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="33b4b02506644860dcfbffae218b8308"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

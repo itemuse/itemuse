@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一.代码位置 xlib-Application XTester-packagemanger  二.引用方式 将JitPack存储库添加到您的构建文件中将其添加到存储库末尾的root build.gradle中： 123456allprojects &amp;#123;      repositories &amp;#123;      ...      maven &amp;#123; url &amp;#x27;https:&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PackageManager基础">
+<meta property="og:url" content="http://example.com/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="一.代码位置 xlib-Application XTester-packagemanger  二.引用方式 将JitPack存储库添加到您的构建文件中将其添加到存储库末尾的root build.gradle中： 123456allprojects &amp;#123;      repositories &amp;#123;      ...      maven &amp;#123; url &amp;#x27;https:&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/list.gif">
+<meta property="article:published_time" content="2021-03-25T11:30:51.000Z">
+<meta property="article:modified_time" content="2023-01-30T14:05:43.809Z">
+<meta property="article:author" content="项勇">
+<meta property="article:tag" content="xlib">
+<meta property="article:tag" content="PackageManager">
+<meta property="article:tag" content="ActivityManger">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/list.gif">
+
+
+<link rel="canonical" href="http://example.com/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/","path":"2021/03/25/2021-03-25-PackageManager基础/","title":"PackageManager基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PackageManager基础 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E4%BB%A3%E7%A0%81%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">一.代码位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E5%BC%95%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">二.引用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-demo"><span class="nav-number">3.</span> <span class="nav-text">三.demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-PackageManager%E5%87%A0%E4%B8%AA%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">四.PackageManager几个方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%ADAPP%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85"><span class="nav-number">4.1.</span> <span class="nav-text">判断APP是否安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%ADAPP%E6%98%AF%E5%90%A6DEBUG%E7%89%88%E6%9C%AC"><span class="nav-number">4.2.</span> <span class="nav-text">判断APP是否DEBUG版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%ADAPP%E6%98%AF%E5%90%A6%E7%B3%BB%E7%BB%9F%E5%BA%94%E7%94%A8"><span class="nav-number">4.3.</span> <span class="nav-text">判断APP是否系统应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A4%E6%96%ADAPP%E6%98%AF%E5%90%A6%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C"><span class="nav-number">4.4.</span> <span class="nav-text">判断APP是否正在运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E5%9B%BE%E6%A0%87"><span class="nav-number">4.5.</span> <span class="nav-text">获取APP图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E5%90%8D"><span class="nav-number">4.6.</span> <span class="nav-text">获取APP名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E8%B7%AF%E5%BE%84"><span class="nav-number">4.7.</span> <span class="nav-text">获取APP路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E7%89%88%E5%90%8D"><span class="nav-number">4.8.</span> <span class="nav-text">获取APP版名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="nav-number">4.9.</span> <span class="nav-text">获取APP版本号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E7%AD%BE%E5%90%8D"><span class="nav-number">4.10.</span> <span class="nav-text">获取APP签名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E7%9A%84UI-ID"><span class="nav-number">4.11.</span> <span class="nav-text">获取APP的UI-ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E4%BF%A1%E6%81%AF"><span class="nav-number">4.12.</span> <span class="nav-text">获取APP信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-x2F-%E8%AE%BE%E7%BD%AEAPP%E5%90%AF%E7%94%A8-x2F-%E7%A6%81%E7%94%A8%E7%8A%B6%E6%80%81"><span class="nav-number">4.13.</span> <span class="nav-text">获取&#x2F;设置APP启用&#x2F;禁用状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-x2F-%E8%AE%BE%E7%BD%AEActivity%E5%90%AF%E7%94%A8-x2F-%E7%A6%81%E7%94%A8%E7%8A%B6%E6%80%81"><span class="nav-number">4.14.</span> <span class="nav-text">获取&#x2F;设置Activity启用&#x2F;禁用状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96APP%E4%BF%A1%E6%81%AF-1"><span class="nav-number">4.15.</span> <span class="nav-text">获取APP信息</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PackageManager基础 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PackageManager基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-25 19:30:51" itemprop="dateCreated datePublished" datetime="2021-03-25T19:30:51+08:00">2021-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-30 22:05:43" itemprop="dateModified" datetime="2023-01-30T22:05:43+08:00">2023-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="PackageManager基础" href="/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::77ec5facfee7c29b4dc1c8ae0f9f0c63" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/app/XApplication.java">xlib-Application</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/packagemanger">XTester-packagemanger</a></li>
+</ul>
+<h3 id="二-引用方式"><a href="#二-引用方式" class="headerlink" title="二.引用方式"></a>二.引用方式</h3><ol>
+<li><p>将JitPack存储库添加到您的构建文件中<br>将其添加到存储库末尾的root build.gradle中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">      repositories &#123;</span><br><span class="line">      ...</span><br><span class="line">      maven &#123; url &#x27;https://jitpack.io&#x27; &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加依赖项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      ...</span><br><span class="line">      implementation &#x27;com.github.itemuse:XLib:Tag&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化 Application中init</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import cn.xy.library.XApp;</span><br><span class="line">      ...</span><br><span class="line">@Override</span><br><span class="line">public void onCreate() &#123;</span><br><span class="line">      super.onCreate();</span><br><span class="line">      XApp.init(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AndroidManifest.xml中添加UID</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:sharedUserId=&quot;android.uid.system&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="三-demo"><a href="#三-demo" class="headerlink" title="三.demo"></a>三.demo</h3><img src="/2021/03/25/2021-03-25-PackageManager%E5%9F%BA%E7%A1%80/list.gif" class title="This is an example image">
+
+<h3 id="四-PackageManager几个方法"><a href="#四-PackageManager几个方法" class="headerlink" title="四.PackageManager几个方法"></a>四.PackageManager几个方法</h3><ul>
+<li><h4 id="判断APP是否安装"><a href="#判断APP是否安装" class="headerlink" title="判断APP是否安装"></a>判断APP是否安装</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return whether the app is installed.</span><br><span class="line"> *</span><br><span class="line"> * @param pkgName The name of the package.</span><br><span class="line"> * @return &#123;@code true&#125;: yes&lt;br&gt;&#123;@code false&#125;: no</span><br><span class="line"> */</span><br><span class="line">public static boolean isAppInstalled(@NonNull final String pkgName) &#123;</span><br><span class="line">    PackageManager packageManager = XApp.getApp().getPackageManager();</span><br><span class="line">    try &#123;</span><br><span class="line">        return packageManager.getApplicationInfo(pkgName, 0) != null;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="判断APP是否DEBUG版本"><a href="#判断APP是否DEBUG版本" class="headerlink" title="判断APP是否DEBUG版本"></a>判断APP是否DEBUG版本</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * Return whether it is a debug application.</span><br><span class="line">  *</span><br><span class="line">  * @param packageName The name of the package.</span><br><span class="line">  * @return &#123;@code true&#125;: yes&lt;br&gt;&#123;@code false&#125;: no</span><br><span class="line">  */</span><br><span class="line"> public static boolean isAppDebug(final String packageName) &#123;</span><br><span class="line">     if (isSpace(packageName)) return false;</span><br><span class="line">     try &#123;</span><br><span class="line">         PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">         ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);</span><br><span class="line">         return ai != null &amp;&amp; (ai.flags &amp; ApplicationInfo.FLAG_DEBUGGABLE) != 0;</span><br><span class="line">     &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="判断APP是否系统应用"><a href="#判断APP是否系统应用" class="headerlink" title="判断APP是否系统应用"></a>判断APP是否系统应用</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return whether it is a system application.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return &#123;@code true&#125;: yes&lt;br&gt;&#123;@code false&#125;: no</span><br><span class="line"> */</span><br><span class="line">public static boolean isAppSystem(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return false;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);</span><br><span class="line">        return ai != null &amp;&amp; (ai.flags &amp; ApplicationInfo.FLAG_SYSTEM) != 0;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="判断APP是否正在运行"><a href="#判断APP是否正在运行" class="headerlink" title="判断APP是否正在运行"></a>判断APP是否正在运行</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return whether application is running.</span><br><span class="line"> *</span><br><span class="line"> * @param pkgName The name of the package.</span><br><span class="line"> * @return &#123;@code true&#125;: yes&lt;br&gt;&#123;@code false&#125;: no</span><br><span class="line"> */</span><br><span class="line">public static boolean isAppRunning(@NonNull final String pkgName) &#123;</span><br><span class="line">    int uid;</span><br><span class="line">    PackageManager packageManager = XApp.getApp().getPackageManager();</span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationInfo ai = packageManager.getApplicationInfo(pkgName, 0);</span><br><span class="line">        if (ai == null) return false;</span><br><span class="line">        uid = ai.uid;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    ActivityManager am = (ActivityManager) XApp.getApp().getSystemService(Context.ACTIVITY_SERVICE);</span><br><span class="line">    if (am != null) &#123;</span><br><span class="line">        List&lt;ActivityManager.RunningTaskInfo&gt; taskInfo = am.getRunningTasks(Integer.MAX_VALUE);</span><br><span class="line">        if (taskInfo != null &amp;&amp; taskInfo.size() &gt; 0) &#123;</span><br><span class="line">            for (ActivityManager.RunningTaskInfo aInfo : taskInfo) &#123;</span><br><span class="line">                if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.Q) &#123;</span><br><span class="line">                    if (pkgName.equals(aInfo.baseActivity.getPackageName())) &#123;</span><br><span class="line">                        return true;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;ActivityManager.RunningServiceInfo&gt; serviceInfo = am.getRunningServices(Integer.MAX_VALUE);</span><br><span class="line">        if (serviceInfo != null &amp;&amp; serviceInfo.size() &gt; 0) &#123;</span><br><span class="line">            for (ActivityManager.RunningServiceInfo aInfo : serviceInfo) &#123;</span><br><span class="line">                if (uid == aInfo.uid) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP图标"><a href="#获取APP图标" class="headerlink" title="获取APP图标"></a>获取APP图标</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s icon.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s icon</span><br><span class="line"> */</span><br><span class="line">public static Drawable getAppIcon(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return null;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(packageName, 0);</span><br><span class="line">        return pi == null ? null : pi.applicationInfo.loadIcon(pm);</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP名"><a href="#获取APP名" class="headerlink" title="获取APP名"></a>获取APP名</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s name.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s name</span><br><span class="line"> */</span><br><span class="line">public static String getAppName(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return &quot;&quot;;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(packageName, 0);</span><br><span class="line">        return pi == null ? null : pi.applicationInfo.loadLabel(pm).toString();</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP路径"><a href="#获取APP路径" class="headerlink" title="获取APP路径"></a>获取APP路径</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s path.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s path</span><br><span class="line"> */</span><br><span class="line">public static String getAppPath(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return &quot;&quot;;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(packageName, 0);</span><br><span class="line">        return pi == null ? null : pi.applicationInfo.sourceDir;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP版名"><a href="#获取APP版名" class="headerlink" title="获取APP版名"></a>获取APP版名</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s version name.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s version name</span><br><span class="line"> */</span><br><span class="line">public static String getAppVersionName(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return &quot;&quot;;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(packageName, 0);</span><br><span class="line">        return pi == null ? null : pi.versionName;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP版本号"><a href="#获取APP版本号" class="headerlink" title="获取APP版本号"></a>获取APP版本号</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s version code.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s version code</span><br><span class="line"> */</span><br><span class="line">public static int getAppVersionCode(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return -1;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(packageName, 0);</span><br><span class="line">        return pi == null ? -1 : pi.versionCode;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP签名"><a href="#获取APP签名" class="headerlink" title="获取APP签名"></a>获取APP签名</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s signature.</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s signature</span><br><span class="line"> */</span><br><span class="line">public static Signature[] getAppSignature(final String packageName) &#123;</span><br><span class="line">    if (isSpace(packageName)) return null;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        @SuppressLint(&quot;PackageManagerGetSignatures&quot;)</span><br><span class="line">        PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);</span><br><span class="line">        return pi == null ? null : pi.signatures;</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP的UI-ID"><a href="#获取APP的UI-ID" class="headerlink" title="获取APP的UI-ID"></a>获取APP的UI-ID</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s user-ID.</span><br><span class="line"> *</span><br><span class="line"> * @param pkgName The name of the package.</span><br><span class="line"> * @return the application&#x27;s signature for MD5 value</span><br><span class="line"> */</span><br><span class="line">public static int getAppUid(String pkgName) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        ApplicationInfo ai = XApp.getApp().getPackageManager().getApplicationInfo(pkgName, 0);</span><br><span class="line">        if (ai != null) &#123;</span><br><span class="line">            return ai.uid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取APP信息"><a href="#获取APP信息" class="headerlink" title="获取APP信息"></a>获取APP信息</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s information.</span><br><span class="line"> * &lt;ul&gt;</span><br><span class="line"> * &lt;li&gt;name of package&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;icon&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;name&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;path of package&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;version name&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;version code&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;is system&lt;/li&gt;</span><br><span class="line"> * &lt;/ul&gt;</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s information</span><br><span class="line"> */</span><br><span class="line">public static AppInfo getAppInfo(final String packageName) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        if (pm == null) return null;</span><br><span class="line">        return getBean(pm, pm.getPackageInfo(packageName, 0));</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="获取-x2F-设置APP启用-x2F-禁用状态"><a href="#获取-x2F-设置APP启用-x2F-禁用状态" class="headerlink" title="获取&#x2F;设置APP启用&#x2F;禁用状态"></a>获取&#x2F;设置APP启用&#x2F;禁用状态</h4></li>
+</ul>
+<pre><code>- 设置
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param packageName to hidden or show app</span><br><span class="line"> * @param enable true ENABLED ; false DISABLED</span><br><span class="line"> * need android:sharedUserId=&quot;android.uid.system&quot;</span><br><span class="line"> */</span><br><span class="line">public void changeAppState(String packageName, boolean enable)&#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager packageManager = XApp.getApp().getPackageManager();</span><br><span class="line">        if(enable)&#123;</span><br><span class="line">            packageManager.setApplicationEnabledSetting(packageName,PackageManager.COMPONENT_ENABLED_STATE_ENABLED,0);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            packageManager.setApplicationEnabledSetting(packageName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        XLog.debug(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+- 获取
+</code></pre>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   /**</span><br><span class="line"> * @return</span><br><span class="line"> * -1 no intalled</span><br><span class="line"> *  1 ENABLED</span><br><span class="line"> *  2 DISABLED</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public int getAppState(String packageName) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager packageManager = XApp.getApp().getPackageManager();</span><br><span class="line">        return packageManager.getApplicationEnabledSetting(packageName);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        XLog.debug(e.getMessage());</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="获取-x2F-设置Activity启用-x2F-禁用状态"><a href="#获取-x2F-设置Activity启用-x2F-禁用状态" class="headerlink" title="获取&#x2F;设置Activity启用&#x2F;禁用状态"></a>获取&#x2F;设置Activity启用&#x2F;禁用状态</h4></li>
+</ul>
+<pre><code>- 获取
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @return</span><br><span class="line"> * -1 no intalled</span><br><span class="line"> *  1 ENABLED</span><br><span class="line"> *  2 DISABLED</span><br><span class="line"> */</span><br><span class="line">public int getActivityState(ComponentName componentName)&#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager packageManager = XApp.getApp().getPackageManager();</span><br><span class="line">        return packageManager.getComponentEnabledSetting(componentName);</span><br><span class="line">    &#125; catch (Exception e)&#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+- 设置
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param componentName to hidden or show activity</span><br><span class="line"> * @param enable true ENABLED ; false DISABLED</span><br><span class="line"> * need android:sharedUserId=&quot;android.uid.system&quot;</span><br><span class="line"> */</span><br><span class="line">public void changActivityState(ComponentName componentName,boolean enable)&#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager packageManager = XApp.getApp().getPackageManager();</span><br><span class="line">        if (enable)&#123;</span><br><span class="line">            packageManager.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_ENABLED,0);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            packageManager.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Exception e)&#123;</span><br><span class="line">        XLog.debug(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+- ComponentName mComponentName
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mComponentName = new ComponentName(&quot;cn.xy.windowmanager&quot;,&quot;cn.xy.windowmanager.MainActivity&quot;)</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ul>
+<li><h4 id="获取APP信息-1"><a href="#获取APP信息-1" class="headerlink" title="获取APP信息"></a>获取APP信息</h4><ul>
+<li>获取系统所有APP信息 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获取系统所有APP信息</span><br><span class="line"> * Return the applications&#x27; information.</span><br><span class="line"> *</span><br><span class="line"> * @return the applications&#x27; information</span><br><span class="line"> */</span><br><span class="line">public static List&lt;AppInfo&gt; getAppsInfo() &#123;</span><br><span class="line">    List&lt;AppInfo&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">    if (pm == null) return list;</span><br><span class="line">    List&lt;PackageInfo&gt; installedPackages = pm.getInstalledPackages(0);</span><br><span class="line">    for (PackageInfo pi : installedPackages) &#123;</span><br><span class="line">        AppInfo ai = getBean(pm, pi);</span><br><span class="line">        if (ai == null) continue;</span><br><span class="line">        list.add(ai);</span><br><span class="line">    &#125;</span><br><span class="line">    return list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>获取某已安装APP信息 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s information.</span><br><span class="line"> * &lt;ul&gt;</span><br><span class="line"> * &lt;li&gt;name of package&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;icon&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;name&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;path of package&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;version name&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;version code&lt;/li&gt;</span><br><span class="line"> * &lt;li&gt;is system&lt;/li&gt;</span><br><span class="line"> * &lt;/ul&gt;</span><br><span class="line"> *</span><br><span class="line"> * @param packageName The name of the package.</span><br><span class="line"> * @return the application&#x27;s information</span><br><span class="line"> */</span><br><span class="line">public static AppInfo getAppInfo(final String packageName) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">        if (pm == null) return null;</span><br><span class="line">        return getBean(pm, pm.getPackageInfo(packageName, 0));</span><br><span class="line">    &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>获取某apk文件信息  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Return the application&#x27;s package information.</span><br><span class="line"> * </span><br><span class="line"> * @return the application&#x27;s package information</span><br><span class="line"> */</span><br><span class="line">public static XApplication.AppInfo getApkInfo(final String apkFilePath) &#123;</span><br><span class="line">    if (isSpace(apkFilePath)) return null;</span><br><span class="line">    PackageManager pm = XApp.getApp().getPackageManager();</span><br><span class="line">    if (pm == null) return null;</span><br><span class="line">    PackageInfo pi = pm.getPackageArchiveInfo(apkFilePath, 0);</span><br><span class="line">    if (pi == null) return null;</span><br><span class="line">    ApplicationInfo appInfo = pi.applicationInfo;</span><br><span class="line">    appInfo.sourceDir = apkFilePath;</span><br><span class="line">    appInfo.publicSourceDir = apkFilePath;</span><br><span class="line">    return getBean(pm, pi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>getBean  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private static AppInfo getBean(final PackageManager pm, final PackageInfo pi) &#123;</span><br><span class="line">    if (pi == null) return null;</span><br><span class="line">    ApplicationInfo ai = pi.applicationInfo;</span><br><span class="line">    String packageName = pi.packageName;</span><br><span class="line">    String name = ai.loadLabel(pm).toString();</span><br><span class="line">    Drawable icon = ai.loadIcon(pm);</span><br><span class="line">    String packagePath = ai.sourceDir;</span><br><span class="line">    String versionName = pi.versionName;</span><br><span class="line">    int versionCode = pi.versionCode;</span><br><span class="line">    boolean isSystem = (ApplicationInfo.FLAG_SYSTEM &amp; ai.flags) != 0;</span><br><span class="line">    return new AppInfo(packageName, name, icon, packagePath, versionName, versionCode, isSystem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/xlib/" rel="tag"># xlib</a>
+              <a href="/tags/PackageManager/" rel="tag"># PackageManager</a>
+              <a href="/tags/ActivityManger/" rel="tag"># ActivityManger</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/21/2021-03-22-XToast%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="prev" title="XToast使用笔记">
+                  <i class="fa fa-chevron-left"></i> XToast使用笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="next" title="ViewPager2使用笔记">
+                  ViewPager2使用笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="77ec5facfee7c29b4dc1c8ae0f9f0c63"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>
