@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/02/29/%E6%A0%87%E7%AD%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/02/29/%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">标签</a>
+          <a href="/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">解读闹钟代码</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2016-02-29 08:00:00" itemprop="dateCreated datePublished" datetime="2016-02-29T08:00:00+08:00">2016-02-29</time>
+      <time title="创建时间：2018-07-21 17:47:35" itemprop="dateCreated datePublished" datetime="2018-07-21T17:47:35+08:00">2018-07-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2021-04-21 11:21:29" itemprop="dateModified" datetime="2021-04-21T11:21:29+08:00">2021-04-21</time>
+      <time title="修改时间：2023-01-30 21:56:37" itemprop="dateModified" datetime="2023-01-30T21:56:37+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="标签" href="/2016/02/29/%E6%A0%87%E7%AD%BE/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::4980cbdef455e0f97f26b4d5e4f42826" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="解读闹钟代码" href="/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::5a9e1117e38b00220a662082dfbc3a4c" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,90 +224,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-个人项目"><a href="#一-个人项目" class="headerlink" title="一.个人项目"></a>一.个人项目</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib">工具Jar</a></p>
+          <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/AlarmManagerClock">AlarmManagerClock</a><br>此文是在此基础上做的讲解,用于加深印象</li>
+</ul>
+<h3 id="二-界面截图"><a href="#二-界面截图" class="headerlink" title="二.界面截图"></a>二.界面截图</h3><img src="/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/ui.png" class title="This is an example image">
+
+<h3 id="三-类"><a href="#三-类" class="headerlink" title="三.类"></a>三.类</h3><ul>
+<li><p><strong>AlarmActivity.java</strong><br>是处理弹出提示窗口的一个Activity；</p>
+</li>
+<li><p><strong>AlarmAlertActivity.java</strong><br>Main类，设置时间周期等操作</p>
+</li>
+<li><p><strong>AlarmOpreation.java</strong><br>核心逻辑处理类，负责计算周期时间，然后将时间通过AlarmManager发送定时广播；</p>
+</li>
+<li><p><strong>AlarmReceiver.java</strong><br>广播类，负责处理3发送的广播类型，弹出1；</p>
+</li>
+<li><p><strong>AlarmsSetting.java</strong><br>设置的时间信息的存取类；</p>
+</li>
+<li><p><strong>SharedPreferenceUtil.java</strong><br>配合5的一个存储类；</p>
+</li>
+<li><p><strong>TimePickerFragment.java</strong><br>设置时间的工具类；</p>
+</li>
+<li><p><strong>WeekGridAdpter.java</strong><br>设置星期的工具类；</p>
+</li>
+</ul>
+<h3 id="四-顺着去看"><a href="#四-顺着去看" class="headerlink" title="四.顺着去看"></a>四.顺着去看</h3><p><strong>核心api：Android原生定时器AlarmManager</strong></p>
 <ul>
-<li>版本<a target="_blank" rel="noopener" href="https://jitpack.io/#itemuse/XLib"><img src="https://jitpack.io/v/itemuse/XLib.svg"></a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/app/XApplication.java">Application</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/array/XArray.java">Array</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/bar/navigationbar/XNavigationBar.java">NavigationBar</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/bar/systemui/XSystemUI.java">SystemUi</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/file/XFile.java">File</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/file/XFileIO.java">FileIO</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/fragment/XFragment.java">Fragment</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/image/XImage.java">Image</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/log/XLog.java">Log</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/map/XMap.java">Map</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/network/XNetwork.java">Network</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/permissions/XPermission.java">Permission</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/resource/XResource.java">Resource</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/screen/XScreen.java">Screen</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/sdcard/XSDCard.java">SDCard</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/service/XService.java">Service</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/sharedpreferences/XSPUtils.java">sharedpreferences</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/size/XSize.java">Size</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/spannable/XSpanned.java">Spanned</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/string/XString.java">String</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/tab/XTab.java">Tab</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/thread/XThread.java">Thread</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/time/XTime.java">Time</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/toast/XToast.java">Toast</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/zip/XZip.java">Zip</a></li>
+<li>从<strong>AlarmActivity</strong>点击时间开始</li>
 </ul>
-</li>
-<li><p>独立项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	public void onClick(View v) &#123;</span><br><span class="line">		switch (v.getId()) &#123;</span><br><span class="line">		case R.id.switch_in: //上班打卡开关</span><br><span class="line">			if (v.isSelected()) &#123;</span><br><span class="line">				alarmsSetting.setInEnble(false);</span><br><span class="line">				v.setSelected(false);</span><br><span class="line">				AlarmOpreation.cancelAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_IN);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				alarmsSetting.setInEnble(true);</span><br><span class="line">				v.setSelected(true);</span><br><span class="line">				AlarmOpreation.enableAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_IN, alarmsSetting);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		case R.id.switch_out://下班打卡开关</span><br><span class="line">			if (v.isSelected()) &#123;</span><br><span class="line">				alarmsSetting.setOutEnble(false);</span><br><span class="line">				v.setSelected(false);</span><br><span class="line">				AlarmOpreation.cancelAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_OUT);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				alarmsSetting.setOutEnble(true);</span><br><span class="line">				v.setSelected(true);</span><br><span class="line">				AlarmOpreation.enableAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_OUT, alarmsSetting);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		case R.id.set_in_time: //设置上班时间</span><br><span class="line">			showTimePickerDialog(AlarmsSetting.ALARM_SETTING_TYPE_IN);</span><br><span class="line">			break;</span><br><span class="line">		case R.id.set_out_time://设置下班时间</span><br><span class="line">			showTimePickerDialog(AlarmsSetting.ALARM_SETTING_TYPE_OUT);</span><br><span class="line">			break;</span><br><span class="line">		case R.id.btn_dynamic: //灵活打卡</span><br><span class="line">			showSingSelect();</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中设置时间的方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void showTimePickerDialog(final int type) &#123;</span><br><span class="line">	TimePickerFragment timePicker = new TimePickerFragment();</span><br><span class="line">	if (type == AlarmsSetting.ALARM_SETTING_TYPE_IN) &#123;</span><br><span class="line">		timePicker.setTime(alarmsSetting.getInHour(), alarmsSetting.getInMinutes());</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		timePicker.setTime(alarmsSetting.getOutHour(), alarmsSetting.getOutMinutes());</span><br><span class="line">	&#125;</span><br><span class="line">	timePicker.show(getFragmentManager(), &quot;timePicker&quot;);</span><br><span class="line">	timePicker.setOnSelectListener(new TimePickerFragment.OnSelectListener() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void getValue(int hourOfDay, int minute) &#123;</span><br><span class="line">			setTime1(type,hourOfDay,minute);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XMusic">XMusic</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XVideo">XVideo</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/MVP">MVP</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/Dialog">Dialag</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/AlarmManagerClock">AlarmManagerClock</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester">XTester</a></li>
+<li><strong>TimePickerFragment窗口</strong><br>此类实质上就是继承至 <strong>DialogFragment</strong>调用 TimePickerDialog向外提供获取小时和分钟的接口！</li>
+<li><strong>WeekGridAdpter.java</strong><br>而星期的周期复杂些，此行星期选项列表是一排 GridView,WeekGridAdpter就是它的 Adapter，在构造方法的 GetView中，可以看出，大神将周一至周日，组成一个二进制数据：</li>
 </ul>
-</li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if(v.isSelected())&#123;</span><br><span class="line">    selected = selected - (int)(1 &lt;&lt; position);</span><br><span class="line">    if(selected &lt;= 0) &#123;//至少选一个</span><br><span class="line">        selected = selected + (int)(1 &lt;&lt; position);</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">    v.setSelected(false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    selected = selected + (int)(1 &lt;&lt; position);</span><br><span class="line">    v.setSelected(true);</span><br><span class="line">&#125;</span><br><span class="line">if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN)&#123;</span><br><span class="line">    alarmsSetting.setInDays(selected);</span><br><span class="line">&#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT)&#123;</span><br><span class="line">    alarmsSetting.setOutDays(selected);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>传入对应参数到<strong>AlarmOpreation</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AlarmOpreation.cancelAlert(context,type);</span><br><span class="line">AlarmOpreation.enableAlert(context, type, alarmsSetting);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>AlarmOpreation.class</strong></li>
 </ul>
-<h3 id="二-官方"><a href="#二-官方" class="headerlink" title="二.官方"></a>二.官方</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/">谷歌官方api文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/android">掘金Android</a></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">释放</span><br><span class="line">**/</span><br><span class="line">public static void cancelAlert(Context context, int type) &#123;</span><br><span class="line">		AlarmManager mAlarmManager = (AlarmManager)</span><br><span class="line">				context.getSystemService(Context.ALARM_SERVICE);</span><br><span class="line">		Intent intent = new Intent(AlarmsSetting.ALARM_ALERT_ACTION);</span><br><span class="line">		intent.putExtra(&quot;type&quot;, type);</span><br><span class="line">		intent.setClass(context, AlarmReceiver.class);</span><br><span class="line">		PendingIntent pi = PendingIntent.getBroadcast(context, type, intent,</span><br><span class="line">				PendingIntent.FLAG_CANCEL_CURRENT);</span><br><span class="line">		mAlarmManager.cancel(pi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置:主要是将存储好的时间设置信息（小时，分钟，星期），通过 cacluteNextAlarm方法设置成一个特殊的 Calendar值用于定时，然后将对应的 type和 Action组成一个通过广播 pi！通过 AlarmManager的 set方法定时， mAlarmManager.set(AlarmManager.RTC_WAKEUP,mCalendar.getTimeInMillis(),pi);，定时将 pi中的内容发送出去！<br>核心就是这样！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">设置</span><br><span class="line">**/</span><br><span class="line">public static void enableAlert(Context context, int type, AlarmsSetting alarmsSetting) &#123;</span><br><span class="line">		if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN &amp;&amp; !alarmsSetting.isInEnble())&#123;</span><br><span class="line">			return ;</span><br><span class="line">		&#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT &amp;&amp; !alarmsSetting.isOutEnble())&#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		int rantime = alarmsSetting.getDynamic();</span><br><span class="line">		AlarmManager mAlarmManager = (AlarmManager)</span><br><span class="line">				context.getSystemService(Context.ALARM_SERVICE);</span><br><span class="line">		int hours = 0,minute=0,dayOfweek=0;</span><br><span class="line">		if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN)&#123;</span><br><span class="line">			hours = alarmsSetting.getInHour();</span><br><span class="line">			minute=alarmsSetting.getInMinutes();</span><br><span class="line">			dayOfweek = alarmsSetting.getInDays();</span><br><span class="line">		&#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT)&#123;</span><br><span class="line">			hours = alarmsSetting.getOutHour();</span><br><span class="line">			minute=alarmsSetting.getOutMinutes();</span><br><span class="line">			dayOfweek=alarmsSetting.getOutDays();</span><br><span class="line">		&#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>处理成循环周期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">public static Calendar cacluteNextAlarm(int hour, int minute, int dayOfweek)&#123;</span><br><span class="line">	Calendar mCalendar = Calendar.getInstance();</span><br><span class="line">	mCalendar.setTimeInMillis(System.currentTimeMillis());</span><br><span class="line">	mCalendar.set(Calendar.HOUR_OF_DAY,hour);</span><br><span class="line">	mCalendar.set(Calendar.MINUTE, minute);</span><br><span class="line">	int differDays = getNextAlarmDifferDays(dayOfweek,mCalendar.get(Calendar.DAY_OF_WEEK), mCalendar.getTimeInMillis());</span><br><span class="line">	int nextYear = getNextAlarmYear(mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.DAY_OF_YEAR), mCalendar.getActualMaximum(Calendar.DAY_OF_YEAR), differDays);</span><br><span class="line">	int nextMonth = getNextAlarmMonth(mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), mCalendar.getActualMaximum(Calendar.DATE), differDays);</span><br><span class="line">	int nextDay = getNextAlarmDay(mCalendar.get(Calendar.DAY_OF_MONTH), mCalendar.getActualMaximum(Calendar.DATE), differDays);</span><br><span class="line">	mCalendar.set(Calendar.YEAR,nextYear);</span><br><span class="line">	mCalendar.set(Calendar.MONTH, nextMonth % 12);//月份从0开始</span><br><span class="line">	mCalendar.set(Calendar.DAY_OF_MONTH, nextDay);</span><br><span class="line">	mCalendar.set(Calendar.SECOND, 0);</span><br><span class="line">	mCalendar.set(Calendar.MILLISECOND, 0);</span><br><span class="line">	return mCalendar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">//获取下次闹钟相差的天数</span><br><span class="line">private static int getNextAlarmDifferDays(int data, int currentDayOfWeek,long timeInMills)&#123;</span><br><span class="line">	int nextDayOfWeek =  getNextDayOfWeek(data, currentDayOfWeek,timeInMills);</span><br><span class="line">	return currentDayOfWeek&lt;=nextDayOfWeek?(nextDayOfWeek-currentDayOfWeek):(7 - currentDayOfWeek + nextDayOfWeek);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//考虑年进位的情况</span><br><span class="line">private static int getNextAlarmYear(int year,int dayOfYears, int actualMaximum, int differDays) &#123;</span><br><span class="line">	int temp = actualMaximum-dayOfYears-differDays;</span><br><span class="line">	return temp &gt;= 0?year:year+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//考虑月进位的情况</span><br><span class="line">private static int getNextAlarmMonth(int month,int dayOfMonth,int actualMaximum, int differDays) &#123;</span><br><span class="line">	int temp = actualMaximum-dayOfMonth-differDays;</span><br><span class="line">	return temp &gt;= 0?month:month+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取下次闹钟的day</span><br><span class="line">private static int getNextAlarmDay(int thisDayOfMonth, int actualMaximum, int differDays) &#123;</span><br><span class="line">	int temp = actualMaximum - thisDayOfMonth-differDays;</span><br><span class="line">	if (temp&lt;0)&#123;</span><br><span class="line">		return thisDayOfMonth + differDays - actualMaximum;</span><br><span class="line">	&#125;</span><br><span class="line">	return thisDayOfMonth + differDays;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取下次显示是星期几</span><br><span class="line">private static int getNextDayOfWeek(int data, int cWeek,long timeInMillis) &#123;</span><br><span class="line">	int tempBack = data &gt;&gt; cWeek - 1;</span><br><span class="line">	int tempFront = data ;</span><br><span class="line"></span><br><span class="line">	if(tempBack%2==1)&#123;</span><br><span class="line">		if(System.currentTimeMillis()&lt;timeInMillis)  return cWeek;</span><br><span class="line">	&#125;</span><br><span class="line">	tempBack = tempBack&gt;&gt;1;</span><br><span class="line">		int m=1,n=0;</span><br><span class="line">		while (tempBack != 0) &#123;</span><br><span class="line">			if (tempBack % 2 == 1 ) return cWeek + m;</span><br><span class="line">			tempBack = tempBack / 2;</span><br><span class="line">			m++;</span><br><span class="line">		&#125;</span><br><span class="line">		while(n&lt;cWeek)&#123;</span><br><span class="line">			if (tempFront % 2 == 1)  return n+1;</span><br><span class="line">			tempFront =tempFront/2;</span><br><span class="line">			n++;</span><br><span class="line">		&#125;</span><br><span class="line">		return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后通过<strong>SharedPreferenceUtil</strong>将设置的值存储下来</p>
+<p>当设置好定时器后，系统就会在指定的时间发送广播过来通知</p>
+<ul>
+<li><strong>AlarmReceiver.class</strong></li>
 </ul>
-<h3 id="三-API收集"><a href="#三-API收集" class="headerlink" title="三.API收集"></a>三.API收集</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://hndeveloper.github.io/2017/github-android-ui.html">GitHub上受欢迎的Android UI Library</a></li>
-<li><a target="_blank" rel="noopener" href="https://microzz.com/2017/02/03/API/?tdsourcetag=s_pctim_aiomsg#%E9%9F%B3%E4%B9%90">中国国内可用API合集</a></li>
-<li><a target="_blank" rel="noopener" href="https://qibilly.com/SmartSwipe-tutorial/">测滑返回SwipeBackLayout</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/gyf-dev/ImmersionBar">沉浸式状态栏和导航栏ImmersionBar</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/huanghaibin_dev/CalendarView">日历CalendarView</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/huo108/article/details/82428129?tdsourcetag=s_pctim_aiomsg">内存泄漏工具LeakCanary使用详细教程</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/barteksc/AndroidPdfViewer">pdf解析显示</a></li>
-<li>音乐视频<ul>
-<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/topics/media/mediaplayer?hl=zh_cn">MediaPlayer官方讲解</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014606081/article/details/79927057">MediaPlayer详解和使用</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014606081/article/details/76181049">ExoPlayer</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/CarGuo/GSYVideoPlayer">GSYVideoPlayer</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="五-精选博客文章"><a href="#五-精选博客文章" class="headerlink" title="五.精选博客文章"></a>五.精选博客文章</h3><ul>
-<li>View<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/88679fed9ecb">TabLayout基本属性全解</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6952842356554989582">修改Preferences默认样式</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6949186887609221133">ConstraintLayout</a></li>
-</ul>
-</li>
-<li>线程<ul>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903889678893063">Java线程池解析</a></li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903917835419661">JAVA 泛型中的通配符 T，E，K，V，？</a></li>
-</ul>
-<h3 id="四-工具"><a href="#四-工具" class="headerlink" title="四.工具"></a>四.工具</h3><ul>
-<li>github<ul>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/docmirror/dev-sidecar">github加速</a></li>
-<li><a target="_blank" rel="noopener" href="https://toolwa.com/github/">github镜像</a></li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.jikedaohang.com/index/">极客导航</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/JasonWu1111/Android-Review">Android复习资料汇总</a></li>
-</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        alarmsSetting = new AlarmsSetting(context);</span><br><span class="line">        int type = intent.getIntExtra(&quot;type&quot;,0);</span><br><span class="line">//        Log.e(&quot;#######################&quot;, &quot;getRecevier_ACtion&quot; + intent.getAction());</span><br><span class="line"></span><br><span class="line">        //如果已经设置闹钟w不可用，先拦截</span><br><span class="line">        if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN &amp;&amp; !alarmsSetting.isInEnble())&#123;</span><br><span class="line">            return ;</span><br><span class="line">        &#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT &amp;&amp; !alarmsSetting.isOutEnble())&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(intent.getAction().equals(AlarmsSetting.ALARM_ALERT_ACTION) &amp;&amp; type !=0) &#123;</span><br><span class="line">            SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy年MM月dd日——HH时mm分ss秒SSS毫秒&quot;);</span><br><span class="line">            Log.e(&quot;###########此次闹钟#######&quot;, &quot;alarmsSetting.getNextAlarm()&quot; + formatter.format(new Date(alarmsSetting.getNextAlarm())));</span><br><span class="line">            Log.e(&quot;###########当前系统时间###&quot;, &quot;System.currentTimeMillis()&quot; + formatter.format(new Date(System.currentTimeMillis())));</span><br><span class="line">            if (alarmsSetting.getNextAlarm() + 1000 * 30 &lt; System.currentTimeMillis())&#123;//解决闹钟广播比设置时间闹钟快的问题</span><br><span class="line">                Log.e(&quot;###########无效闹钟#######&quot;, &quot;不执行&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;###########准备弹出提示框###&quot;, &quot; &quot;);</span><br><span class="line">            intent.setClass(context, AlarmAlertActivity.class);</span><br><span class="line">            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">            context.startActivity(intent);</span><br><span class="line">            AlarmOpreation.cancelAlert(context, type);</span><br><span class="line">            AlarmOpreation.enableAlert(context, type, new AlarmsSetting(context));</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            AlarmOpreation.cancelAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_IN);</span><br><span class="line">            AlarmOpreation.enableAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_IN, new AlarmsSetting(context));</span><br><span class="line">            AlarmOpreation.cancelAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_OUT);</span><br><span class="line">            AlarmOpreation.enableAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_OUT, new AlarmsSetting(context));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -327,7 +298,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/31/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/33/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/31/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/33/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

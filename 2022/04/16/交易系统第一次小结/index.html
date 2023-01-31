@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="脚本开发距离1月15日试运行已经刚好过去1个季度 今天履约做个小结 期间调整还是挺多的 服务器的中转脚本我一直到了3月13日才停止了折腾 期间有出现代码问题导致损失 第一次感觉到代码质量与金钱的强关联性 失误一两次后提交代码就小心谨慎得多了 目前脚本已经可以支持处理多账户多品种多策略订单了 推销脚本我成功推销出了一份脚本 卖了650块钱  基本把Tradingview账号和服务器一年使用费的成本赚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交易系统第一次小结">
+<meta property="og:url" content="http://example.com/2022/04/16/%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="脚本开发距离1月15日试运行已经刚好过去1个季度 今天履约做个小结 期间调整还是挺多的 服务器的中转脚本我一直到了3月13日才停止了折腾 期间有出现代码问题导致损失 第一次感觉到代码质量与金钱的强关联性 失误一两次后提交代码就小心谨慎得多了 目前脚本已经可以支持处理多账户多品种多策略订单了 推销脚本我成功推销出了一份脚本 卖了650块钱  基本把Tradingview账号和服务器一年使用费的成本赚">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-16T03:36:15.000Z">
+<meta property="article:modified_time" content="2023-01-31T03:40:57.065Z">
+<meta property="article:author" content="项勇">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/04/16/%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/04/16/%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/","path":"2022/04/16/交易系统第一次小结/","title":"交易系统第一次小结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>交易系统第一次小结 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E5%BC%80%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">脚本开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E9%94%80%E8%84%9A%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">推销脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E7%9A%84%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">策略的学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%9F%E6%98%AF%E5%A5%87%E6%80%AA"><span class="nav-number">4.</span> <span class="nav-text">也是奇怪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E5%86%99%E7%82%B9%E5%BF%83%E5%BE%97"><span class="nav-number">5.</span> <span class="nav-text">最后还是写点心得</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flag"><span class="nav-number">6.</span> <span class="nav-text">Flag</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/16/%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="交易系统第一次小结 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          交易系统第一次小结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-16 11:36:15" itemprop="dateCreated datePublished" datetime="2022-04-16T11:36:15+08:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-31 11:40:57" itemprop="dateModified" datetime="2023-01-31T11:40:57+08:00">2023-01-31</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="交易系统第一次小结" href="/2022/04/16/%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%8F%E7%BB%93/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::18fd4a425891dc51910090d9bad71b74" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="脚本开发"><a href="#脚本开发" class="headerlink" title="脚本开发"></a>脚本开发</h4><p>距离1月15日试运行已经刚好过去1个季度</p>
+<p>今天履约做个小结</p>
+<p>期间调整还是挺多的</p>
+<p>服务器的中转脚本我一直到了3月13日才停止了折腾</p>
+<p>期间有出现代码问题导致损失</p>
+<p>第一次感觉到代码质量与金钱的强关联性</p>
+<p>失误一两次后提交代码就小心谨慎得多了</p>
+<p>目前脚本已经可以支持处理多账户多品种多策略订单了</p>
+<h4 id="推销脚本"><a href="#推销脚本" class="headerlink" title="推销脚本"></a>推销脚本</h4><p>我成功推销出了一份脚本</p>
+<p>卖了650块钱 </p>
+<p>基本把Tradingview账号和服务器一年使用费的成本赚回来了</p>
+
+
+<p>尝试出售第二份的时候</p>
+<p>吵起来了</p>
+<p>不懂还不谦卑，自觉良好</p>
+<p>最后懒得费精力去跟他解释</p>
+<p>老子不卖了</p>
+<h4 id="策略的学习"><a href="#策略的学习" class="headerlink" title="策略的学习"></a>策略的学习</h4><p>pine语言的基本语法学习进度很慢</p>
+<p>一个是因为今年工作很繁忙</p>
+<p>一个是因为看pine策略不难</p>
+<p>理解为什么要这样写才难</p>
+<p>学习还是慢慢来吧</p>
+<p>策略这一块已经完全换了一批了</p>
+<p>最刚开始的策略虽然长期利润回测结果不错</p>
+<p>但是回撤很大，</p>
+<p>如果加了杠杆就更大了</p>
+<p>目前新的策略回测结果都基本控制在10%以内</p>
+<p>胜率基本也在80%以上</p>
+<p>实盘运行也快2个月了，</p>
+<p>最高收益100%+了，</p>
+<p>虽然最近几天回撤了很多，</p>
+<p>但是也是保持在高位</p>
+<p>目前所有仓位都切到新策略运行了</p>
+
+
+
+
+<h4 id="也是奇怪"><a href="#也是奇怪" class="headerlink" title="也是奇怪"></a>也是奇怪</h4><p>2月初第一次总收益到20%的时候</p>
+<p>把聂浩的剩余资金拿了过来一起跑</p>
+<p>然后利润一路回撤到负收益</p>
+<p>吓得我我赶紧调整策略</p>
+<p>之后一直跑到4月初总收益到了70%左右</p>
+<p>信心爆棚邀请了几个铁哥们投资</p>
+<p>然后利润又回撤了一半</p>
+<p>所以我决定邀请到此为止吧</p>
+<p>邀请的人基本都是我深圳买窝的时候对我有过帮助</p>
+<p>报恩也是我的一个执念</p>
+<p>虽然谁都没法预测将来</p>
+<p>但是我还是会尽我最大努力去回报这些人</p>
+<p>截至目前总收益是35%左右</p>
+<h4 id="最后还是写点心得"><a href="#最后还是写点心得" class="headerlink" title="最后还是写点心得"></a>最后还是写点心得</h4><p>《富爸爸，穷爸爸》这本书是去年利用中秋假期读完的，</p>
+<p>这本书通篇其实都是在告诉你一个东西</p>
+<p>“要学会用赚到的钱投入到可为自己创造价值的资产”</p>
+<p>读完之后对我心态改变还是蛮大的</p>
+<p>但是心态归心态</p>
+<p>学了不去用等于没学</p>
+<p>这个交易系统对我而言就是这个读后实验产物</p>
+<p>路从来都是波折的</p>
+<p>不去探索不敢冒险就是白瞎功夫</p>
+<h4 id="Flag"><a href="#Flag" class="headerlink" title="Flag"></a>Flag</h4><p>明年1月15日再做小结吧</p>
+<p>希望那个时候我已经把pine学会了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/13/2022-03-13-%E8%84%9A%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/" rel="prev" title="脚本使用规则">
+                  <i class="fa fa-chevron-left"></i> 脚本使用规则
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/13/%E8%A7%A3%E5%86%B3%E4%B8%80%E4%B8%AAbug%E9%9C%80%E8%A6%81%E5%88%86%E5%87%A0%E6%AD%A5/" rel="next" title="解决一个bug需要分几步">
+                  解决一个bug需要分几步 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="18fd4a425891dc51910090d9bad71b74"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>
