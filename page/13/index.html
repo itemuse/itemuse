@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -126,7 +126,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">ViewPager2使用笔记</a>
+          <a href="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/" class="post-title-link" itemprop="url">策略pine代码拆解学习（2）Support and Resistance</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,23 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-03-30 15:57:33" itemprop="dateCreated datePublished" datetime="2021-03-30T15:57:33+08:00">2021-03-30</time>
+      <time title="创建时间：2022-12-01 14:18:52" itemprop="dateCreated datePublished" datetime="2022-12-01T14:18:52+08:00">2022-12-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 22:06:18" itemprop="dateModified" datetime="2023-01-30T22:06:18+08:00">2023-01-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
+      <time title="修改时间：2023-01-31 15:35:37" itemprop="dateModified" datetime="2023-01-31T15:35:37+08:00">2023-01-31</time>
     </span>
 
   
@@ -209,8 +200,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="ViewPager2使用笔记" href="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::b05baf9acf40fccfd663524805bd9855" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="策略pine代码拆解学习（2）Support and Resistance" href="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::e7f28c744845450606427153385b8348" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,42 +215,59 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><p><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/fragment+tab+viewpager2">XTester-fragment+tab+viewpager2</a></p>
-<h3 id="二-引用"><a href="#二-引用" class="headerlink" title="二.引用"></a>二.引用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation &#x27;com.google.android.material:material:1.2.1&#x27;</span><br><span class="line">implementation &quot;androidx.viewpager2:viewpager2:1.0.0&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="三-实现"><a href="#三-实现" class="headerlink" title="三.实现"></a>三.实现</h3><ul>
-<li><h4 id="基本效果"><a href="#基本效果" class="headerlink" title="基本效果"></a>基本效果</h4><ul>
-<li><p>xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;androidx.viewpager.widget.ViewPager</span><br><span class="line">        android:id=&quot;@+id/_vp&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;0dp&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>java</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mViewPager = findViewById(R.id.viewpager2);</span><br><span class="line">mAdapter = new ViewPager2Adapter(this);</span><br><span class="line">mViewPager.setAdapter(mAdapter);</span><br><span class="line">mViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL); //设置ViewPager2滑动方向  ORIENTATION_VERTICAL</span><br><span class="line">fragments.add(new Fragment1(mViewPager));</span><br><span class="line">fragments.add(new Fragment2(mViewPager));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>FragmentStateAdapter</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class ViewPager2Adapter extends FragmentStateAdapter &#123;</span><br><span class="line">    public ViewPager2Adapter(FragmentActivity fragmentActivity) &#123;</span><br><span class="line">        super(fragmentActivity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Fragment createFragment(int position) &#123;</span><br><span class="line">        return fragments.get(position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getItemCount() &#123;</span><br><span class="line">        return fragments.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>横向效果图</p>
-</li>
-</ul>
-</li>
-</ul>
-<img src="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img1.gif" class title="This is an example image">
-<pre><code>  - 纵向效果图
-</code></pre>
-<img src="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img2.gif" class title="This is an example image">
+          <h3 id="代码片段-Support-and-Resistance"><a href="#代码片段-Support-and-Resistance" class="headerlink" title="代码片段-Support and Resistance"></a>代码片段-Support and Resistance</h3><h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// Support and Resistance</span><br><span class="line">// inputs</span><br><span class="line">left = input.int(6, title=&#x27;  Left&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">right = input.int(5, title=&#x27;  Right&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">// calc</span><br><span class="line">hih = ta.pivothigh(high, left, right)</span><br><span class="line">lol = ta.pivotlow(low, left, right)</span><br><span class="line">top = ta.valuewhen(hih, high[right], 0)</span><br><span class="line">bot = ta.valuewhen(lol, low[right], 0)</span><br><span class="line">RS_Long_condt = close &gt; top</span><br><span class="line">RS_Short_condt = close &lt; bot</span><br><span class="line">// condt</span><br><span class="line">L_cross = ta.crossover(close, top)</span><br><span class="line">S_cross = ta.crossunder(close, bot)</span><br></pre></td></tr></table></figure>
+<h4 id="官方文档解释"><a href="#官方文档解释" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>input.int</strong><br>将input添加到脚本设置的输入标签页，它允许您向脚本用户提供配置选项。此函数将整数输入字段添加到脚本的输入中。</p>
+<p><strong>ta.pivothigh</strong><br>此函数返回枢轴高点的价格。如果没有枢轴高点，则返回“NaN”。</p>
+<p><strong>ta.pivotlow</strong><br>此函数返回枢轴低点的价格。如果没有枢轴低点，它返回“NaN”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ta.pivotlow(source, leftbars, rightbars) → series float</span><br><span class="line"></span><br><span class="line">ta.pivotlow(leftbars, rightbars) → series float</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<p><strong>source (series int&#x2F;float)</strong> 可选参数。数据系列计算值。默认为“Low”。</p>
+<p><strong>leftbars (series int&#x2F;float)</strong> 左长度。</p>
+<p><strong>rightbars (series int&#x2F;float)</strong> 右长度。</p>
+<p><strong>ta.valuewhen</strong><br>返回第n次最近出现的“condition”为true的K线的“source”系列值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ta.valuewhen(condition, source, occurrence)</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<p><strong>condition (series bool)</strong> 要搜索的条件。</p>
+<p><strong>source (series int&#x2F;float&#x2F;bool&#x2F;color)</strong> 要从满足条件的K线返回的值。</p>
+<p><strong>occurrence (simple int)</strong> 条件的出现。编号从0开始并按时间回溯，因此“0”是最近出现的“condition”，“1”是第二个最近出现的，依此类推。必须是整数 &gt;&#x3D; 0。</p>
+<p><strong>close</strong><br>当前K线关闭时的收盘价，或尚未完成的实时K线的最后交易价格。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。 close[1]，close[2]。</p>
+<p><strong>high</strong><br>当前最高价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。 high[1]，high[2]。</p>
+<p><strong>low</strong><br>当前最低价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。low[1]，low[2]。</p>
+<p><strong>ta.crossover</strong></p>
+<p><code>source1</code>-系列被定义为穿越<code>source2</code>-系列，如果在当前K线上，<code>source1</code> 的值大于<code>source2</code> 的值，并且在前一根K线上，<code>source2</code> 的值 source1<code> 小于或等于</code>source2&#96; 的值。</p>
+<p><strong>ta.crossover(source1, source2) → series bool</strong></p>
+<p>返回值</p>
+<p>如果<code>source1</code>穿过<code>source2</code>则为true，否则为false。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source1 (series int/float) 第一数据系列。</span><br><span class="line"></span><br><span class="line">source2 (series int/float) 第二数据系列。</span><br></pre></td></tr></table></figure>
+<p><strong>ta.crossunder</strong><br><code>source1</code>-系列被定义为在 <code>source2</code>-系列下方交叉，如果在当前K线上，<code>source1</code> 的值小于 <code>source2</code> 的值，并且在前一根K线上，<code>source2</code> 的值 source1<code> 大于或等于</code>source2&#96; 的值。</p>
+<p><strong>ta.crossunder(source1, source2) → series bool</strong></p>
+<p>返回值</p>
+<p>如果<code>source1</code>在<code>source2</code>下交叉，则为true，否则为false。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source1 (series int/float) 第一数据系列。</span><br><span class="line"></span><br><span class="line">source2 (series int/float) 第二数据系列。</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><h4 id="根据PageTransformer做渐变效果"><a href="#根据PageTransformer做渐变效果" class="headerlink" title="根据PageTransformer做渐变效果"></a>根据PageTransformer做渐变效果</h4><ul>
-<li>ViewPager2.PageTransformer <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">    public class MyPageTransformer implements ViewPager2.PageTransformer &#123;</span><br><span class="line"></span><br><span class="line">    private static final float ROT_MAX = 20.0f;</span><br><span class="line">    private float mRot;</span><br><span class="line">    private static float MIN_SCALE = 0.75f;</span><br><span class="line">    private static float MIN_ALPHA = 0.5f;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param view     滑动中的那个view</span><br><span class="line">     * @param position</span><br><span class="line">     */</span><br><span class="line">    public void transformPage(View view, float position) &#123;</span><br><span class="line"></span><br><span class="line">        int pageWidth = view.getWidth();</span><br><span class="line">        if (position &lt; -1) &#123; // [-Infinity,-1)//This page is way off-screen to the left.</span><br><span class="line">            view.setAlpha(0);</span><br><span class="line">        &#125; else if (position &lt;= 0) &#123; // [-1,0]Use //the default slide transition when moving to the left page</span><br><span class="line">            view.setAlpha(1);</span><br><span class="line">            view.setTranslationX(0);</span><br><span class="line">            view.setScaleX(1);</span><br><span class="line">            view.setScaleY(1);</span><br><span class="line">        &#125; else if (position &lt;= 1) &#123; // (0,1]// Fade the page out.</span><br><span class="line">            view.setAlpha(1 - position);</span><br><span class="line">            // Counteract the default slide transition</span><br><span class="line">            view.setTranslationX(pageWidth * -position);</span><br><span class="line">            // Scale the page down (between MIN_SCALE and 1)</span><br><span class="line">            float scaleFactor = MIN_SCALE + (1 - MIN_SCALE)</span><br><span class="line">                    * (1 - Math.abs(position));</span><br><span class="line">            view.setScaleX(scaleFactor);</span><br><span class="line">            view.setScaleY(scaleFactor);</span><br><span class="line">        &#125; else &#123; // (1,+Infinity]</span><br><span class="line">            // This page is way off-screen to the right.</span><br><span class="line">            view.setAlpha(0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>activity中设置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mViewPager.setPageTransformer(new MyPageTransformer());</span><br></pre></td></tr></table></figure></li>
-<li>横向效果图<img src="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img4.gif" class title="This is an example image"></li>
-<li>纵向效果图<img src="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img3.gif" class title="This is an example image"></li>
-</ul>
-</li>
-<li><h4 id="与Tab联动"><a href="#与Tab联动" class="headerlink" title="与Tab联动"></a>与Tab联动</h4><ul>
-<li>xml<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   &lt;com.google.android.material.tabs.TabLayout</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    app:tabGravity=&quot;fill&quot;</span><br><span class="line">    app:tabMode=&quot;fixed&quot;</span><br><span class="line">    android:id=&quot;@+id/_tab&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line">&lt;/com.google.android.material.tabs.TabLayout&gt;</span><br></pre></td></tr></table></figure></li>
-<li>abLayoutMediator <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private TabLayoutMediator mediator;</span><br><span class="line">private List&lt;String&gt; mTitle;</span><br><span class="line">TabLayout mTabLayout;</span><br><span class="line">    ...</span><br><span class="line">        mTitle = new ArrayList&lt;&gt;();</span><br><span class="line">        mTitle.add(&quot;播放界面&quot;);</span><br><span class="line">        mTitle.add(&quot;歌曲界面&quot;);</span><br><span class="line">    mTabLayout = (TabLayout)findViewById(R.id._tab);</span><br><span class="line">       mediator = new TabLayoutMediator(mTabLayout, mViewPager, new TabLayoutMediator.TabConfigurationStrategy() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onConfigureTab(TabLayout.Tab tab, int position) &#123;</span><br><span class="line">            TextView tabView = new TextView(Activity.this);</span><br><span class="line">            tabView.setText(mTitle.get(position));</span><br><span class="line">            tabView.setTextColor(getColor(R.color.design_default_color_primary));</span><br><span class="line">            tab.setCustomView(tabView);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    mediator.attach();</span><br></pre></td></tr></table></figure></li>
-<li>效果图<img src="/2021/03/30/2021-03-30-ViewPager2%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img5.gif" class title="This is an example image"></li>
-</ul>
-</li>
-</ul>
+<h4 id="对照解读"><a href="#对照解读" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Support and Resistance</span><br><span class="line">此段代码的备注为Support and Resistance，意思为支持与不支持</span><br><span class="line">inputs为默认的参数</span><br><span class="line">left = input.int(6, title=&#x27;  Left&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">左   =    默认参数6   标题为  Left    组   =&#x27;Support and Resistance’</span><br><span class="line">// calc不知道什么意思</span><br><span class="line">hih = ta.pivothigh(high, left, right) //hih = 当前K线是否为 = 左边6个+右边6个，也就是12跟柱子的最高点柱</span><br></pre></td></tr></table></figure>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/1.png" class title="This is an example image">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top = ta.valuewhen(hih, high[right], 0) //top = 最近一次出现条件为hih时，high[right]的值</span><br></pre></td></tr></table></figure>
+<p>结合top</p>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/2.png" class title="This is an example image">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lol = ta.pivotlow(low, left, right) //lol= 当前K线是否为 = 左边6个+右边6个，也就是12跟柱子的最低点柱</span><br></pre></td></tr></table></figure>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/3.png" class title="This is an example image">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bot = ta.valuewhen(lol, low[right], 0)//bot= 最近一次出现条件为lol时，low[right]的值</span><br></pre></td></tr></table></figure>
+<p>结合bot</p>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/4.png" class title="This is an example image">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RS_Long_condt = close &gt; top //当前K线收盘价大于top线</span><br><span class="line">RS_Short_condt = close &lt; bot//当前K线收盘价小于bot线</span><br><span class="line">此两Boolean值后续用于开单的条件</span><br><span class="line">L_cross = ta.crossover(close, top)//当前收盘K线上穿top线</span><br><span class="line">S_cross = ta.crossunder(close, bot)//当前收盘K线下穿bot线</span><br><span class="line">此两Boolean值后续用于画线</span><br></pre></td></tr></table></figure>
+
+<h4 id="ChatGPT解读"><a href="#ChatGPT解读" class="headerlink" title="ChatGPT解读"></a>ChatGPT解读</h4><p>基于高、低、近值以及左、右输入计算RS_Long_condt、RS_Short_condt、L_cross和S_cross值。<br>如果关闭值大于顶部值，RS_Long_condt值为真;如果关闭值小于bot值，RS_Short_condt值为真。如果close值越过top值，则L_cross值为真;如果’ closeclose值越过bot值，则S_cross值为真。<br>为了使用这段代码，你需要high, low和close输入。另外，rs_long_condt和’ RS_RS_Short_condt值关闭值为top或bot值</p>
 
       
     </div>
@@ -279,7 +287,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/14/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/14/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

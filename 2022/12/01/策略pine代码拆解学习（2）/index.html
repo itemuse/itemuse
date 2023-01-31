@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="代码片段-Support and Resistance源码1234567891011121314&#x2F;&#x2F; Support and Resistance&#x2F;&#x2F; inputsleft &#x3D; input.int(6, title&#x3D;&amp;#x27;  Left&amp;#x27;, group&#x3D;&amp;#x27;Support and Resistance&amp;#x27;)right &#x3D; input.int(5, title&#x3D;&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="策略pine代码拆解学习（2）Support and Resistance">
+<meta property="og:url" content="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="代码片段-Support and Resistance源码1234567891011121314&#x2F;&#x2F; Support and Resistance&#x2F;&#x2F; inputsleft &#x3D; input.int(6, title&#x3D;&amp;#x27;  Left&amp;#x27;, group&#x3D;&amp;#x27;Support and Resistance&amp;#x27;)right &#x3D; input.int(5, title&#x3D;&amp;#x2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/1.png">
+<meta property="og:image" content="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/2.png">
+<meta property="og:image" content="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/3.png">
+<meta property="og:image" content="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/4.png">
+<meta property="article:published_time" content="2022-12-01T06:18:52.000Z">
+<meta property="article:modified_time" content="2023-01-31T07:35:37.147Z">
+<meta property="article:author" content="项勇">
+<meta property="article:tag" content="pine">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/1.png">
+
+
+<link rel="canonical" href="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/","path":"2022/12/01/策略pine代码拆解学习（2）/","title":"策略pine代码拆解学习（2）Support and Resistance"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>策略pine代码拆解学习（2）Support and Resistance | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5-Support-and-Resistance"><span class="nav-number">1.</span> <span class="nav-text">代码片段-Support and Resistance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E9%87%8A"><span class="nav-number">1.2.</span> <span class="nav-text">官方文档解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E7%85%A7%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.3.</span> <span class="nav-text">对照解读</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ChatGPT%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.4.</span> <span class="nav-text">ChatGPT解读</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="策略pine代码拆解学习（2）Support and Resistance | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          策略pine代码拆解学习（2）Support and Resistance
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-01 14:18:52" itemprop="dateCreated datePublished" datetime="2022-12-01T14:18:52+08:00">2022-12-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-31 15:35:37" itemprop="dateModified" datetime="2023-01-31T15:35:37+08:00">2023-01-31</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="策略pine代码拆解学习（2）Support and Resistance" href="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::e7f28c744845450606427153385b8348" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="代码片段-Support-and-Resistance"><a href="#代码片段-Support-and-Resistance" class="headerlink" title="代码片段-Support and Resistance"></a>代码片段-Support and Resistance</h3><h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// Support and Resistance</span><br><span class="line">// inputs</span><br><span class="line">left = input.int(6, title=&#x27;  Left&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">right = input.int(5, title=&#x27;  Right&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">// calc</span><br><span class="line">hih = ta.pivothigh(high, left, right)</span><br><span class="line">lol = ta.pivotlow(low, left, right)</span><br><span class="line">top = ta.valuewhen(hih, high[right], 0)</span><br><span class="line">bot = ta.valuewhen(lol, low[right], 0)</span><br><span class="line">RS_Long_condt = close &gt; top</span><br><span class="line">RS_Short_condt = close &lt; bot</span><br><span class="line">// condt</span><br><span class="line">L_cross = ta.crossover(close, top)</span><br><span class="line">S_cross = ta.crossunder(close, bot)</span><br></pre></td></tr></table></figure>
+<h4 id="官方文档解释"><a href="#官方文档解释" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>input.int</strong><br>将input添加到脚本设置的输入标签页，它允许您向脚本用户提供配置选项。此函数将整数输入字段添加到脚本的输入中。</p>
+<p><strong>ta.pivothigh</strong><br>此函数返回枢轴高点的价格。如果没有枢轴高点，则返回“NaN”。</p>
+<p><strong>ta.pivotlow</strong><br>此函数返回枢轴低点的价格。如果没有枢轴低点，它返回“NaN”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ta.pivotlow(source, leftbars, rightbars) → series float</span><br><span class="line"></span><br><span class="line">ta.pivotlow(leftbars, rightbars) → series float</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<p><strong>source (series int&#x2F;float)</strong> 可选参数。数据系列计算值。默认为“Low”。</p>
+<p><strong>leftbars (series int&#x2F;float)</strong> 左长度。</p>
+<p><strong>rightbars (series int&#x2F;float)</strong> 右长度。</p>
+<p><strong>ta.valuewhen</strong><br>返回第n次最近出现的“condition”为true的K线的“source”系列值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ta.valuewhen(condition, source, occurrence)</span><br></pre></td></tr></table></figure>
+<p>参数</p>
+<p><strong>condition (series bool)</strong> 要搜索的条件。</p>
+<p><strong>source (series int&#x2F;float&#x2F;bool&#x2F;color)</strong> 要从满足条件的K线返回的值。</p>
+<p><strong>occurrence (simple int)</strong> 条件的出现。编号从0开始并按时间回溯，因此“0”是最近出现的“condition”，“1”是第二个最近出现的，依此类推。必须是整数 &gt;&#x3D; 0。</p>
+<p><strong>close</strong><br>当前K线关闭时的收盘价，或尚未完成的实时K线的最后交易价格。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。 close[1]，close[2]。</p>
+<p><strong>high</strong><br>当前最高价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。 high[1]，high[2]。</p>
+<p><strong>low</strong><br>当前最低价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。low[1]，low[2]。</p>
+<p><strong>ta.crossover</strong></p>
+<p><code>source1</code>-系列被定义为穿越<code>source2</code>-系列，如果在当前K线上，<code>source1</code> 的值大于<code>source2</code> 的值，并且在前一根K线上，<code>source2</code> 的值 source1<code> 小于或等于</code>source2&#96; 的值。</p>
+<p><strong>ta.crossover(source1, source2) → series bool</strong></p>
+<p>返回值</p>
+<p>如果<code>source1</code>穿过<code>source2</code>则为true，否则为false。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source1 (series int/float) 第一数据系列。</span><br><span class="line"></span><br><span class="line">source2 (series int/float) 第二数据系列。</span><br></pre></td></tr></table></figure>
+<p><strong>ta.crossunder</strong><br><code>source1</code>-系列被定义为在 <code>source2</code>-系列下方交叉，如果在当前K线上，<code>source1</code> 的值小于 <code>source2</code> 的值，并且在前一根K线上，<code>source2</code> 的值 source1<code> 大于或等于</code>source2&#96; 的值。</p>
+<p><strong>ta.crossunder(source1, source2) → series bool</strong></p>
+<p>返回值</p>
+<p>如果<code>source1</code>在<code>source2</code>下交叉，则为true，否则为false。</p>
+<p>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source1 (series int/float) 第一数据系列。</span><br><span class="line"></span><br><span class="line">source2 (series int/float) 第二数据系列。</span><br></pre></td></tr></table></figure>
+
+<h4 id="对照解读"><a href="#对照解读" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Support and Resistance</span><br><span class="line">此段代码的备注为Support and Resistance，意思为支持与不支持</span><br><span class="line">inputs为默认的参数</span><br><span class="line">left = input.int(6, title=&#x27;  Left&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">左   =    默认参数6   标题为  Left    组   =&#x27;Support and Resistance’</span><br><span class="line">// calc不知道什么意思</span><br><span class="line">hih = ta.pivothigh(high, left, right) //hih = 当前K线是否为 = 左边6个+右边6个，也就是12跟柱子的最高点柱</span><br></pre></td></tr></table></figure>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/1.png" class title="This is an example image">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top = ta.valuewhen(hih, high[right], 0) //top = 最近一次出现条件为hih时，high[right]的值</span><br></pre></td></tr></table></figure>
+<p>结合top</p>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/2.png" class title="This is an example image">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lol = ta.pivotlow(low, left, right) //lol= 当前K线是否为 = 左边6个+右边6个，也就是12跟柱子的最低点柱</span><br></pre></td></tr></table></figure>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/3.png" class title="This is an example image">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bot = ta.valuewhen(lol, low[right], 0)//bot= 最近一次出现条件为lol时，low[right]的值</span><br></pre></td></tr></table></figure>
+<p>结合bot</p>
+<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/4.png" class title="This is an example image">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RS_Long_condt = close &gt; top //当前K线收盘价大于top线</span><br><span class="line">RS_Short_condt = close &lt; bot//当前K线收盘价小于bot线</span><br><span class="line">此两Boolean值后续用于开单的条件</span><br><span class="line">L_cross = ta.crossover(close, top)//当前收盘K线上穿top线</span><br><span class="line">S_cross = ta.crossunder(close, bot)//当前收盘K线下穿bot线</span><br><span class="line">此两Boolean值后续用于画线</span><br></pre></td></tr></table></figure>
+
+<h4 id="ChatGPT解读"><a href="#ChatGPT解读" class="headerlink" title="ChatGPT解读"></a>ChatGPT解读</h4><p>基于高、低、近值以及左、右输入计算RS_Long_condt、RS_Short_condt、L_cross和S_cross值。<br>如果关闭值大于顶部值，RS_Long_condt值为真;如果关闭值小于bot值，RS_Short_condt值为真。如果close值越过top值，则L_cross值为真;如果’ closeclose值越过bot值，则S_cross值为真。<br>为了使用这段代码，你需要high, low和close输入。另外，rs_long_condt和’ RS_RS_Short_condt值关闭值为top或bot值</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pine/" rel="tag"># pine</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/30/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/" rel="prev" title="策略pine代码拆解学习（1）strategy和src">
+                  <i class="fa fa-chevron-left"></i> 策略pine代码拆解学习（1）strategy和src
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/12/02/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/" rel="next" title="策略pine代码拆解学习（3）ADX">
+                  策略pine代码拆解学习（3）ADX <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="e7f28c744845450606427153385b8348"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>

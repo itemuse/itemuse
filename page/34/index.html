@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -126,7 +126,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/12/2021-03-12-XPermission%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">Activity基础篇-保存数据</a>
+          <a href="/2021/03/12/2021-03-12-XPermission%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">XPermission使用笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-12-21 11:20:24" itemprop="dateCreated datePublished" datetime="2017-12-21T11:20:24+08:00">2017-12-21</time>
+      <time title="创建时间：2021-03-12 23:47:13" itemprop="dateCreated datePublished" datetime="2021-03-12T23:47:13+08:00">2021-03-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 21:58:24" itemprop="dateModified" datetime="2023-01-30T21:58:24+08:00">2023-01-30</time>
+      <time title="修改时间：2023-01-30 22:06:21" itemprop="dateModified" datetime="2023-01-30T22:06:21+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="Activity基础篇-保存数据" href="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::71cb1cb3a8f6709bdd7d412f1d80db2a" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="XPermission使用笔记" href="/2021/03/12/2021-03-12-XPermission%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::7d096f28da403872008aa887a9e5bed8" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,59 +224,57 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-有哪些状态是需要保存的"><a href="#一-有哪些状态是需要保存的" class="headerlink" title="一.有哪些状态是需要保存的"></a>一.有哪些状态是需要保存的</h3><p>有哪些状态是需要保存的呢？最简单明了的就是对一些数据的保存，比如你正在操作一些数据，当面临突发情况，你的数据还没有操作完，这时候你就需要将数据进行保存，以便我们再次回到这个页面的时候不用重头再来。</p>
-<h3 id="二-什么情况下需要Activity状态的保存与恢复"><a href="#二-什么情况下需要Activity状态的保存与恢复" class="headerlink" title="二.什么情况下需要Activity状态的保存与恢复"></a>二.什么情况下需要Activity状态的保存与恢复</h3><p>那么在什么情况下需要对Activity的状态进行保存与恢复呢？官方文档的说法是在处理运行时配置变更的时候，来看官方文档介绍的一段话<br>有些设备配置可能会在运行时发生变化（例如屏幕方向、键盘可用性及语言）。 发生这种变化时，Android 会重启正在运行的 Activity（先后调用 onDestroy() 和 onCreate()）。重启行为旨在通过利用与新设备配置匹配的备用资源自动重新加载您的应用，来帮助它适应新配置。<br>要妥善处理重启行为，Activity 必须通过常规的Activity 生命周期恢复其以前的状态，在 Activity 生命周期中，Android 会在销毁 Activity 之前调用 onSaveInstanceState()，以便您保存有关应用状态的数据。 然后，您可以在 onCreate() 或 onRestoreInstanceState() 期间恢复 Activity 状态。<br>这里面提到了各种回调方法，其中也有本文介绍的重点，不急，我们一步步来，首先我总结有如下几种情况是需要对数据进行保存的 </p>
-<ul>
-<li>点击了返回键 </li>
-<li>锁屏 </li>
-<li>点击home键 </li>
-<li>有其他APP进入前台（比如接听电话） </li>
-<li>启动了新的Activity </li>
-<li>屏幕方向发生旋转 </li>
-<li>APP被杀死</li>
+          <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/permissions/XPermission.java">xlib-Permission</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/permission">XTester-permission</a></li>
 </ul>
-<h3 id="三-状态为什么会丢失"><a href="#三-状态为什么会丢失" class="headerlink" title="三.状态为什么会丢失"></a>三.状态为什么会丢失</h3><p>紧接着，我们来说一下为什么状态会丢失，这里面到底发什么了什么操作？这里我们用代码来演示一下，就是一个Activity，我们复写它的onCreat和onDestroy方法，分别打上log，然后启动再点击旋转屏幕（本文主要以屏幕旋转为例）看看这个过程方法是如何执行的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11-25 12:51:27.419 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 12:51:33.459 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroy</span><br><span class="line">11-25 12:51:33.539 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br></pre></td></tr></table></figure>
-<p>我们从log中可知，当应用启动，首先运行onCreat方法，当我们点击旋转屏幕会发现当前的Activity被销毁了，然后又重新执行了onCreat方法，这是怎么回事，Activity发生了什么样的变化呢？我们在log中打印出当前Activity的hashcodekankan。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11-25 12:57:20.934 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreatecom.ithuangqing.activitysavedemo.MainActivity@4a79f318</span><br><span class="line">11-25 12:57:26.184 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroycom.ithuangqing.activitysavedemo.MainActivity@4a79f318</span><br><span class="line">11-25 12:57:26.224 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreatecom.ithuangqing.activitysavedemo.MainActivity@4a7d4274</span><br></pre></td></tr></table></figure>
-<p>原来当点击了屏幕旋转之后，当前Activity会被销毁，然后会重新创建一个新的Activity，如此一来我们在之前Activity的数据如果不保存的话就又可能丢失了。<br>好了，到了这一步你至少要明白这么一件事，就是当在第二部分中说的几种情况出现时比如屏幕发生旋转，当前的Activity会被销毁而且会重新创建一个全新的Activity。<br>下面我们举一个数据丢失的例子，让你看的更清楚。首先设置布局，布局很简单，一个文本框，一个按钮，给按钮设置一个点击事件，点击按钮让文本框中的数字从一递增。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    mMNumber = findViewById(R.id.number);</span><br><span class="line">    mBtAdd = findViewById(R.id.btAdd);</span><br><span class="line">    mBtAdd.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View v) &#123;</span><br><span class="line">            a = ++a;</span><br><span class="line">            mMNumber.setText(&quot;&quot;+a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Log.d(TAG, &quot;onCreate&quot;+this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行之后点击按钮，如图</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/0.png" class title="This is an example image">
-
-<p>现在文本框中的数字是5，接下来我们点击屏幕旋转看看会发生什么，如图</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/1.png" class title="This is an example image">
-
-<p>果不其然，数据丢失了。</p>
-<h3 id="四-如何保存与恢复"><a href="#四-如何保存与恢复" class="headerlink" title="四.如何保存与恢复"></a>四.如何保存与恢复</h3><p>既然数据会丢失，那么我们该如何保存数据，或者如何解决这些问题呢？我们拿屏幕旋转这个变更来说，首先我们知道，如果屏幕发生旋转，当前Activity会被销毁，因此我们可以限定屏幕的方向，这样一来即使我们点击屏幕旋转，屏幕的方向是没有发什么变化的，所以Activity不会被销毁，数据自然不会丢失，另外一种方法就是我们可以自己处理变更，我们可以在当前的Activity的配置文件中添加这么一行代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:configChanges=&quot;orientation|screenSize|keyboard&quot;</span><br></pre></td></tr></table></figure>
-<p>这句代码的意思就是告诉系统我们自己来处理变更，这两种方法不是今天的主菜，真正的主菜是onSaveInstanceState和onRestoreInstanceState，终于说到我们的重点了，我相信看完本文的介绍，大家会对这个东西有种终于认识的感觉，那就是每次创建Axtivity中自动创建的onCreat方法中的参数。首先我们在我们的Acticiry中复写 onSaveInstanceState 和 onRestoreInstanceState 同时打上log。看一下 输出。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">11-25 13:38:57.383 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 13:39:13.133 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onSaveInstanceState</span><br><span class="line">11-25 13:39:13.133 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroy</span><br><span class="line">11-25 13:39:13.163 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 13:39:13.163 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onRestoreInstanceState</span><br></pre></td></tr></table></figure>
-<p>从log中我们可以看到，当我们点击屏幕旋转之后，在当前Activity被销毁之前会调用onSaveInstanceState，然后销毁当前Activity，创建新的Activity之后会调用onCreat方法之后会紧接着调用onRestoreInstanceState，那么这两个方法有什么用呢？其实也可以猜到，onSaveInstanceState是用来保存我们当前activity中的数据的，而onRestoreInstanceState可以让我们获取之前保存的数据从而在新的activity中进行设置。<br>那数据以何种形式进行保存呢？我们来看下这两个函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> @Override</span><br><span class="line"> public void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">     super.onSaveInstanceState(outState);</span><br><span class="line">     //保存销毁之前的数据</span><br><span class="line"></span><br><span class="line">     Log.d(TAG, &quot;onSaveInstanceState&quot;);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line"> protected void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line">     Log.d(TAG, &quot;onRestoreInstanceState&quot;);   </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
-<p>我们发现他们的参数是Bundle，有印象了吧！我们就是通过Bundle来进行数据保存和读取的，大家都知道这是一种键值对的保存与读取方式。<br>接下来再看一个函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    mMNumber = findViewById(R.id.number);</span><br><span class="line">    mBtAdd = findViewById(R.id.btAdd);</span><br><span class="line">    mBtAdd.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View v) &#123;</span><br><span class="line">            a = ++a;</span><br><span class="line">            mMNumber.setText(&quot;&quot;+a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Log.d(TAG, &quot;onCreate&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看看onCreat函数的参数，你发现了什么嘛？前面说过我们可以在onRestoreInstanceState中通过Bundle拿到我们之前保存的数据，其实在onCreat中也能达到相同的效果。<br>下面我们就具体代码演示一遍吧！<br>首先是在onSaveInstanceState中保存数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">      super.onSaveInstanceState(outState);</span><br><span class="line">      //保存销毁之前的数据</span><br><span class="line">      outState.putString(&quot;number&quot;,mMNumber.getText().toString());</span><br><span class="line">      Log.d(TAG, &quot;onSaveInstanceState&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>紧接着在onRestoreInstanceState对数据进行恢复</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> protected void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line">     Log.d(TAG, &quot;onRestoreInstanceState&quot;);</span><br><span class="line">     //恢复数据</span><br><span class="line">    String s = savedInstanceState.getString(&quot;number&quot;);</span><br><span class="line">    mMNumber.setText(s);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>接下来运行程序</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/2.png" class title="This is an example image">
-<p>然后我们旋转屏幕</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/3.png" class title="This is an example image">
-
-<p>发现数据被成功保留了下来，<br>到这里我们总结一下这个方法的调用过程，当运行时配置发生变更的时候，程序总的会销毁当前的Activity，然后重新创建一个新的Activity，在这个过程中，销毁当前Activity之前会先调用onSaveInstanceState让我们来保存数据，然后重建Activity在调用onCreat方发之后会调用onRestoreInstanceState让我们来对数据进行恢复，当然也可以在onCret中进行数据恢复，方法原理相同。</p>
-<h3 id="五-这个知识点你需要注意的地方"><a href="#五-这个知识点你需要注意的地方" class="headerlink" title="五.这个知识点你需要注意的地方"></a>五.这个知识点你需要注意的地方</h3><p>通过以上的讲诉，相信你对Activity状态的保存与恢复已经掌握的差不多了，在这里我再补充几点<br>**关于onSaveInstanceState **</p>
-<p>这个方法默认情况下会自动保存有关Activity的视图层次结构的状态信息，简单举个例子，我们以系统控件EditText来说，系统默认会保存有关这个控件的一个信息，也就是当你在这个控件中输入内容的时候，即使旋转屏幕内容也不会丢失，因为系统已经默认为其实现了我们说的那两个方法，但是有个前提，这个控件必须设置id，否则数据依旧会丢失，另外如果你重写了onRestoreInstanceState也要保证必须有这行代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">super.onRestoreInstanceState(savedInstanceState);</span><br></pre></td></tr></table></figure>
-<p><strong>关于旋转屏幕无法调用onSaveInstanceState的问题。</strong></p>
-<p>出现这种问题你复写的肯定以下方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onSaveInstanceState (Bundle outState, PersistableBundle outPersistentState)；</span><br></pre></td></tr></table></figure>
-<p>改成以下方法即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onSaveInstanceState (Bundle outState)；</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>来自<a target="_blank" rel="noopener" href="http://blog.csdn.net/sinat_33921105">博客</a></p>
+<h3 id="二-引用"><a href="#二-引用" class="headerlink" title="二.引用"></a>二.引用</h3><ol>
+<li><p>将JitPack存储库添加到您的构建文件中<br>将其添加到存储库末尾的root build.gradle中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">      repositories &#123;</span><br><span class="line">      ...</span><br><span class="line">      maven &#123; url &#x27;https://jitpack.io&#x27; &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加依赖项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      ...</span><br><span class="line">      implementation &#x27;com.github.itemuse:XLib:Tag&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化 Application中init</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import cn.xy.library.XApp;</span><br><span class="line">      ...</span><br><span class="line">@Override</span><br><span class="line">public void onCreate() &#123;</span><br><span class="line">      super.onCreate();</span><br><span class="line">      XApp.init(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AndroidManifest.xml中添加弹出界面的activity</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;cn.xy.library.util.permissions.UtilsTransActivity&quot;/&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="三-几个常用的动态申请权限方法"><a href="#三-几个常用的动态申请权限方法" class="headerlink" title="三.几个常用的动态申请权限方法"></a>三.几个常用的动态申请权限方法</h3><ul>
+<li><h4 id="申请单个权限"><a href="#申请单个权限" class="headerlink" title="申请单个权限"></a>申请单个权限</h4></li>
+</ul>
+<p>AndroidManifest.xml中添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>java中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static String permission_RECORD_AUDIO = &quot;android.permission.RECORD_AUDIO&quot;;</span><br><span class="line">public static String[] AidioPermissions = &#123;</span><br><span class="line">    permission_RECORD_AUDIO</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br><span class="line">/**单个权限*/</span><br><span class="line">            XPermission.permission(PermissionsContract.AidioPermissions).callback(new XPermission.SimpleCallback() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onGranted() &#123;</span><br><span class="line">                    XLog.i(&quot;同意&quot;);&#125;</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void onDenied() &#123;</span><br><span class="line">                    XLog.i(&quot;拒绝&quot;);&#125;</span><br><span class="line">            &#125;).request();</span><br><span class="line">...            </span><br></pre></td></tr></table></figure>
+<p>申请</p>
+<img src="/2021/03/12/2021-03-12-XPermission%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image3.jpg" class title="This is an example image">
+<p>点击同意和拒绝都会有对应的回调</p>
+<ul>
+<li><h4 id="申请多个权限"><a href="#申请多个权限" class="headerlink" title="申请多个权限"></a>申请多个权限</h4></li>
+</ul>
+<p>AndroidManifest.xml中添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>java中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static String permission_READ_EXTERNAL_STORAGE = &quot;android.permission.READ_EXTERNAL_STORAGE&quot;;</span><br><span class="line">public static String permission_WRITE_EXTERNAL_STORAGE = &quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;;</span><br><span class="line">public static String[] FileReadPermissions = &#123;</span><br><span class="line">        permission_READ_EXTERNAL_STORAGE</span><br><span class="line">        ,permission_WRITE_EXTERNAL_STORAGE&#125;;</span><br><span class="line">...</span><br><span class="line"> /**权限组*/</span><br><span class="line">            XPermission.permissionGroup(PermissionsContract.FileReadPermissions).callback(new XPermission.SimpleCallback() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onGranted() &#123;</span><br><span class="line">                    XLog.i(&quot;同意&quot;);&#125;</span><br><span class="line"></span><br><span class="line">                @Override</span><br><span class="line">                public void onDenied() &#123;</span><br><span class="line">                    XLog.i(&quot;拒绝&quot;);&#125;</span><br><span class="line">            &#125;).request();        </span><br></pre></td></tr></table></figure>
+<p>申请</p>
+<img src="/2021/03/12/2021-03-12-XPermission%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image1.jpg" class title="This is an example image">
+<p>同意后查看权限</p>
+<img src="/2021/03/12/2021-03-12-XPermission%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/image2.jpg" class title="This is an example image">
+<ul>
+<li><h4 id="获取所有权限"><a href="#获取所有权限" class="headerlink" title="获取所有权限"></a>获取所有权限</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (String s:XPermission.getPermissions())&#123;</span><br><span class="line">                    XLog.i(s);</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br></pre></td></tr></table></figure>
+<p>打印</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">com.xy.permission I/MainActivity.java: [ (MainActivity.java:33)#onClick ] android.permission.READ_EXTERNAL_STORAGE</span><br><span class="line">com.xy.permission I/MainActivity.java: [ (MainActivity.java:33)#onClick ] android.permission.WRITE_EXTERNAL_STORAGE</span><br><span class="line">com.xy.permission I/MainActivity.java: [ (MainActivity.java:33)#onClick ] android.permission.RECORD_AUDIO</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h4 id="判断某个权限是否授予"><a href="#判断某个权限是否授予" class="headerlink" title="判断某个权限是否授予"></a>判断某个权限是否授予</h4></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XLog.i(XPermission.isGranted(PermissionsContract.AidioPermissions));</span><br></pre></td></tr></table></figure>
+<p>打印</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.xy.permission I/MainActivity.java: [ (MainActivity.java:55)#onClick ] true</span><br></pre></td></tr></table></figure>
+<p>用起来就是这么简单流畅，工具代码下次再补，准备睡觉。</p>
 
       
     </div>
@@ -296,7 +294,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/33/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/35/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/33/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><span class="page-number current">34</span><a class="page-number" href="/page/35/">35</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/35/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
