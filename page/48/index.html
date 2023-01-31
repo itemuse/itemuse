@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">MarkDown基本语法</a>
+          <a href="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/" class="post-title-link" itemprop="url">Activity基础篇</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-01-17 18:04:11" itemprop="dateCreated datePublished" datetime="2018-01-17T18:04:11+08:00">2018-01-17</time>
+      <time title="创建时间：2020-05-18 11:37:55" itemprop="dateCreated datePublished" datetime="2020-05-18T11:37:55+08:00">2020-05-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 21:57:31" itemprop="dateModified" datetime="2023-01-30T21:57:31+08:00">2023-01-30</time>
+      <time title="修改时间：2023-01-30 21:57:03" itemprop="dateModified" datetime="2023-01-30T21:57:03+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MarkDown/" itemprop="url" rel="index"><span itemprop="name">MarkDown</span></a>
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
         </span>
     </span>
 
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="MarkDown基本语法" href="/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::fd53a931058ad6ae46b6de82d6c47927" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Activity基础篇" href="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::e50b73d278cf4aef578f32a690a6d129" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,170 +224,81 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-Markdown"><a href="#一-Markdown" class="headerlink" title="一.Markdown"></a>一.Markdown</h3><p>是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
-<h3 id="二-代码"><a href="#二-代码" class="headerlink" title="二.代码"></a>二.代码</h3><ol>
-<li><p><strong>单行代码：</strong><br>代码之间分别用一个反引号包起来<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`create database hero;`</span><br></pre></td></tr></table></figure>
-<p><strong>效果</strong><br><code>create database hero;</code></p>
+          <h3 id="一-什么是Activity"><a href="#一-什么是Activity" class="headerlink" title="一.什么是Activity"></a>一.什么是Activity</h3><p>Activity是Android应用程序核心组件中最基本的一个，是用户和程序交互的窗口，一个activity通常对应一个单独的视图，一个APP由一个或者多个activity构成，activity用于显示信息给用户，并且之间可以相互进行跳转，activity之间的跳转有返回值。</p>
+<p>每一个activity都被定义为一个独立的类，他继承了Android中的android.app.Activity，在Activity类中将使用setContentView方法来显示由视图控件组成的用户界面，并对用户通过这些视图控件所出发的时间做出响应。</p>
+<h3 id="二-activity的四种状态"><a href="#二-activity的四种状态" class="headerlink" title="二.activity的四种状态"></a>二.activity的四种状态</h3><ol>
+<li><p>激活状态，此时activity运行在屏幕前台</p>
 </li>
-<li><p><strong>代码块：</strong><br>代码之间分别用三个反引号包起来，且两边的反引号单独占一行<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(```)</span><br><span class="line">    function fun()&#123;</span><br><span class="line">         echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    fun();</span><br><span class="line">(```)</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun()&#123;</span><br><span class="line">     echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="三-字体"><a href="#三-字体" class="headerlink" title="三.字体"></a>三.字体</h3><ol>
-<li><p><strong>加粗</strong><br>要加粗的文字左右分别用两个*号包起来</p>
+<li><p>暂停状态，此时activity失去焦点，但是用户仍然可以看到（例如这个activity上遮盖了一个透明的或者非全屏的activity）</p>
 </li>
-<li><p><strong>斜体</strong><br>要倾斜的文字左右分别用一个*号包起来</p>
+<li><p>停止状态，此时activity被其他activity完全覆盖</p>
 </li>
-<li><p><strong>斜体加粗</strong><br>要倾斜和加粗的文字左右分别用三个*号包起来</p>
-</li>
-<li><p><strong>删除线</strong><br>要加删除线的文字左右分别用两个~~号包起来</p>
+<li><p>销毁状态，此时activity将会被系统清理出内存</p>
 </li>
 </ol>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">**这是加粗的文字**</span><br><span class="line">*这是倾斜的文字*`</span><br><span class="line">***这是斜体加粗的文字***</span><br><span class="line">~~这是加删除线的文字~~</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<p>  <strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>&#96;<br><em><strong>这是斜体加粗的文字</strong></em><br><del>这是加删除线的文字</del></p>
-<h3 id="四-引用"><a href="#四-引用" class="headerlink" title="四.引用"></a>四.引用</h3><p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>n个…<br>貌似可以一直加下去，但没神马卵用</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是引用的内容</span><br><span class="line">&gt;&gt;这是引用的内容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<blockquote>
-<p>这是引用的内容</p>
-<blockquote>
-<p>这是引用的内容</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>这是引用的内容</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="五-分割线"><a href="#五-分割线" class="headerlink" title="五.分割线"></a>五.分割线</h3><p>三个 - 或者 * 都可以。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+<h3 id="三-activity的回调函数"><a href="#三-activity的回调函数" class="headerlink" title="三.activity的回调函数"></a>三.activity的回调函数</h3><p>android系统根据生命周期的不同阶段唤起对应的回调函数来执行代码，从启动到销毁一个activity有着一套有序的回调函数。</p>
+<ul>
+<li><p>onCreate()<br>创建，activity初次创建时被调用，该方法中一般进行一些静态设置。</p>
+</li>
+<li><p>onStart()<br>运行，activity对用户即将可见的时候调用</p>
+</li>
+<li><p>onResume()<br>获取焦点，当activity将要与用户进行交互时候调用</p>
+</li>
+<li><p>onPause()<br>失去焦点，当系统要启动一个其他的activity时调用（在其他activity显示之前调用）</p>
+</li>
+<li><p>onStop()<br>暂停，当另外一个activity恢复并遮盖当前activity，导致其对用户不可见时调用。</p>
+</li>
+<li><p>onDestroy()<br>销毁，在activity被销毁前所调用的最后一个方法</p>
+</li>
+<li><p>onRestart()<br>重新启动</p>
+</li>
+</ul>
+<p>这七个方法贯穿整个activity的生命周期。<br>一张图来表示</p>
+<img src="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/img1.jpg" class title="This is an example image">
 
-<p><strong>效果如下：</strong></p>
-<hr>
-<hr>
-<p>可以看到，显示效果是一样的。</p>
-<h3 id="六-图片"><a href="#六-图片" class="headerlink" title="六.图片"></a>六.图片</h3><p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![图片alt](图片地址 &#x27;&#x27;图片title&#x27;&#x27;)</span><br><span class="line">&#123;% asset_img img1.png This is an example image %&#125;</span><br></pre></td></tr></table></figure>
-<p>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</span><br><span class="line">u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg &quot;区块链&quot;)</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong><br>![blockchain](<a target="_blank" rel="noopener" href="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/">https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</a><br>u&#x3D;702257389,1274025419&amp;fm&#x3D;27&amp;gp&#x3D;0.jpg “区块链”)</p>
-<p>上传本地图片直接点击导航栏的图片标志，选择图片即可</p>
-<h3 id="七-超链接"><a href="#七-超链接" class="headerlink" title="七.超链接"></a>七.超链接</h3><p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[超链接名](超链接地址 &quot;超链接title&quot;)</span><br></pre></td></tr></table></figure>
-<p>title可加可不加<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[简书](http://jianshu.com)</span><br><span class="line">[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<p><a target="_blank" rel="noopener" href="http://jianshu.com/">简书</a><br><a target="_blank" rel="noopener" href="http://baidu.com/">百度</a></p>
-<h3 id="八-列表"><a href="#八-列表" class="headerlink" title="八.列表"></a>八.列表</h3><ol>
-<li><strong>无序列表</strong><br><strong>语法：</strong><br>无序列表用 - + * 任何一种都可以<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br></pre></td></tr></table></figure>
-注意：- + * 跟内容之间都要有一个空格</li>
-</ol>
-<p>  <strong>效果如下：</strong></p>
-<ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表内容</li>
-</ul>
-<ol start="2">
-<li><p><strong>有序列表</strong><br><strong>语法：</strong><br>数字加点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line">3. 列表内容</span><br></pre></td></tr></table></figure>
-<p>注意：序号跟内容之间要有空格<br><strong>效果如下：</strong></p>
-</li>
-<li><p>列表内容</p>
-</li>
-<li><p>列表内容</p>
-</li>
-<li><p>列表内容</p>
-</li>
-<li><p><strong>列表嵌套</strong><br>上一级和下一级之间敲三个空格即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 一级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下</strong></p>
-<ul>
-<li>一级无序列表内容<ul>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 一级有序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">2. 一级有序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>效果如下</strong></p>
+<h3 id="四-activity的启动与销毁"><a href="#四-activity的启动与销毁" class="headerlink" title="四.activity的启动与销毁"></a>四.activity的启动与销毁</h3><p>大多数的APP都包含多个activity，不论这些activity是主activity还是为了响应用户行为而新建的，系统都会调用新的activity实例中的onCreate()方法，通常情况下我们会在onCreate()方法内声明一些UI元素或者定义一些成员变量等基本操作，但onCreate()方法中尽量少做事情，以免程序启动太久都看不到界面。</p>
+<p>一旦onCreate()操作结束，系统会立即执行这个activity的onStart()方法和onResume()方法，最终使得activity停留在Resumed状态，直到一些因素发生变化才会改变这个状态，例如切换到另外一个activity或者退出程序。</p>
+<p>一旦我们退出软件，系统会执行activity的onDestroy()方法，将activity从系统中完全移除，我们通常是在执行了 onPause() and onStop() 之后再调用onDestroy() 。</p>
+<h3 id="五-activity的暂停与恢复"><a href="#五-activity的暂停与恢复" class="headerlink" title="五.activity的暂停与恢复"></a>五.activity的暂停与恢复</h3><p>在使用app的过程中，运行的activity经常会被其他组件挡住，例如提示电量不足的提示框等， activity可见但不可操作，这个时候activity就会调用onPause()方法进去Pause状态，这个方法会停止当前activity进行的操作，并保存那些有可能需要长期保存的信息，如果用户从暂停状态返回到activity，系统会恢复那些数据并执行onResume()方法。</p>
+<h3 id="六-activity的停止与重启"><a href="#六-activity的停止与重启" class="headerlink" title="六.activity的停止与重启"></a>六.activity的停止与重启</h3><p>当我们从APP-A切换到APP-B之后，APP-A会调用onStop()方法，在onStop()方法中我们一般释放一些不再需要的资源</p>
+<p>当我们从stop状态回到前台时候，会调用onRestart()方法，系统再调用onStart()方法，</p>
+<h3 id="七-activity的生命周期"><a href="#七-activity的生命周期" class="headerlink" title="七.activity的生命周期"></a>七.activity的生命周期</h3><p>activity的生命周期可以根据不同的标准分为完整生命周期、可见生命周期和前台生命周期。</p>
+<p>从activity最初调用onCreate()方法到最终调用onDestroy()方法的整个过程称之为完整生命周期，在onCreate()方法中设置全局状态，在onDestroy()方法中释放所有资源。</p>
+<p>从activity调用onStart()方法到调用对应的onStop()方法的过程称之为可见生命周期，在这个过程中，activity都是对用户可见的（但不一定可以操作）</p>
+<p>从activity调用onResume()开始到调用onPause()的整个过程称之为前台生命周期，这段时间内这个activity处于其他所有activity的前面，用户可以与之进行交互。</p>
+<h3 id="八-演示"><a href="#八-演示" class="headerlink" title="八.演示"></a>八.演示</h3><p>我们创建一个android工程，然后重写那些方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">import android.app.Activity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.Menu;</span><br><span class="line">import android.view.MenuItem;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        System.out.println(&quot;执行onCreate...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onStart() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onStart();</span><br><span class="line">        System.out.println(&quot;执行onStart...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onResume() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onResume();</span><br><span class="line">        System.out.println(&quot;执行onResume...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onPause() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onPause();</span><br><span class="line">        System.out.println(&quot;执行onPause...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onStop() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onStop();</span><br><span class="line">        System.out.println(&quot;执行onStop...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        System.out.println(&quot;执行onDestroy...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onRestart() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onRestart();</span><br><span class="line">        System.out.println(&quot;执行onRestart...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　在模拟器中运行，查看日志</p>
+<img src="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/img2.jpg" class title="This is an example image">
+
+<p>然后我们按home返回到桌面</p>
+<img src="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/img3.jpg" class title="This is an example image">
+
+<p>按菜单键，选择回到刚才的界面</p>
+<img src="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/img4.jpg" class title="This is an example image">
+
+<p>按返回键退出activity</p>
+<img src="/2020/05/18/2021-03-07-Activity%E5%9F%BA%E7%A1%80%E7%AF%87/img5.jpg" class title="This is an example image">
+
+<h3 id="九-如何创建一个activity"><a href="#九-如何创建一个activity" class="headerlink" title="九.如何创建一个activity"></a>九.如何创建一个activity</h3><p>新建一个activity步骤如下</p>
 <ol>
-<li>一级有序列表内容<ul>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-</ul>
-</li>
-<li>一级有序列表内容<ul>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-</ul>
-</li>
+<li>在src中新建一个类继承activity，并重写其onCreate()方法<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">MyActivity.java</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">public class MyActivity extends Activity &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.my_activity_layout);// 使用setContentView方法显示一个布局文件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在res—layout中创建一个布局文件，用以显示界面内容<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">my_activity_layout.xml</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;这是一个TextView&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure></li>
+<li>在AndroidManiFest.xml中注册这个activity<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">AndroidManiFest.xml</span><br><span class="line"></span><br><span class="line">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    package=&quot;com.example.activitytest&quot;</span><br><span class="line">    android:versionCode=&quot;1&quot;</span><br><span class="line">    android:versionName=&quot;1.0&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;uses-sdk</span><br><span class="line">        android:minSdkVersion=&quot;19&quot;</span><br><span class="line">        android:targetSdkVersion=&quot;19&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;application</span><br><span class="line">        android:allowBackup=&quot;true&quot;</span><br><span class="line">        android:icon=&quot;@drawable/ic_launcher&quot;</span><br><span class="line">        android:label=&quot;@string/app_name&quot;</span><br><span class="line">        android:theme=&quot;@style/AppTheme&quot; &gt;</span><br><span class="line">        &lt;!-- 注册一个activity --&gt;</span><br><span class="line">        &lt;activity android:name=&quot;com.example.activitytest.MyActivity&quot; &gt;</span><br><span class="line">   &lt;!-- 如果是主activity，需要添加如下过滤器来告诉系统这是入口 --&gt;</span><br><span class="line">   &lt;intent-filter&gt;</span><br><span class="line">       &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</span><br><span class="line"></span><br><span class="line">       &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</span><br><span class="line">   &lt;/intent-filter&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">    &lt;/application&gt;</span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="九-表格"><a href="#九-表格" class="headerlink" title="九.表格"></a>九.表格</h3><p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br></pre></td></tr></table></figure>
-<p><strong>第二行分割表头和内容。</strong></p>
-<ul>
-<li>两边加：表示文字居中</li>
-<li>右边加：表示文字居右<br>注：原生的语法两边都要用 | 包起来。此处省略</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|最强技能|排位名次</span><br><span class="line">--|:--:|--:</span><br><span class="line">刘备|哭|大哥</span><br><span class="line">关羽|打|二哥</span><br><span class="line">张飞|骂|三弟</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th align="center">最强技能</th>
-<th align="right">排位名次</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>刘备</td>
-<td align="center">哭</td>
-<td align="right">大哥</td>
-</tr>
-<tr>
-<td>关羽</td>
-<td align="center">打</td>
-<td align="right">二哥</td>
-</tr>
-<tr>
-<td>张飞</td>
-<td align="center">骂</td>
-<td align="right">三弟</td>
-</tr>
-</tbody></table>
-<h3 id="十-标题"><a href="#十-标题" class="headerlink" title="十.标题"></a>十.标题</h3><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
-<p><strong>注：</strong>标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这是二级标题</span><br><span class="line">### 这是三级标题</span><br><span class="line">#### 这是四级标题</span><br><span class="line">##### 这是五级标题</span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><hr>
-<p>整理自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/191d1e21f7edhttps://www.jianshu.com/p/191d1e21f7ed">简书</a></p>
+<p>　　这样，一个activity就创建成功了。</p>
+<h3 id="十-如何关闭一个activity"><a href="#十-如何关闭一个activity" class="headerlink" title="十.如何关闭一个activity"></a>十.如何关闭一个activity</h3><p>只要按下返回键就可以销毁当前activity，但是假如我们希望通过代码方式来销毁activity，可以使用activity类提供的finish()方法来实现。</p>
+<p>修改一下上面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">MyActivity.java</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.View.OnClickListener;</span><br><span class="line">import android.widget.Button;</span><br><span class="line"></span><br><span class="line">public class MyActivity extends Activity &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.my_activity_layout);// 使用setContentView方法显示一个布局文件</span><br><span class="line"></span><br><span class="line">        Button button = (Button) findViewById(R.id.finishActivity); // 找到这个按钮</span><br><span class="line">        button.setOnClickListener(new OnClickListener() &#123; // 给这个按钮添加一个点击事件</span><br><span class="line"></span><br><span class="line">   @Override</span><br><span class="line">   public void onClick(View v) &#123;</span><br><span class="line">       finish(); // 当点击按钮时，销毁这个activity</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        System.out.println(&quot;onDestroy方法被调用&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;这是一个TextView&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=&quot;@+id/finishActivity&quot;</span><br><span class="line">        android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;关闭这个activity&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>这时候运行该程序，点击按钮，这个activity就会被关闭。</p>
+<h3 id="十一-finish-和onDestroy-有什么区别"><a href="#十一-finish-和onDestroy-有什么区别" class="headerlink" title="十一.finish()和onDestroy()有什么区别"></a>十一.finish()和onDestroy()有什么区别</h3><p>从上面的代码运行结果来看，控制台上输出了“onDestroy方法被调用”，由此可见，在执行finish()时执行了onDestroy()方法。</p>
+<p>实际上他们的区别在于 onDestroy()是生命周期方法，是你的Activity结束的时候由Android系统调用的，你不能直接调用onDestroy()来结束你的Activity,一般做法是调用finish()。</p>
+<h3 id="十二-四种LaunchMode"><a href="#十二-四种LaunchMode" class="headerlink" title="十二.四种LaunchMode"></a>十二.四种LaunchMode</h3><p>清单配置文件中,可使用android:launchMode&#x3D;”standard|singleInstance|single Task|singleTop”四种模式来控制Acivity任务栈。<br>单独整理一篇<a target="_blank" rel="noopener" href="https://freedomyouth.gitee.io/2021/03/08//Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/">Activity基础篇-启动模式详解</a><br>史上最详细扔物线讲解<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CA41177Se">Android 面试黑洞——当我按下 Home 键再切回来，会发生什么？</a>  </p>
+<h3 id="十三-保存数据"><a href="#十三-保存数据" class="headerlink" title="十三.保存数据"></a>十三.保存数据</h3><p>单独整理一篇<a target="_blank" rel="noopener" href="https://freedomyouth.gitee.io/2017/12/21/Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/">Activity基础篇-保存数据</a></p>
 
       
     </div>
@@ -407,7 +318,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/47/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><span class="page-number current">48</span><a class="page-number" href="/page/49/">49</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/49/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/47/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><span class="page-number current">48</span><a class="page-number" href="/page/49/">49</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/49/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
