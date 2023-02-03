@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/08/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%887%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%91%A8%E6%81%A9%E6%9D%A5%E7%9A%84%E6%94%BF%E6%B2%BB%E7%94%9F%E6%B6%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/08/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%887%EF%BC%89/" class="post-title-link" itemprop="url">策略pine代码拆解学习（7）时间限制，收益图表</a>
+          <a href="/2022/12/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%91%A8%E6%81%A9%E6%9D%A5%E7%9A%84%E6%94%BF%E6%B2%BB%E7%94%9F%E6%B6%AF/" class="post-title-link" itemprop="url">读书笔记-周恩来的政治生涯</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-12-08 14:19:43" itemprop="dateCreated datePublished" datetime="2022-12-08T14:19:43+08:00">2022-12-08</time>
+      <time title="创建时间：2022-12-13 15:36:52" itemprop="dateCreated datePublished" datetime="2022-12-13T15:36:52+08:00">2022-12-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-31 15:35:07" itemprop="dateModified" datetime="2023-01-31T15:35:07+08:00">2023-01-31</time>
+      <time title="修改时间：2023-01-31 15:44:07" itemprop="dateModified" datetime="2023-01-31T15:44:07+08:00">2023-01-31</time>
     </span>
 
   
@@ -200,8 +200,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="策略pine代码拆解学习（7）时间限制，收益图表" href="/2022/12/08/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%887%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::89d14020c2db04fae5b966d2c21f2a91" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="读书笔记-周恩来的政治生涯" href="/2022/12/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%91%A8%E6%81%A9%E6%9D%A5%E7%9A%84%E6%94%BF%E6%B2%BB%E7%94%9F%E6%B6%AF/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::1a04aceca368bdf797513f843f70d47a" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -215,40 +215,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="代码片段-BACKTESTING"><a href="#代码片段-BACKTESTING" class="headerlink" title="代码片段-BACKTESTING"></a>代码片段-BACKTESTING</h3><h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">testStartYear = input.int(1997, title=&#x27;start year&#x27;, minval=1997, maxval=3000, group=&#x27;BACKTEST&#x27;)</span><br><span class="line">testStartMonth = input.int(06, title=&#x27;start month&#x27;, minval=1, maxval=12, group=&#x27;BACKTEST&#x27;)</span><br><span class="line">testStartDay = input.int(01, title=&#x27;start day&#x27;, minval=1, maxval=31, group=&#x27;BACKTEST&#x27;)</span><br><span class="line">testPeriodStart = timestamp(testStartYear, testStartMonth, testStartDay, 0, 0)</span><br><span class="line">testStopYear = input.int(3333, title=&#x27;stop year&#x27;, minval=1980, maxval=9999, group=&#x27;BACKTEST&#x27;)</span><br><span class="line">testStopMonth = input.int(12, title=&#x27;stop month&#x27;, minval=1, maxval=12, group=&#x27;BACKTEST&#x27;)</span><br><span class="line">testStopDay = input.int(31, title=&#x27;stop day&#x27;, minval=1, maxval=31, group=&#x27;BACKTEST&#x27;)</span><br><span class="line">testPeriodStop = timestamp(testStopYear, testStopMonth, testStopDay, 0, 0)</span><br><span class="line">testPeriod = time &gt;= testPeriodStart and time &lt;= testPeriodStop ? true : false</span><br></pre></td></tr></table></figure>
-
-<h4 id="官方文档解释"><a href="#官方文档解释" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>timestamp</strong><br>时间戳功能返回UNIX时间的指定日期和时间。</p>
-<h4 id="对照解读"><a href="#对照解读" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">testPeriodStart = timestamp(testStartYear, testStartMonth, testStartDay, 0, 0)</span><br><span class="line">testPeriodStop = timestamp(testStopYear, testStopMonth, testStopDay, 0, 0)</span><br></pre></td></tr></table></figure>
-<p>开始和结束的时间戳，可以精确到分钟，用于限制策略的使用范围</p>
-<h4 id="ChatGPT解读"><a href="#ChatGPT解读" class="headerlink" title="ChatGPT解读"></a>ChatGPT解读</h4><h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3><h4 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">show_performance = input.bool(true, &#x27;Show Monthly Performance ?&#x27;, group=&#x27;Performance - credits: @QuantNomad&#x27;)</span><br><span class="line">prec = input(2, &#x27;Return Precision&#x27;, group=&#x27;Performance - credits: @QuantNomad&#x27;)</span><br><span class="line">if show_performance</span><br><span class="line">    new_month = month(time) != month(time[1])</span><br><span class="line">    new_year  = year(time)  != year(time[1])</span><br><span class="line">   </span><br><span class="line">    eq = strategy.equity</span><br><span class="line">   </span><br><span class="line">    bar_pnl = eq / eq[1] - 1</span><br><span class="line">   </span><br><span class="line">    cur_month_pnl = 0.0</span><br><span class="line">    cur_year_pnl  = 0.0</span><br><span class="line">   </span><br><span class="line">     Current Monthly P&amp;L</span><br><span class="line">    cur_month_pnl := new_month ? 0.0 :</span><br><span class="line">                     (1 + cur_month_pnl[1]) * (1 + bar_pnl) - 1</span><br><span class="line">   </span><br><span class="line">     Current Yearly P&amp;L</span><br><span class="line">    cur_year_pnl := new_year ? 0.0 :</span><br><span class="line">                     (1 + cur_year_pnl[1]) * (1 + bar_pnl) - 1  </span><br><span class="line">   </span><br><span class="line">     Arrays to store Yearly and Monthly P&amp;Ls</span><br><span class="line">    var month_pnl  = array.new_float(0)</span><br><span class="line">    var month_time = array.new_int(0)</span><br><span class="line">   </span><br><span class="line">    var year_pnl  = array.new_float(0)</span><br><span class="line">    var year_time = array.new_int(0)</span><br><span class="line">   </span><br><span class="line">    last_computed = false</span><br><span class="line">   </span><br><span class="line">    if (not na(cur_month_pnl[1]) and (new_month or barstate.islastconfirmedhistory))</span><br><span class="line">        if (last_computed[1])</span><br><span class="line">            array.pop(month_pnl)</span><br><span class="line">            array.pop(month_time)</span><br><span class="line">           </span><br><span class="line">        array.push(month_pnl , cur_month_pnl[1])</span><br><span class="line">        array.push(month_time, time[1])</span><br><span class="line">   </span><br><span class="line">    if (not na(cur_year_pnl[1]) and (new_year or barstate.islastconfirmedhistory))</span><br><span class="line">        if (last_computed[1])</span><br><span class="line">            array.pop(year_pnl)</span><br><span class="line">            array.pop(year_time)</span><br><span class="line">           </span><br><span class="line">        array.push(year_pnl , cur_year_pnl[1])</span><br><span class="line">        array.push(year_time, time[1])</span><br><span class="line">   </span><br><span class="line">    last_computed := barstate.islastconfirmedhistory ? true : nz(last_computed[1])</span><br><span class="line">   </span><br><span class="line">     Monthly P&amp;L Table    </span><br><span class="line">    var monthly_table = table(na)</span><br><span class="line">   </span><br><span class="line">    if (barstate.islastconfirmedhistory)</span><br><span class="line">        monthly_table := table.new(position.bottom_right, columns = 14, rows = array.size(year_pnl) + 1, border_width = 1)</span><br><span class="line">   </span><br><span class="line">        table.cell(monthly_table, 0,  0, &quot;&quot;,     bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 1,  0, &quot;Jan&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 2,  0, &quot;Feb&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 3,  0, &quot;Mar&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 4,  0, &quot;Apr&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 5,  0, &quot;May&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 6,  0, &quot;Jun&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 7,  0, &quot;Jul&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 8,  0, &quot;Aug&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 9,  0, &quot;Sep&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 10, 0, &quot;Oct&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 11, 0, &quot;Nov&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 12, 0, &quot;Dec&quot;,  bgcolor = #cccccc)</span><br><span class="line">        table.cell(monthly_table, 13, 0, &quot;Year&quot;, bgcolor = #999999)</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">        for yi = 0 to array.size(year_pnl) - 1</span><br><span class="line">            table.cell(monthly_table, 0,  yi + 1, str.tostring(year(array.get(year_time, yi))), bgcolor = #cccccc)</span><br><span class="line">           </span><br><span class="line">            y_color = array.get(year_pnl, yi) &gt; 0 ? color.new(color.teal, transp = 40) : color.new(color.gray, transp = 40)</span><br><span class="line">            table.cell(monthly_table, 13, yi + 1, str.tostring(math.round(array.get(year_pnl, yi) * 100, prec)), bgcolor = y_color, text_color=color.new(color.white, 0))</span><br><span class="line">           </span><br><span class="line">        for mi = 0 to array.size(month_time) - 1</span><br><span class="line">            m_row   = year(array.get(month_time, mi))  - year(array.get(year_time, 0)) + 1</span><br><span class="line">            m_col   = month(array.get(month_time, mi))</span><br><span class="line">            m_color = array.get(month_pnl, mi) &gt; 0 ? color.new(color.teal, transp = 40) : color.new(color.gray, transp = 40)</span><br><span class="line">           </span><br><span class="line">            table.cell(monthly_table, m_col, m_row, str.tostring(math.round(array.get(month_pnl, mi) * 100, prec)), bgcolor = m_color, text_color=color.new(color.white, 0))</span><br></pre></td></tr></table></figure>
-<h4 id="官方文档解释-1"><a href="#官方文档解释-1" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>strategy.equity</strong><br>当前权益 &#x3D;  策略属性中设定的初始资本金额 + 所有已完成交易的总货币价值 + 所有未平仓位的当前未实现损益</p>
-<p><strong>array.new_float</strong><br>此函数创建一个新的浮点型元素阵列对象。</p>
-<p>参数</p>
-<p>size (series int) 序列的初始大小。可选。默认值为0。</p>
-<p>initial_value (series int&#x2F;float) 所有序列元素的初始值。可选。默认值为“na”。</p>
-<p><strong>array.pop</strong><br>该函数从阵列中删除最后一个元素并返回其值。</p>
-<p>返回值</p>
-<p>被删除元素的值。</p>
-<p><strong>array.push</strong><br>该函数将一个值附加到阵列。</p>
-<p><strong>table.cell</strong><br>此函数在表格中定义一个单元格并设置其属性。</p>
-<p><strong>array.get</strong><br>该函数返回指定索引处元素的值。</p>
-<p>返回值</p>
-<p>阵列元素的值。</p>
-<p><strong>color.new</strong><br>功能颜色将指定透明度应用于给定的颜色。</p>
-<p><strong>str.tostring</strong><br>返回值</p>
-<p><code>value</code>参数的字符串表示形式。</p>
-<p>如果<code>value</code>参数是字符串，则按原样返回。</p>
-<p>当<code>value</code>为na时，函数返回字符串“NaN”。</p>
-<p><strong>array.size</strong><br>该函数返回阵列中元素的数量。</p>
-<h4 id="对照解读-1"><a href="#对照解读-1" class="headerlink" title="对照解读"></a>对照解读</h4><p>此段代码用于图显月收益+年收益数据</p>
-<img src="/2022/12/08/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%887%EF%BC%89/640.png" class title="This is an example image">
-
-<h4 id="ChatGPT解读-1"><a href="#ChatGPT解读-1" class="headerlink" title="ChatGPT解读"></a>ChatGPT解读</h4><p>该脚本是一种交易策略，使用几种不同的技术指标来确定何时进入和退出头寸。<br>该脚本使用ta模块中的sma()函数来计算体积的简单移动平均，然后将其用作进入和退出位置的条件的一部分。<br>此外，脚本使用timestamp()函数来确定回测策略的开始和停止时间。<br>最后，该脚本包含一些代码，用于计算和显示策略随时间的性能。</p>
-<h3 id="系列总结"><a href="#系列总结" class="headerlink" title="系列总结"></a>系列总结</h3><p>该开源策略的拆解学习系列也告一段落了，整体还是比较粗糙。</p>
-<p>从头开始一行一行地读，整个下来，很明显能发现读懂的速度是线性增加的。</p>
-<p>虽然并没有100%吃透，复杂的指数甚至无法领会其逻辑，但是整个策略的框架已经有一些概念，并不会像学习之前那样，看起来没有头绪。</p>
-<p>接下来慢慢收集好的指数，挪轮子造车应该不是问题了</p>
-<p>终身学习，不急躁。</p>
+          <img src="/2022/12/13/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%91%A8%E6%81%A9%E6%9D%A5%E7%9A%84%E6%94%BF%E6%B2%BB%E7%94%9F%E6%B6%AF/640.png" class title="This is an example image">
+<p>前段时间看完了这本书，特意时隔一个月回顾一下这本书给我几个总理印象</p>
+<h3 id="1-坚韧"><a href="#1-坚韧" class="headerlink" title="1.坚韧"></a>1.坚韧</h3><p>  总理的一生完美诠释了这个词，坚强又极其富有韧性，仿佛一块立于时代洪流中的中流砥柱，任你风雨摧枯拉朽，他就立于那里，混然不动。</p>
+<h3 id="2-隐忍"><a href="#2-隐忍" class="headerlink" title="2.隐忍"></a>2.隐忍</h3><p>  总理生命中最后的时间，叶帅每天都前来探望，临走都会特意嘱咐医护人员，假如总理有什么话想说，一定要记录一下，然而总理至始至终都没有表露一句话，很多历史真相随着总理离去而永久休眠，实为遗憾，但是拼着这常人难以企及的隐忍品质，总理也至始至终在二把手位置上屹立不倒。</p>
+<h3 id="3-能吏"><a href="#3-能吏" class="headerlink" title="3.能吏"></a>3.能吏</h3><p>   主席常说星星之火可以燎原，的确也这么做了，没有总理，可能就野火烧不尽了。</p>
+<h3 id="4-外交家"><a href="#4-外交家" class="headerlink" title="4.外交家"></a>4.外交家</h3><p>   重庆会议，主席还不为外界共知，总理随着主席左右，向中外记者一一介绍，这是我们中国共产党主席-毛泽东。&#x2F;…</p>
+<h3 id="5-政治家"><a href="#5-政治家" class="headerlink" title="5.政治家"></a>5.政治家</h3><p>  邓公对于现代中国的作用无需言表，最后几年，正是总理力排众议，把接力棒交给了邓公。&#x2F;..</p>
+<h3 id="6-廉洁"><a href="#6-廉洁" class="headerlink" title="6.廉洁"></a>6.廉洁</h3><p>  这是老一辈政治家的共有品质，而总理则廉洁奉公到极致！</p>
 
       
     </div>
@@ -268,7 +242,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
