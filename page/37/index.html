@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/19/AndroidPdfViewer%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/21/2021-03-22-XToast%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/19/AndroidPdfViewer%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">AndroidPdfViewer使用笔记</a>
+          <a href="/2021/03/21/2021-03-22-XToast%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">XToast使用笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-03-19 00:15:38" itemprop="dateCreated datePublished" datetime="2021-03-19T00:15:38+08:00">2021-03-19</time>
+      <time title="创建时间：2021-03-21 10:16:23" itemprop="dateCreated datePublished" datetime="2021-03-21T10:16:23+08:00">2021-03-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 22:05:38" itemprop="dateModified" datetime="2023-01-30T22:05:38+08:00">2023-01-30</time>
+      <time title="修改时间：2023-01-30 22:06:20" itemprop="dateModified" datetime="2023-01-30T22:06:20+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="AndroidPdfViewer使用笔记" href="/2021/03/19/AndroidPdfViewer%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::35def58f1289544c097843e1090f429a" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="XToast使用笔记" href="/2021/03/21/2021-03-22-XToast%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::fae19b3cd5a846d4128ef59d3ff579c4" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,38 +224,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-代码"><a href="#一-代码" class="headerlink" title="一.代码"></a>一.代码</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/barteksc/AndroidPdfViewer">AndroidPdfViewer</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/pdf">XTester-pdf</a></li>
+          <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/toast/XToast.java">xlib-Toast</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester/tree/master/windowmanager">XTester-windowmanager</a></li>
 </ul>
-<h3 id="二-效果图"><a href="#二-效果图" class="headerlink" title="二.效果图"></a>二.效果图</h3><img src="/2021/03/19/AndroidPdfViewer%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img.gif" class title="This is an example image">
-
-<h3 id="三-实现"><a href="#三-实现" class="headerlink" title="三.实现"></a>三.实现</h3><ul>
-<li><p>准备</p>
+<h3 id="二-引用"><a href="#二-引用" class="headerlink" title="二.引用"></a>二.引用</h3><ol>
+<li><p>将JitPack存储库添加到您的构建文件中<br>将其添加到存储库末尾的root build.gradle中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">      repositories &#123;</span><br><span class="line">      ...</span><br><span class="line">      maven &#123; url &#x27;https://jitpack.io&#x27; &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加依赖项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      ...</span><br><span class="line">      implementation &#x27;com.github.itemuse:XLib:Tag&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化 Application中init</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import cn.xy.library.XApp;</span><br><span class="line">      ...</span><br><span class="line">@Override</span><br><span class="line">public void onCreate() &#123;</span><br><span class="line">      super.onCreate();</span><br><span class="line">      XApp.init(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AndroidManifest.xml中添加弹出界面的activity</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.SYSTEM_ALERT_WINDOW&quot;/&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="三-效果图"><a href="#三-效果图" class="headerlink" title="三.效果图"></a>三.效果图</h3><img src="/2021/03/21/2021-03-22-XToast%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/img.gif" class title="This is an example image">
+<h3 id="四-需求和代码"><a href="#四-需求和代码" class="headerlink" title="四.需求和代码"></a>四.需求和代码</h3><p>工作中的需求，解决原生Toast在高版本平台发现连续点击之后不会弹出问题。<br>解决方法最终是使用WindowManager来替换原生Toast</p>
 <ul>
-<li><p>build.gradle</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &#x27;com.github.barteksc:android-pdf-viewer:3.2.0-beta.1&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>权限</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>  Android10以上版本要在application中增加</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:requestLegacyExternalStorage=&quot;true&quot;</span><br></pre></td></tr></table></figure>
-<p>  否则READ_EXTERNAL_STORAGE权限无效</p>
-</li>
+<li>示例使用<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">XToast.getInstance()</span><br><span class="line">        .Text(&quot;AAAAAA&quot;)</span><br><span class="line">        .TextColor(R.color.colorPrimary) //字体颜色</span><br><span class="line">        .TextSize(50) //字体大小</span><br><span class="line">        .BackGroundColor(R.color.colorAccent) //背景颜色</span><br><span class="line">        .LayoutParamsX(w) //偏离XToast左边距离 受Gravity影响</span><br><span class="line">        .LayoutParamsY(h) //偏离XToastY坐标距离 受Gravity影响</span><br><span class="line">        .Gravity(Gravity.BOTTOM) //Toast显示位置的重心设置</span><br><span class="line">        .RoundedCorners(3) //背景圆角大小</span><br><span class="line">        .ShowTime(XToast.LENGTH_SHORTSHORT) //显示时长</span><br><span class="line">        .show();</span><br></pre></td></tr></table></figure>
+单例化<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static XToast getInstance() &#123;</span><br><span class="line">	if (mToastView == null) &#123;</span><br><span class="line">		mToastView = new XToast(XApp.getApp());</span><br><span class="line">		return mToastView;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return mToastView;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+通过handler通讯，将实例创建在UI线程<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private Handler mHandler = new Handler(Looper.getMainLooper()) &#123;</span><br><span class="line">	public void handleMessage(android.os.Message msg) &#123;</span><br><span class="line">		if (msg.what == HIDE) &#123;</span><br><span class="line">			hide();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+给view设置圆角<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 设置视图裁剪的圆角半径</span><br><span class="line"> * @param radius 半径</span><br><span class="line"> */</span><br><span class="line">public static void setRoundedCorners(View view, final int radius) &#123;</span><br><span class="line">    if (view == null) return;</span><br><span class="line">    if (radius &lt;= 0) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.LOLLIPOP) &#123;</span><br><span class="line">        view.setOutlineProvider(new ViewOutlineProvider() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void getOutline(View view, Outline outline) &#123;</span><br><span class="line">                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), radius);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        view.setClipToOutline(true);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+其他的就是一些<a target="_blank" rel="noopener" href="https://freedomer.com.cn/2020/05/28/WindowManager%E5%9F%BA%E7%A1%80/">WindowManager</a>创建流程</li>
 </ul>
-</li>
-<li><p>实现</p>
-<ul>
-<li><p>布局</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:id=&quot;@+id/activity_main&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;com.github.barteksc.pdfviewer.PDFView</span><br><span class="line">        android:id=&quot;@+id/pdfView&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/FrameLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>java</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">PDFView.Configurator configurator;</span><br><span class="line"> public void LoadFile()&#123;</span><br><span class="line">     File newFile = new File(Path);</span><br><span class="line">     File newFile_ = new File(Path_);</span><br><span class="line">     if(newFile!=null &amp;&amp; newFile.exists() &amp;&amp; newFile.canRead())&#123;</span><br><span class="line">         configurator = pdfView.fromFile(newFile);</span><br><span class="line">     &#125;else if(newFile_!=null &amp;&amp; newFile_.exists() &amp;&amp; newFile.canRead())&#123;</span><br><span class="line">         configurator = pdfView.fromFile(newFile_);</span><br><span class="line">     &#125;else&#123;</span><br><span class="line">         configurator = pdfView.fromAsset(&quot;TWPDF.pdf&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">     showPDFUI();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">  *     .pages(0, 2, 1, 3, 3, 3) // 默认显示所有页面</span><br><span class="line">  *     .enableSwipe(true) // 允许使用滑动来阻止改变页面</span><br><span class="line">  *     .swipeHorizontal(false) //是否横向滑动显示</span><br><span class="line">  *     .enableDoubletap(true)</span><br><span class="line">  *     .defaultPage(0) //默认进入的页面</span><br><span class="line">  *     // 允许在当前页面上画一些东西，通常在屏幕中间可见</span><br><span class="line">  *     .onDraw(onDrawListener)</span><br><span class="line">  *     // 允许在所有页面上画一些东西，单独为每一页。仅对可见页面调用</span><br><span class="line">  *     .onDrawAll(onDrawListener)</span><br><span class="line">  *     .onLoad(onLoadCompleteListener) // 加载文档并开始呈现后调用</span><br><span class="line">  *     .onPageChange(onPageChangeListener)</span><br><span class="line">  *     .onPageScroll(onPageScrollListener)</span><br><span class="line">  *     .onError(onErrorListener)</span><br><span class="line">  *     .onPageError(onPageErrorListener)</span><br><span class="line">  *     .onRender(onRenderListener) // 第一次呈现文档后调用</span><br><span class="line">  *     // 点击一次调用，如果已处理则返回true，如果切换滚动句柄可见性返回false</span><br><span class="line">  *     .onTap(onTapListener)</span><br><span class="line">  *     .onLongPress(onLongPressListener)</span><br><span class="line">  *     .enableAnnotationRendering(false) // 呈现注释(例如注释、颜色或表单)</span><br><span class="line">  *     .password(null)</span><br><span class="line">  *     .scrollHandle(null)</span><br><span class="line">  *     .enableAntialiasing(true) // 在低分辨率屏幕上改进渲染</span><br><span class="line">  *     // dp中页面之间的间距。要定义间距颜色，设置视图背景</span><br><span class="line">  *     .spacing(0)</span><br><span class="line">  *     .autoSpacing(false) // 添加动态间距以适应屏幕上的每个页面</span><br><span class="line">  *     .linkHandler(DefaultLinkHandler)</span><br><span class="line">  *     .pageFitPolicy(FitPolicy.WIDTH) // 模式以适应视图中的页面</span><br><span class="line">  *     .fitEachPage(false) // 将每个页面适应于视图，否则较小的页面相对于最大的页面缩放</span><br><span class="line">  *     .pageSnap(false) // 将页面对齐到屏幕边界</span><br><span class="line">  *     .pageFling(false) // 在ViewPager这样的单一页面上做一个短暂的改变</span><br><span class="line">  *     .nightMode(false) // 切换夜间模式</span><br><span class="line">  */</span><br><span class="line"> private void showPDFUI()&#123;</span><br><span class="line">     configurator.enableSwipe(true)</span><br><span class="line">             .swipeHorizontal(true)</span><br><span class="line">             .enableDoubletap(false)</span><br><span class="line">             .fitEachPage(false)</span><br><span class="line">             .autoSpacing(true)</span><br><span class="line">             .pageFitPolicy(FitPolicy.WIDTH)</span><br><span class="line">             .onLoad(new OnLoadCompleteListener() &#123;</span><br><span class="line">                 @Override</span><br><span class="line">                 public void loadComplete(int nbPages) &#123;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .onPageChange(new OnPageChangeListener() &#123;</span><br><span class="line"></span><br><span class="line">                 @Override</span><br><span class="line">                 public void onPageChanged(int page, int pageCount) &#123;</span><br><span class="line">                     mPageCount = pageCount;</span><br><span class="line">                     mPpagerIndex = page;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;)</span><br><span class="line">             .enableAnnotationRendering(false)</span><br><span class="line">             .password(null)</span><br><span class="line">             .scrollHandle(null)</span><br><span class="line">             .enableAntialiasing(true)</span><br><span class="line">             .spacing(0)</span><br><span class="line">             .pageSnap(true)</span><br><span class="line">             .nightMode(true)</span><br><span class="line">             .load();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<p>跳转至指定页面的方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * Go to the given page.</span><br><span class="line">     *</span><br><span class="line">     * @param page Page index.</span><br><span class="line">     */</span><br><span class="line">    public void jumpTo(int page, boolean withAnimation) &#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -275,7 +269,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/36/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/58/">58</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/38/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/36/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/38/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
