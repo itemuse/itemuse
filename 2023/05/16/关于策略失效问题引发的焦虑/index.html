@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="策略到底是什么我使用的测试是基于TradingView图表中的自定义指标和策略编程语言pine。 Pine策略是一种用于TradingView图表中的自定义指标和策略编程语言。 简而言之是通过各种指标堆栈结合，判断出符合条件的开仓止盈条件。 策略的风险有哪些 过度拟合问题过度拟合（Overfitting）是指在开发交易策略时，使用历史市场数据进行优化，导致策略过度适应历史数据，而忽略了未来数据的变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于策略失效问题引发的焦虑">
+<meta property="og:url" content="http://example.com/2023/05/16/%E5%85%B3%E4%BA%8E%E7%AD%96%E7%95%A5%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E5%BC%95%E5%8F%91%E7%9A%84%E7%84%A6%E8%99%91/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="策略到底是什么我使用的测试是基于TradingView图表中的自定义指标和策略编程语言pine。 Pine策略是一种用于TradingView图表中的自定义指标和策略编程语言。 简而言之是通过各种指标堆栈结合，判断出符合条件的开仓止盈条件。 策略的风险有哪些 过度拟合问题过度拟合（Overfitting）是指在开发交易策略时，使用历史市场数据进行优化，导致策略过度适应历史数据，而忽略了未来数据的变">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-16T07:30:00.000Z">
+<meta property="article:modified_time" content="2023-05-16T08:29:06.258Z">
+<meta property="article:author" content="项勇">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/05/16/%E5%85%B3%E4%BA%8E%E7%AD%96%E7%95%A5%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E5%BC%95%E5%8F%91%E7%9A%84%E7%84%A6%E8%99%91/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/05/16/%E5%85%B3%E4%BA%8E%E7%AD%96%E7%95%A5%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E5%BC%95%E5%8F%91%E7%9A%84%E7%84%A6%E8%99%91/","path":"2023/05/16/关于策略失效问题引发的焦虑/","title":"关于策略失效问题引发的焦虑"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于策略失效问题引发的焦虑 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">策略到底是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E7%9A%84%E9%A3%8E%E9%99%A9%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">2.</span> <span class="nav-text">策略的风险有哪些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%B8%BA%E9%98%B2%E6%AD%A2%E7%AD%96%E7%95%A5%E5%A4%B1%E6%95%88%E9%83%BD%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">3.</span> <span class="nav-text">我为防止策略失效都做了什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%80%8E%E4%B9%88%E8%AE%A1%E5%88%92"><span class="nav-number">4.</span> <span class="nav-text">接下来怎么计划</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/16/%E5%85%B3%E4%BA%8E%E7%AD%96%E7%95%A5%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E5%BC%95%E5%8F%91%E7%9A%84%E7%84%A6%E8%99%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于策略失效问题引发的焦虑 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于策略失效问题引发的焦虑
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-05-16 15:30:00 / 修改时间：16:29:06" itemprop="dateCreated datePublished" datetime="2023-05-16T15:30:00+08:00">2023-05-16</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="关于策略失效问题引发的焦虑" href="/2023/05/16/%E5%85%B3%E4%BA%8E%E7%AD%96%E7%95%A5%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E5%BC%95%E5%8F%91%E7%9A%84%E7%84%A6%E8%99%91/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::0dbec9affac0b874331c133e5d460965" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="策略到底是什么"><a href="#策略到底是什么" class="headerlink" title="策略到底是什么"></a>策略到底是什么</h3><p>我使用的测试是基于TradingView图表中的自定义指标和策略编程语言pine。</p>
+<p>Pine策略是一种用于TradingView图表中的自定义指标和策略编程语言。</p>
+<p>简而言之是通过各种指标堆栈结合，判断出符合条件的开仓止盈条件。</p>
+<h3 id="策略的风险有哪些"><a href="#策略的风险有哪些" class="headerlink" title="策略的风险有哪些"></a>策略的风险有哪些</h3><ol>
+<li><p>过度拟合问题<br>过度拟合（Overfitting）是指在开发交易策略时，使用历史市场数据进行优化，导致策略过度适应历史数据，而忽略了未来数据的变化，从而导致策略在未来表现不佳。</p>
+</li>
+<li><p>市场环境变化<br>市场环境是不断变化的，当市场环境发生变化时，原本有效的策略可能会失效。例如，某个策略在震荡市中表现良好，但在趋势市中失效。</p>
+</li>
+<li><p>市场噪音<br>市场噪音是指市场上的短期波动和不确定性，这些噪音可能会干扰策略的信号，导致策略失效。</p>
+</li>
+<li><p>数据质量问题<br>如果数据质量不好，可能会导致策略失效。</p>
+</li>
+</ol>
+<h3 id="我为防止策略失效都做了什么"><a href="#我为防止策略失效都做了什么" class="headerlink" title="我为防止策略失效都做了什么"></a>我为防止策略失效都做了什么</h3><ol>
+<li><p>多样化策略<br>不只依赖一个策略来进行交易，使用多个策略来进行交易，以减少单一策略失效的风险。<br>22年，我总共测试替换了6个策略，15M，1H，4H时间级别的都有。<br>经过了一年的实战，最终在22年年底，确认了以1HBTC和4HETH的策略，并重新建仓运行。</p>
+</li>
+<li><p>风险控制<br>在交易中始终保持风险控制意识，例如设置止损和止盈等措施，以减少交易风险。</p>
+</li>
+<li><p>持续优化<br>交易策略需要不断地进行测试和优化，以适应市场环境的变化。定期检查和更新策略，以确保其在能够表现良好。</p>
+</li>
+<li><p>避免过度拟合<br>可能减少过度拟合的风险，使用多个数据集进行测试，限制策略参数的数量，并使用一些技术手段，如交叉验证和正则化等。<br>目前1HBTC就是指标交叉验证。</p>
+</li>
+<li><p>数据质量<br>寻找使用高质量的数据进行策略测试和优化，通过GPT来获取测试各种指标在市场中的表现，这条路还很长。</p>
+</li>
+<li><p>对策略保持耐心<br>接受亏损是交易过程中不可避免的一部分，始终保持纪律，不要因为亏损而改变交易计划或决策。</p>
+</li>
+</ol>
+<h3 id="接下来怎么计划"><a href="#接下来怎么计划" class="headerlink" title="接下来怎么计划"></a>接下来怎么计划</h3><p>实盘到了今天，4H级别的ETH策略表现得也不如人意也被放弃，目前就只剩下1H的BTC。</p>
+<p>可见策略的淘汰率还是挺高的。</p>
+<p>昨晚，在1HBTC运行表现良好的基础上，通过调整指标参数和止盈止损值改良了一代，在回测效果上比第一代提升了50%左右，目前已经准备小资金实盘测试。</p>
+<p>后续计划年底前在二代的基础上优化出一版。仓位均分，三代策略同时运行，三驾马车并驾齐驱，降低风险。</p>
+<p>然后以6-18个月为策略优化周期，循环优化更新旧策略。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/30/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5%E7%AC%AC%E5%9B%9B%E6%9C%9F/" rel="prev" title="量化交易月报第四期">
+                  <i class="fa fa-chevron-left"></i> 量化交易月报第四期
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="0dbec9affac0b874331c133e5d460965"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>
