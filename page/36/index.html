@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/17/2021-07-17-DW%E5%85%AC%E7%89%88%E9%9F%B3%E4%B9%90%E8%AE%B0%E5%BF%86%E7%9A%84%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/07/2022%E5%B9%B4%E5%BC%80%E5%B7%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/17/2021-07-17-DW%E5%85%AC%E7%89%88%E9%9F%B3%E4%B9%90%E8%AE%B0%E5%BF%86%E7%9A%84%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">DW公版音乐记忆的解析</a>
+          <a href="/2022/02/07/2022%E5%B9%B4%E5%BC%80%E5%B7%A5/" class="post-title-link" itemprop="url">2022年开工</a>
         </h2>
 
         <div class="post-meta-container">
@@ -180,18 +180,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-07-17 17:08:09 / 修改时间：17:11:58" itemprop="dateCreated datePublished" datetime="2021-07-17T17:08:09+08:00">2021-07-17</time>
+      <time title="创建时间：2022-02-07 15:13:40" itemprop="dateCreated datePublished" datetime="2022-02-07T15:13:40+08:00">2022-02-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
+        <i class="far fa-calendar-check"></i>
       </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-31 09:31:51" itemprop="dateModified" datetime="2023-01-31T09:31:51+08:00">2023-01-31</time>
     </span>
 
   
@@ -203,8 +200,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="DW公版音乐记忆的解析" href="/2021/07/17/2021-07-17-DW%E5%85%AC%E7%89%88%E9%9F%B3%E4%B9%90%E8%AE%B0%E5%BF%86%E7%9A%84%E8%A7%A3%E6%9E%90/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::7453b4a0aee5e22e18a74df5e675250f" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="2022年开工" href="/2022/02/07/2022%E5%B9%B4%E5%BC%80%E5%B7%A5/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::6b509eec46f02931bfd19e093d65aa47" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -218,35 +215,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="1-拔插u盘的播放记忆"><a href="#1-拔插u盘的播放记忆" class="headerlink" title="1.拔插u盘的播放记忆"></a>1.拔插u盘的播放记忆</h3><p>对于音乐应用来说拔插U盘会收到来自TW服务发送的0x9e1f拔插数据<br>其中msg.arg2数据0为拔出，1为插入，<br>当收到0时并且确认当前正在播放的文件为插拔的U盘时，会stopMusic，并且清空临时播放列表</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(msg.arg2 == 0) &#123;</span><br><span class="line">    mTW.mPlaylistRecord.clearRecord();</span><br><span class="line">    stopMusic();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而此时的播放信息（进度，播放路径等）并未置为初始状态<br>所以当插入U盘时，<br>如果判断之前的播放路径为插入的U盘路径<br>则根据播放路径找到临时播放列表<br>然后直接进行播放即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mTW.loadFile(mContext,mTW.mPlaylistRecord, mTW.mCurrentPath);</span><br><span class="line">mTW.toRPlaylist(mTW.mCurrentIndex);</span><br><span class="line">if(!isPlaying() &amp;&amp; (mTW.getService() == TWMusic.ACTIVITY_RUSEME)) &#123;</span><br><span class="line">    if(prepare(mTW.mCurrentAPath) == 0 &amp;&amp; !isPlaying()) &#123;</span><br><span class="line">        seekTo(mTW.mCurrentPos);</span><br><span class="line">        playMusic();</span><br><span class="line">    &#125;</span><br><span class="line">    duck(false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>只要注意这种状态下播放进度的更新mCurrentPos值，不要置为0，即可保证记忆播放<br>还有一点要注意的是，有的平台插入U盘时，会连续发送0和1过来，需要修改为插入U盘只发送1，否则会导致播放记忆异常</p>
-<h3 id="2-断ACC启动的播放记忆"><a href="#2-断ACC启动的播放记忆" class="headerlink" title="2.断ACC启动的播放记忆"></a>2.断ACC启动的播放记忆</h3><p>音乐关于播放状态的记忆形式，目前是以file文件存储的方式，这样做可以保证其他应用可以调用到保存的文件，例如主界面<br>保存在以下时机时更新</p>
-<ol>
-<li>播放新的文件</li>
-<li>方控停止</li>
-<li>程序完全销毁</li>
-<li>音乐界面退出<br>保存的逻辑为<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    BufferedWriter bw = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        bw = new BufferedWriter(new FileWriter(&quot;/data/tw/music&quot;));</span><br><span class="line">        bw.write(mCurrentAPath);</span><br><span class="line">        bw.write(&#x27;\n&#x27;);</span><br><span class="line">        bw.write(Integer.toString(mCurrentIndex));</span><br><span class="line">        bw.write(&#x27;\n&#x27;);</span><br><span class="line">        bw.write(Integer.toString(mCurrentPos));</span><br><span class="line">        XTLog.i(mCurrentPos);</span><br><span class="line">        bw.write(&#x27;\n&#x27;);</span><br><span class="line">        bw.write(Integer.toString(mShuffle));</span><br><span class="line">        bw.write(&#x27;\n&#x27;);</span><br><span class="line">        bw.write(Integer.toString(mRepeat));</span><br><span class="line">        bw.write(&#x27;\n&#x27;);</span><br><span class="line">        bw.flush();</span><br><span class="line">        mTW.write(0x9f1a,1,0,&quot;sync&quot;);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">        XTLog.i();</span><br><span class="line">        new File(&quot;/data/tw/music&quot;).delete();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        if(bw != null) &#123;</span><br><span class="line">            bw.close();</span><br><span class="line">            bw = null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    FileUtils.setPermissions(&quot;/data/tw/music&quot;, 0666, -1, -1);</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    Log.i(TAG, &quot;&quot;+e.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-保存的位置为<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data/tw/music</span><br></pre></td></tr></table></figure>
-读取的方式为TWUtils走open，也就是应用初始化的时候读取保存的播放信息更新<br>然后应用在走onresume的生命周期时进行记忆播放<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (!isPlaying() &amp;&amp; mTW.mSource == 0x03)&#123;</span><br><span class="line">    if(prepare(mTW.mCurrentAPath) == 0) &#123;</span><br><span class="line">        seekTo(mTW.mCurrentPos);</span><br><span class="line">        playMusic();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="3-退出进入音乐的播放记忆"><a href="#3-退出进入音乐的播放记忆" class="headerlink" title="3.退出进入音乐的播放记忆"></a>3.退出进入音乐的播放记忆</h3><p>先介绍音乐的view层与mode层的绑定逻辑<br>首先要明确mode是单例的，当音乐activirty启动和音乐服务启动时，都会绑定这个mode</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private void BindView()&#123;</span><br><span class="line">    mModel.bindMsuiclView(this,mContext);</span><br><span class="line">&#125;</span><br><span class="line">public void onCreate()&#123;</span><br><span class="line">    BindView();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>mode种对应的处理是添加到一个view集合中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void bindMsuiclView(MusicModelView musicPresenter,Context context) &#123;</span><br><span class="line">    if (musicModelViews.size() == 0)&#123;</span><br><span class="line">        this.mContext = context;</span><br><span class="line">        onCreate();</span><br><span class="line">    &#125;</span><br><span class="line">    if (!musicModelViews.contains(musicPresenter))&#123;</span><br><span class="line">        musicModelViews.add(musicPresenter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当音乐activity和音乐服务都退出时，<br>会解绑各自的对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void onDestroy() &#123;</span><br><span class="line">    unBindView();</span><br><span class="line">&#125;</span><br><span class="line">private void unBindView()&#123;</span><br><span class="line">    mModel.unBindMsuiclView(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>view集合也会对应remove对应的对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void unBindMsuiclView(MusicModelView musicPresenter) &#123;</span><br><span class="line">    if (musicModelViews.contains(musicPresenter))&#123;</span><br><span class="line">        musicModelViews.remove(musicPresenter);</span><br><span class="line">    &#125;</span><br><span class="line">    if (musicModelViews.size()==0)&#123;</span><br><span class="line">        onDestory();</span><br><span class="line">    &#125;</span><br><span class="line">    saveData();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当没有view绑定mode时（musicModelViews.size()&#x3D;&#x3D;0）mode才会自毁回收<br>所以当音乐activity返回退出时，其实mode对象处于被音乐服务持有运行的状态<br>而根据服务的生存特性，当activity销毁时服务其实还在在后台运行，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onDestroy() &#123;</span><br><span class="line">    mPresenter.onPause();</span><br><span class="line">    mPresenter.musicPause();</span><br><span class="line">    mPresenter.onDestroy();</span><br></pre></td></tr></table></figure>
-<p>音乐activity退出时，只做暂停和解绑处理，此时播放器仅仅是暂停状态<br>所以当音乐activity重新启动时，走到onresume时，会恢复退出之前的播放状态，并更新播放信息。</p>
-<h3 id="4-启动360状态的播放记忆"><a href="#4-启动360状态的播放记忆" class="headerlink" title="4.启动360状态的播放记忆"></a>4.启动360状态的播放记忆</h3><p>正常情况下，非断电重启时，机器会根据模式恢复程序运行，而针对一些带DVR和360的平台，例如T5，TS10，<br>有强制启动DVR&#x2F;360的启动方式，当跟音乐同时启动时，根据机器性能和状态，有可能会导致音乐播放异常问题。<br>所以这时候，音乐这边是建议当判断要启动360时，音乐只以启动服务的方式运行在后台<br>具体的操作放在TW服务中携带一个Extra启动音乐服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">startServiceAPK(&quot;com.tw.music&quot;,&quot;com.tw.music.MusicService&quot;,&quot;resume&quot;);</span><br><span class="line">...</span><br><span class="line">private void startServiceAPK(String pkg, String cls, String cmd) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Intent it = new Intent();</span><br><span class="line">            it.setComponent(new ComponentName(pkg, cls));</span><br><span class="line">            it.putExtra(&quot;cmd&quot;, cmd);</span><br><span class="line">            startService(it);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>音乐服务会自启播放</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">else if (&quot;resume&quot;.equals(cmd))&#123;</span><br><span class="line">    if (!mMusicInfo.isPlaying())&#123;</span><br><span class="line">        mPresenter.musicPlay();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>今天开工，第一天就好好处理一下心态吧</p>
+<h4 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h4><p>在鼎微已经今天进入第4个年头了，说实话，对于Android和车机行业早已经审视疲劳了，我正在试图放弃职业向上的势头，这是个危险的改变，意味着，目前极有可能是我阶段性的职业高峰，今年的工作，我也是一直在犹豫。</p>
+<p>是躺平还是冲冲冲？</p>
+<h4 id="归家计划"><a href="#归家计划" class="headerlink" title="归家计划"></a>归家计划</h4><p>工作状态的触顶，和长期的生理和心理斗争，我最终决定还是准备归家，今年是我计划归家的第一年，我给回家的条件是，职业外的收入大于等于职业收入。</p>
+<p>当然希望今年就能达到这个水平。</p>
+<h4 id="事业"><a href="#事业" class="headerlink" title="事业"></a>事业</h4><p>归家计划的底气来源于我给自己选的事业，即上一篇视频文章内容，去年交易耗费了我大部分的精力，这导致了工作状态的下滑，甚至直接改变了职业长期计划。</p>
+<p>我提前了5年调转船头。</p>
+<h4 id="今年"><a href="#今年" class="headerlink" title="今年"></a>今年</h4><p>随着交易认知的提升以及自动化系统的完成，今年将会把精力回归职业以稳住职业这个基本盘，闲余时间和精力将投入pine语言的学习。</p>
 
       
     </div>
@@ -266,7 +242,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/35/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/64/">64</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/37/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/35/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/37/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
