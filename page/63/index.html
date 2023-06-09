@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">Activity基础篇-保存数据</a>
+          <a href="/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">MarkDown基本语法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-12-21 11:20:24" itemprop="dateCreated datePublished" datetime="2017-12-21T11:20:24+08:00">2017-12-21</time>
+      <time title="创建时间：2018-01-17 18:04:11" itemprop="dateCreated datePublished" datetime="2018-01-17T18:04:11+08:00">2018-01-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 21:58:24" itemprop="dateModified" datetime="2023-01-30T21:58:24+08:00">2023-01-30</time>
+      <time title="修改时间：2023-01-30 21:57:31" itemprop="dateModified" datetime="2023-01-30T21:57:31+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+          <a href="/categories/MarkDown/" itemprop="url" rel="index"><span itemprop="name">MarkDown</span></a>
         </span>
     </span>
 
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="Activity基础篇-保存数据" href="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::71cb1cb3a8f6709bdd7d412f1d80db2a" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="MarkDown基本语法" href="/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::fd53a931058ad6ae46b6de82d6c47927" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,59 +224,170 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-有哪些状态是需要保存的"><a href="#一-有哪些状态是需要保存的" class="headerlink" title="一.有哪些状态是需要保存的"></a>一.有哪些状态是需要保存的</h3><p>有哪些状态是需要保存的呢？最简单明了的就是对一些数据的保存，比如你正在操作一些数据，当面临突发情况，你的数据还没有操作完，这时候你就需要将数据进行保存，以便我们再次回到这个页面的时候不用重头再来。</p>
-<h3 id="二-什么情况下需要Activity状态的保存与恢复"><a href="#二-什么情况下需要Activity状态的保存与恢复" class="headerlink" title="二.什么情况下需要Activity状态的保存与恢复"></a>二.什么情况下需要Activity状态的保存与恢复</h3><p>那么在什么情况下需要对Activity的状态进行保存与恢复呢？官方文档的说法是在处理运行时配置变更的时候，来看官方文档介绍的一段话<br>有些设备配置可能会在运行时发生变化（例如屏幕方向、键盘可用性及语言）。 发生这种变化时，Android 会重启正在运行的 Activity（先后调用 onDestroy() 和 onCreate()）。重启行为旨在通过利用与新设备配置匹配的备用资源自动重新加载您的应用，来帮助它适应新配置。<br>要妥善处理重启行为，Activity 必须通过常规的Activity 生命周期恢复其以前的状态，在 Activity 生命周期中，Android 会在销毁 Activity 之前调用 onSaveInstanceState()，以便您保存有关应用状态的数据。 然后，您可以在 onCreate() 或 onRestoreInstanceState() 期间恢复 Activity 状态。<br>这里面提到了各种回调方法，其中也有本文介绍的重点，不急，我们一步步来，首先我总结有如下几种情况是需要对数据进行保存的 </p>
-<ul>
-<li>点击了返回键 </li>
-<li>锁屏 </li>
-<li>点击home键 </li>
-<li>有其他APP进入前台（比如接听电话） </li>
-<li>启动了新的Activity </li>
-<li>屏幕方向发生旋转 </li>
-<li>APP被杀死</li>
-</ul>
-<h3 id="三-状态为什么会丢失"><a href="#三-状态为什么会丢失" class="headerlink" title="三.状态为什么会丢失"></a>三.状态为什么会丢失</h3><p>紧接着，我们来说一下为什么状态会丢失，这里面到底发什么了什么操作？这里我们用代码来演示一下，就是一个Activity，我们复写它的onCreat和onDestroy方法，分别打上log，然后启动再点击旋转屏幕（本文主要以屏幕旋转为例）看看这个过程方法是如何执行的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11-25 12:51:27.419 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 12:51:33.459 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroy</span><br><span class="line">11-25 12:51:33.539 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br></pre></td></tr></table></figure>
-<p>我们从log中可知，当应用启动，首先运行onCreat方法，当我们点击旋转屏幕会发现当前的Activity被销毁了，然后又重新执行了onCreat方法，这是怎么回事，Activity发生了什么样的变化呢？我们在log中打印出当前Activity的hashcodekankan。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11-25 12:57:20.934 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreatecom.ithuangqing.activitysavedemo.MainActivity@4a79f318</span><br><span class="line">11-25 12:57:26.184 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroycom.ithuangqing.activitysavedemo.MainActivity@4a79f318</span><br><span class="line">11-25 12:57:26.224 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreatecom.ithuangqing.activitysavedemo.MainActivity@4a7d4274</span><br></pre></td></tr></table></figure>
-<p>原来当点击了屏幕旋转之后，当前Activity会被销毁，然后会重新创建一个新的Activity，如此一来我们在之前Activity的数据如果不保存的话就又可能丢失了。<br>好了，到了这一步你至少要明白这么一件事，就是当在第二部分中说的几种情况出现时比如屏幕发生旋转，当前的Activity会被销毁而且会重新创建一个全新的Activity。<br>下面我们举一个数据丢失的例子，让你看的更清楚。首先设置布局，布局很简单，一个文本框，一个按钮，给按钮设置一个点击事件，点击按钮让文本框中的数字从一递增。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    mMNumber = findViewById(R.id.number);</span><br><span class="line">    mBtAdd = findViewById(R.id.btAdd);</span><br><span class="line">    mBtAdd.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View v) &#123;</span><br><span class="line">            a = ++a;</span><br><span class="line">            mMNumber.setText(&quot;&quot;+a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Log.d(TAG, &quot;onCreate&quot;+this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行之后点击按钮，如图</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/0.png" class title="This is an example image">
+          <h3 id="一-Markdown"><a href="#一-Markdown" class="headerlink" title="一.Markdown"></a>一.Markdown</h3><p>是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
+<h3 id="二-代码"><a href="#二-代码" class="headerlink" title="二.代码"></a>二.代码</h3><ol>
+<li><p><strong>单行代码：</strong><br>代码之间分别用一个反引号包起来<br><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`create database hero;`</span><br></pre></td></tr></table></figure>
+<p><strong>效果</strong><br><code>create database hero;</code></p>
+</li>
+<li><p><strong>代码块：</strong><br>代码之间分别用三个反引号包起来，且两边的反引号单独占一行<br><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(```)</span><br><span class="line">    function fun()&#123;</span><br><span class="line">         echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    fun();</span><br><span class="line">(```)</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun()&#123;</span><br><span class="line">     echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="三-字体"><a href="#三-字体" class="headerlink" title="三.字体"></a>三.字体</h3><ol>
+<li><p><strong>加粗</strong><br>要加粗的文字左右分别用两个*号包起来</p>
+</li>
+<li><p><strong>斜体</strong><br>要倾斜的文字左右分别用一个*号包起来</p>
+</li>
+<li><p><strong>斜体加粗</strong><br>要倾斜和加粗的文字左右分别用三个*号包起来</p>
+</li>
+<li><p><strong>删除线</strong><br>要加删除线的文字左右分别用两个~~号包起来</p>
+</li>
+</ol>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">**这是加粗的文字**</span><br><span class="line">*这是倾斜的文字*`</span><br><span class="line">***这是斜体加粗的文字***</span><br><span class="line">~~这是加删除线的文字~~</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<p>  <strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>&#96;<br><em><strong>这是斜体加粗的文字</strong></em><br><del>这是加删除线的文字</del></p>
+<h3 id="四-引用"><a href="#四-引用" class="headerlink" title="四.引用"></a>四.引用</h3><p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>n个…<br>貌似可以一直加下去，但没神马卵用</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是引用的内容</span><br><span class="line">&gt;&gt;这是引用的内容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>这是引用的内容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="五-分割线"><a href="#五-分割线" class="headerlink" title="五.分割线"></a>五.分割线</h3><p>三个 - 或者 * 都可以。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
 
-<p>现在文本框中的数字是5，接下来我们点击屏幕旋转看看会发生什么，如图</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/1.png" class title="This is an example image">
-
-<p>果不其然，数据丢失了。</p>
-<h3 id="四-如何保存与恢复"><a href="#四-如何保存与恢复" class="headerlink" title="四.如何保存与恢复"></a>四.如何保存与恢复</h3><p>既然数据会丢失，那么我们该如何保存数据，或者如何解决这些问题呢？我们拿屏幕旋转这个变更来说，首先我们知道，如果屏幕发生旋转，当前Activity会被销毁，因此我们可以限定屏幕的方向，这样一来即使我们点击屏幕旋转，屏幕的方向是没有发什么变化的，所以Activity不会被销毁，数据自然不会丢失，另外一种方法就是我们可以自己处理变更，我们可以在当前的Activity的配置文件中添加这么一行代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:configChanges=&quot;orientation|screenSize|keyboard&quot;</span><br></pre></td></tr></table></figure>
-<p>这句代码的意思就是告诉系统我们自己来处理变更，这两种方法不是今天的主菜，真正的主菜是onSaveInstanceState和onRestoreInstanceState，终于说到我们的重点了，我相信看完本文的介绍，大家会对这个东西有种终于认识的感觉，那就是每次创建Axtivity中自动创建的onCreat方法中的参数。首先我们在我们的Acticiry中复写 onSaveInstanceState 和 onRestoreInstanceState 同时打上log。看一下 输出。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">11-25 13:38:57.383 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 13:39:13.133 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onSaveInstanceState</span><br><span class="line">11-25 13:39:13.133 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroy</span><br><span class="line">11-25 13:39:13.163 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 13:39:13.163 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onRestoreInstanceState</span><br></pre></td></tr></table></figure>
-<p>从log中我们可以看到，当我们点击屏幕旋转之后，在当前Activity被销毁之前会调用onSaveInstanceState，然后销毁当前Activity，创建新的Activity之后会调用onCreat方法之后会紧接着调用onRestoreInstanceState，那么这两个方法有什么用呢？其实也可以猜到，onSaveInstanceState是用来保存我们当前activity中的数据的，而onRestoreInstanceState可以让我们获取之前保存的数据从而在新的activity中进行设置。<br>那数据以何种形式进行保存呢？我们来看下这两个函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> @Override</span><br><span class="line"> public void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">     super.onSaveInstanceState(outState);</span><br><span class="line">     //保存销毁之前的数据</span><br><span class="line"></span><br><span class="line">     Log.d(TAG, &quot;onSaveInstanceState&quot;);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line"> protected void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line">     Log.d(TAG, &quot;onRestoreInstanceState&quot;);   </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
-<p>我们发现他们的参数是Bundle，有印象了吧！我们就是通过Bundle来进行数据保存和读取的，大家都知道这是一种键值对的保存与读取方式。<br>接下来再看一个函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    mMNumber = findViewById(R.id.number);</span><br><span class="line">    mBtAdd = findViewById(R.id.btAdd);</span><br><span class="line">    mBtAdd.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View v) &#123;</span><br><span class="line">            a = ++a;</span><br><span class="line">            mMNumber.setText(&quot;&quot;+a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Log.d(TAG, &quot;onCreate&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看看onCreat函数的参数，你发现了什么嘛？前面说过我们可以在onRestoreInstanceState中通过Bundle拿到我们之前保存的数据，其实在onCreat中也能达到相同的效果。<br>下面我们就具体代码演示一遍吧！<br>首先是在onSaveInstanceState中保存数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">      super.onSaveInstanceState(outState);</span><br><span class="line">      //保存销毁之前的数据</span><br><span class="line">      outState.putString(&quot;number&quot;,mMNumber.getText().toString());</span><br><span class="line">      Log.d(TAG, &quot;onSaveInstanceState&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>紧接着在onRestoreInstanceState对数据进行恢复</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> protected void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line">     Log.d(TAG, &quot;onRestoreInstanceState&quot;);</span><br><span class="line">     //恢复数据</span><br><span class="line">    String s = savedInstanceState.getString(&quot;number&quot;);</span><br><span class="line">    mMNumber.setText(s);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>接下来运行程序</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/2.png" class title="This is an example image">
-<p>然后我们旋转屏幕</p>
-<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/3.png" class title="This is an example image">
-
-<p>发现数据被成功保留了下来，<br>到这里我们总结一下这个方法的调用过程，当运行时配置发生变更的时候，程序总的会销毁当前的Activity，然后重新创建一个新的Activity，在这个过程中，销毁当前Activity之前会先调用onSaveInstanceState让我们来保存数据，然后重建Activity在调用onCreat方发之后会调用onRestoreInstanceState让我们来对数据进行恢复，当然也可以在onCret中进行数据恢复，方法原理相同。</p>
-<h3 id="五-这个知识点你需要注意的地方"><a href="#五-这个知识点你需要注意的地方" class="headerlink" title="五.这个知识点你需要注意的地方"></a>五.这个知识点你需要注意的地方</h3><p>通过以上的讲诉，相信你对Activity状态的保存与恢复已经掌握的差不多了，在这里我再补充几点<br>**关于onSaveInstanceState **</p>
-<p>这个方法默认情况下会自动保存有关Activity的视图层次结构的状态信息，简单举个例子，我们以系统控件EditText来说，系统默认会保存有关这个控件的一个信息，也就是当你在这个控件中输入内容的时候，即使旋转屏幕内容也不会丢失，因为系统已经默认为其实现了我们说的那两个方法，但是有个前提，这个控件必须设置id，否则数据依旧会丢失，另外如果你重写了onRestoreInstanceState也要保证必须有这行代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">super.onRestoreInstanceState(savedInstanceState);</span><br></pre></td></tr></table></figure>
-<p><strong>关于旋转屏幕无法调用onSaveInstanceState的问题。</strong></p>
-<p>出现这种问题你复写的肯定以下方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onSaveInstanceState (Bundle outState, PersistableBundle outPersistentState)；</span><br></pre></td></tr></table></figure>
-<p>改成以下方法即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onSaveInstanceState (Bundle outState)；</span><br></pre></td></tr></table></figure>
-
+<p><strong>效果如下：</strong></p>
 <hr>
-<p>来自<a target="_blank" rel="noopener" href="http://blog.csdn.net/sinat_33921105">博客</a></p>
+<hr>
+<p>可以看到，显示效果是一样的。</p>
+<h3 id="六-图片"><a href="#六-图片" class="headerlink" title="六.图片"></a>六.图片</h3><p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![图片alt](图片地址 &#x27;&#x27;图片title&#x27;&#x27;)</span><br><span class="line">&#123;% asset_img img1.png This is an example image %&#125;</span><br></pre></td></tr></table></figure>
+<p>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加<br><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</span><br><span class="line">u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg &quot;区块链&quot;)</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong><br>![blockchain](<a target="_blank" rel="noopener" href="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/">https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</a><br>u&#x3D;702257389,1274025419&amp;fm&#x3D;27&amp;gp&#x3D;0.jpg “区块链”)</p>
+<p>上传本地图片直接点击导航栏的图片标志，选择图片即可</p>
+<h3 id="七-超链接"><a href="#七-超链接" class="headerlink" title="七.超链接"></a>七.超链接</h3><p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[超链接名](超链接地址 &quot;超链接title&quot;)</span><br></pre></td></tr></table></figure>
+<p>title可加可不加<br><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[简书](http://jianshu.com)</span><br><span class="line">[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<p><a target="_blank" rel="noopener" href="http://jianshu.com/">简书</a><br><a target="_blank" rel="noopener" href="http://baidu.com/">百度</a></p>
+<h3 id="八-列表"><a href="#八-列表" class="headerlink" title="八.列表"></a>八.列表</h3><ol>
+<li><strong>无序列表</strong><br><strong>语法：</strong><br>无序列表用 - + * 任何一种都可以<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br></pre></td></tr></table></figure>
+注意：- + * 跟内容之间都要有一个空格</li>
+</ol>
+<p>  <strong>效果如下：</strong></p>
+<ul>
+<li>列表内容</li>
+</ul>
+<ul>
+<li>列表内容</li>
+</ul>
+<ul>
+<li>列表内容</li>
+</ul>
+<ol start="2">
+<li><p><strong>有序列表</strong><br><strong>语法：</strong><br>数字加点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line">3. 列表内容</span><br></pre></td></tr></table></figure>
+<p>注意：序号跟内容之间要有空格<br><strong>效果如下：</strong></p>
+</li>
+<li><p>列表内容</p>
+</li>
+<li><p>列表内容</p>
+</li>
+<li><p>列表内容</p>
+</li>
+<li><p><strong>列表嵌套</strong><br>上一级和下一级之间敲三个空格即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 一级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下</strong></p>
+<ul>
+<li>一级无序列表内容<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 一级有序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">2. 一级有序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>效果如下</strong></p>
+<ol>
+<li>一级有序列表内容<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+<li>一级有序列表内容<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+</ol>
+<h3 id="九-表格"><a href="#九-表格" class="headerlink" title="九.表格"></a>九.表格</h3><p><strong>语法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br></pre></td></tr></table></figure>
+<p><strong>第二行分割表头和内容。</strong></p>
+<ul>
+<li>两边加：表示文字居中</li>
+<li>右边加：表示文字居右<br>注：原生的语法两边都要用 | 包起来。此处省略</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|最强技能|排位名次</span><br><span class="line">--|:--:|--:</span><br><span class="line">刘备|哭|大哥</span><br><span class="line">关羽|打|二哥</span><br><span class="line">张飞|骂|三弟</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th align="center">最强技能</th>
+<th align="right">排位名次</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刘备</td>
+<td align="center">哭</td>
+<td align="right">大哥</td>
+</tr>
+<tr>
+<td>关羽</td>
+<td align="center">打</td>
+<td align="right">二哥</td>
+</tr>
+<tr>
+<td>张飞</td>
+<td align="center">骂</td>
+<td align="right">三弟</td>
+</tr>
+</tbody></table>
+<h3 id="十-标题"><a href="#十-标题" class="headerlink" title="十.标题"></a>十.标题</h3><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
+<p><strong>注：</strong>标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这是二级标题</span><br><span class="line">### 这是三级标题</span><br><span class="line">#### 这是四级标题</span><br><span class="line">##### 这是五级标题</span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
+<p><strong>效果如下：</strong></p>
+<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><hr>
+<p>整理自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/191d1e21f7edhttps://www.jianshu.com/p/191d1e21f7ed">简书</a></p>
 
       
     </div>
@@ -296,7 +407,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/62/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/62/">62</a><span class="page-number current">63</span><a class="page-number" href="/page/64/">64</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/64/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/62/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/62/">62</a><span class="page-number current">63</span><a class="page-number" href="/page/64/">64</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/64/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

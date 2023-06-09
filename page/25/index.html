@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/02/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/" class="post-title-link" itemprop="url">策略pine代码拆解学习（2）Support and Resistance</a>
+          <a href="/2022/12/02/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/" class="post-title-link" itemprop="url">策略pine代码拆解学习（3）ADX</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-12-01 14:18:52" itemprop="dateCreated datePublished" datetime="2022-12-01T14:18:52+08:00">2022-12-01</time>
+      <time title="创建时间：2022-12-02 14:18:56" itemprop="dateCreated datePublished" datetime="2022-12-02T14:18:56+08:00">2022-12-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-31 15:35:37" itemprop="dateModified" datetime="2023-01-31T15:35:37+08:00">2023-01-31</time>
+      <time title="修改时间：2023-01-31 15:35:31" itemprop="dateModified" datetime="2023-01-31T15:35:31+08:00">2023-01-31</time>
     </span>
 
   
@@ -200,8 +200,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="策略pine代码拆解学习（2）Support and Resistance" href="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::e7f28c744845450606427153385b8348" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="策略pine代码拆解学习（3）ADX" href="/2022/12/02/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::2763c33925e025a26fe86fa401fa4292" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -215,59 +215,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="代码片段-Support-and-Resistance"><a href="#代码片段-Support-and-Resistance" class="headerlink" title="代码片段-Support and Resistance"></a>代码片段-Support and Resistance</h3><h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// Support and Resistance</span><br><span class="line">// inputs</span><br><span class="line">left = input.int(6, title=&#x27;  Left&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">right = input.int(5, title=&#x27;  Right&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">// calc</span><br><span class="line">hih = ta.pivothigh(high, left, right)</span><br><span class="line">lol = ta.pivotlow(low, left, right)</span><br><span class="line">top = ta.valuewhen(hih, high[right], 0)</span><br><span class="line">bot = ta.valuewhen(lol, low[right], 0)</span><br><span class="line">RS_Long_condt = close &gt; top</span><br><span class="line">RS_Short_condt = close &lt; bot</span><br><span class="line">// condt</span><br><span class="line">L_cross = ta.crossover(close, top)</span><br><span class="line">S_cross = ta.crossunder(close, bot)</span><br></pre></td></tr></table></figure>
-<h4 id="官方文档解释"><a href="#官方文档解释" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>input.int</strong><br>将input添加到脚本设置的输入标签页，它允许您向脚本用户提供配置选项。此函数将整数输入字段添加到脚本的输入中。</p>
-<p><strong>ta.pivothigh</strong><br>此函数返回枢轴高点的价格。如果没有枢轴高点，则返回“NaN”。</p>
-<p><strong>ta.pivotlow</strong><br>此函数返回枢轴低点的价格。如果没有枢轴低点，它返回“NaN”。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ta.pivotlow(source, leftbars, rightbars) → series float</span><br><span class="line"></span><br><span class="line">ta.pivotlow(leftbars, rightbars) → series float</span><br></pre></td></tr></table></figure>
-<p>参数</p>
-<p><strong>source (series int&#x2F;float)</strong> 可选参数。数据系列计算值。默认为“Low”。</p>
-<p><strong>leftbars (series int&#x2F;float)</strong> 左长度。</p>
-<p><strong>rightbars (series int&#x2F;float)</strong> 右长度。</p>
-<p><strong>ta.valuewhen</strong><br>返回第n次最近出现的“condition”为true的K线的“source”系列值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ta.valuewhen(condition, source, occurrence)</span><br></pre></td></tr></table></figure>
-<p>参数</p>
-<p><strong>condition (series bool)</strong> 要搜索的条件。</p>
-<p><strong>source (series int&#x2F;float&#x2F;bool&#x2F;color)</strong> 要从满足条件的K线返回的值。</p>
-<p><strong>occurrence (simple int)</strong> 条件的出现。编号从0开始并按时间回溯，因此“0”是最近出现的“condition”，“1”是第二个最近出现的，依此类推。必须是整数 &gt;&#x3D; 0。</p>
-<p><strong>close</strong><br>当前K线关闭时的收盘价，或尚未完成的实时K线的最后交易价格。</p>
-<p>备注</p>
-<p>可使用方括号运算符 []来访问以前的值，例如。 close[1]，close[2]。</p>
-<p><strong>high</strong><br>当前最高价。</p>
-<p>备注</p>
-<p>可使用方括号运算符 []来访问以前的值，例如。 high[1]，high[2]。</p>
-<p><strong>low</strong><br>当前最低价。</p>
-<p>备注</p>
-<p>可使用方括号运算符 []来访问以前的值，例如。low[1]，low[2]。</p>
-<p><strong>ta.crossover</strong></p>
-<p><code>source1</code>-系列被定义为穿越<code>source2</code>-系列，如果在当前K线上，<code>source1</code> 的值大于<code>source2</code> 的值，并且在前一根K线上，<code>source2</code> 的值 source1<code> 小于或等于</code>source2&#96; 的值。</p>
-<p><strong>ta.crossover(source1, source2) → series bool</strong></p>
+          <h3 id="代码片段-ADX"><a href="#代码片段-ADX" class="headerlink" title="代码片段-ADX"></a>代码片段-ADX</h3><h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">//ADX</span><br><span class="line">// inputs</span><br><span class="line">ADX_options = input.string(&#x27;MASANAKAMURA&#x27;, title=&#x27;  ADX Option&#x27;, options=[&#x27;CLASSIC&#x27;, &#x27;MASANAKAMURA&#x27;], group=&#x27;ADX&#x27;)</span><br><span class="line">ADX_len     = input.int(11, title=&#x27;  ADX Lenght&#x27;, minval=1, group=&#x27;ADX&#x27;)</span><br><span class="line">th          = input.float(12, title=&#x27;  ADX Treshold&#x27;, minval=0, step=0.5, group=&#x27;ADX&#x27;)</span><br><span class="line"></span><br><span class="line">// calc</span><br><span class="line">calcADX(_len) =&gt;</span><br><span class="line">    up = ta.change(high)</span><br><span class="line">    down = -ta.change(low)</span><br><span class="line">    plusDM = na(up) ? na : up &gt; down and up &gt; 0 ? up : 0</span><br><span class="line">    minusDM = na(down) ? na : down &gt; up and down &gt; 0 ? down : 0</span><br><span class="line">    truerange = ta.rma(ta.tr, _len)</span><br><span class="line">    _plus = fixnan(100 * ta.rma(plusDM, _len) / truerange)</span><br><span class="line">    _minus = fixnan(100 * ta.rma(minusDM, _len) / truerange)</span><br><span class="line">    sum = _plus + _minus</span><br><span class="line">    _adx = 100 * ta.rma(math.abs(_plus - _minus) / (sum == 0 ? 1 : sum), _len)</span><br><span class="line">    [_plus, _minus, _adx]</span><br><span class="line">   </span><br><span class="line">calcADX_Masanakamura(_len) =&gt;</span><br><span class="line">    SmoothedTrueRange = 0.0</span><br><span class="line">    SmoothedDirectionalMovementPlus = 0.0</span><br><span class="line">    SmoothedDirectionalMovementMinus = 0.0</span><br><span class="line">    TrueRange = math.max(math.max(high - low, math.abs(high - nz(close[1]))), math.abs(low - nz(close[1])))</span><br><span class="line">    DirectionalMovementPlus = high - nz(high[1]) &gt; nz(low[1]) - low ? math.max(high - nz(high[1]), 0) : 0</span><br><span class="line">    DirectionalMovementMinus = nz(low[1]) - low &gt; high - nz(high[1]) ? math.max(nz(low[1]) - low, 0) : 0</span><br><span class="line">    SmoothedTrueRange := nz(SmoothedTrueRange[1]) - nz(SmoothedTrueRange[1]) / _len + TrueRange</span><br><span class="line">    SmoothedDirectionalMovementPlus := nz(SmoothedDirectionalMovementPlus[1]) - nz(SmoothedDirectionalMovementPlus[1]) / _len + DirectionalMovementPlus</span><br><span class="line">    SmoothedDirectionalMovementMinus := nz(SmoothedDirectionalMovementMinus[1]) - nz(SmoothedDirectionalMovementMinus[1]) / _len + DirectionalMovementMinus</span><br><span class="line">    DIP = SmoothedDirectionalMovementPlus / SmoothedTrueRange * 100</span><br><span class="line">    DIM = SmoothedDirectionalMovementMinus / SmoothedTrueRange * 100</span><br><span class="line">    DX = math.abs(DIP - DIM) / (DIP + DIM) * 100</span><br><span class="line">    adx = ta.sma(DX, _len)</span><br><span class="line">    [DIP, DIM, adx]</span><br><span class="line">    </span><br><span class="line">[DIPlusC, DIMinusC, ADXC] = calcADX(ADX_len)</span><br><span class="line">[DIPlusM, DIMinusM, ADXM] = calcADX_Masanakamura(ADX_len)</span><br><span class="line"></span><br><span class="line">DIPlus = ADX_options == &#x27;CLASSIC&#x27; ? DIPlusC : DIPlusM</span><br><span class="line">DIMinus = ADX_options == &#x27;CLASSIC&#x27; ? DIMinusC : DIMinusM</span><br><span class="line">ADX = ADX_options == &#x27;CLASSIC&#x27; ? ADXC : ADXM</span><br><span class="line"></span><br><span class="line">// condt</span><br><span class="line">L_adx = DIPlus &gt; DIMinus and ADX &gt; th</span><br><span class="line">S_adx = DIPlus &lt; DIMinus and ADX &gt; th</span><br></pre></td></tr></table></figure>
+<h4 id="官方文档解释"><a href="#官方文档解释" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>ta.change</strong><br>比较当前 <code>source</code> 值与它的值 <code>length</code> K线之前的值并返回差值。</p>
+<p><strong>?:</strong><br>三元条件运算符。</p>
+<p><strong>ta.rma</strong><br>RSI中使用的移动平均线。它是指数加权移动平均线，alpha加权值 &#x3D; 1 &#x2F;长度。</p>
+<p>参数<br><em>source (series int&#x2F;float)</em> 待执行的系列值。</p>
+<p><em>length (simple int)</em> K线数量(长度).<br><strong>ta.tr</strong><br>返回值</p>
+<p>真实范围&#x2F; 真实波动幅度。它是math.max(high - low, math.abs(high - close[1]), math.abs(low - close[1]))。</p>
+<p><strong>ta.sma</strong><br>sma函数返回移动平均值，即x的最后y值，除以y。</p>
+<p><strong>fixnan</strong><br>对于给定的系列，将NaN值替换为先前的非NaN值。</p>
+<p><strong>nz（source）</strong><br>以系列中的零(或指定数)替换NaN值。</p>
 <p>返回值</p>
-<p>如果<code>source1</code>穿过<code>source2</code>则为true，否则为false。</p>
-<p>参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source1 (series int/float) 第一数据系列。</span><br><span class="line"></span><br><span class="line">source2 (series int/float) 第二数据系列。</span><br></pre></td></tr></table></figure>
-<p><strong>ta.crossunder</strong><br><code>source1</code>-系列被定义为在 <code>source2</code>-系列下方交叉，如果在当前K线上，<code>source1</code> 的值小于 <code>source2</code> 的值，并且在前一根K线上，<code>source2</code> 的值 source1<code> 大于或等于</code>source2&#96; 的值。</p>
-<p><strong>ta.crossunder(source1, source2) → series bool</strong></p>
-<p>返回值</p>
-<p>如果<code>source1</code>在<code>source2</code>下交叉，则为true，否则为false。</p>
-<p>参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source1 (series int/float) 第一数据系列。</span><br><span class="line"></span><br><span class="line">source2 (series int/float) 第二数据系列。</span><br></pre></td></tr></table></figure>
+<p><code>source</code>的值，如果它不是<code>na</code>。如果<code>source</code>的值为<code>na</code>，则返回0，如果使用1，则返回<code>replacement</code>参数。</p>
+<p><strong>&#x2F;</strong><br>除法。适用于数值表达式。</p>
+<p><strong>math.abs</strong><br>如果 <code>number</code> &gt;&#x3D; 0，<code>number</code> 的绝对值为 <code>number</code>，否则为 -<code>number</code>。</p>
+<p>返回<code>number</code>的绝对值。</p>
+<p><strong>math.max</strong><br>返回多个值中最大的一个。</p>
+<p><strong>&#x3D;&gt;</strong><br>‘&#x3D;&gt;’运算符用于用户定义的函数声明和switch语句中。</p>
+<p><strong>！&#x3D;</strong></p>
+<p>是存储过程中赋值的意思</p>
+<p><strong>and</strong><br>逻辑 AND。适用于布尔表达式。</p>
+<p><strong>na（x）</strong><br>测试 <code>x</code> 是否为na。</p>
+<p><strong>na</strong><br>表示“不可用”的关键字，表示变量没有赋值。</p>
+<h4 id="对照解读"><a href="#对照解读" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">// inputs</span><br><span class="line">ADX_options = input.string(&#x27;MASANAKAMURA&#x27;, title=&#x27;  ADX Option&#x27;, options=[&#x27;CLASSIC&#x27;, &#x27;MASANAKAMURA&#x27;], group=&#x27;ADX&#x27;)</span><br><span class="line">ADX_len     = input.int(11, title=&#x27;  ADX Lenght&#x27;, minval=1, group=&#x27;ADX&#x27;)</span><br><span class="line">th          = input.float(12, title=&#x27;  ADX Treshold&#x27;, minval=0, step=0.5, group=&#x27;ADX&#x27;)</span><br><span class="line">//上一篇有类似的解读，意思是一些默认值的设置输入</span><br><span class="line"></span><br><span class="line">// calc </span><br><span class="line">//CLASSIC</span><br><span class="line">calcADX(_len) =&gt; //calcADX为自定义的函数，传入_len,经过一系列的计算，最终把值赋予最后一行[_plus, _minus, _adx]</span><br><span class="line">    up = ta.change(high)//比较当前higt值 与上一个hight直接的差值</span><br><span class="line">    down = -ta.change(low)//比较当前low值 与上一个low直接的差值</span><br><span class="line">    plusDM = na(up)  ? na    : up &gt; down and up &gt; 0 ? up : 0 //下方注解一</span><br><span class="line">    minusDM = na(down) ? na : down &gt; up and down &gt; 0 ? down : 0 //类似注解一</span><br><span class="line">    truerange = ta.rma(ta.tr, _len) //移动平均线  </span><br><span class="line">    _plus = fixnan(100 * ta.rma(plusDM, _len) / truerange)  </span><br><span class="line">    //ta.rma(plusDM, _len)计算上沿变化的移动平均线</span><br><span class="line">    //与truerange的计算是为了用于计算趋势</span><br><span class="line">    //fixnan是替换Na值的操作</span><br><span class="line">    _minus = fixnan(100 * ta.rma(minusDM, _len) / truerange)  </span><br><span class="line">    sum = _plus + _minus  //sum = 上沿趋势线和下沿趋势线相加</span><br><span class="line">    _adx = 100 * ta.rma(math.abs(_plus - _minus) / (sum == 0 ? 1 : sum), _len)  </span><br><span class="line">    //math.abs(_plus - _minus)  上下趋势线差值的绝对值</span><br><span class="line">    [_plus, _minus, _adx]</span><br><span class="line">注解一</span><br><span class="line">       if(up值为不可用)&#123;</span><br><span class="line">        plusDM = na</span><br><span class="line">    &#125;else if(up &gt; down and up &gt;0)&#123;</span><br><span class="line">        plusDM = up</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        plusDM = 0</span><br><span class="line">    &#125;</span><br><span class="line">//与calcADX其实是不同的计算方式，calcADX为经典公版的adx计算方法，Masanakamura应该是秘制的</span><br><span class="line">//MASANAKAMURA</span><br><span class="line">calcADX_Masanakamura(_len) =&gt;</span><br><span class="line">    SmoothedTrueRange = 0.0</span><br><span class="line">    SmoothedDirectionalMovementPlus = 0.0</span><br><span class="line">    SmoothedDirectionalMovementMinus = 0.0</span><br><span class="line">    TrueRange = math.max(math.max(high - low, math.abs(high - nz(close[1]))), math.abs(low - nz(close[1]))) </span><br><span class="line">    //math.max 取最大值  </span><br><span class="line">    //close[1] 上一根K线的收盘价格  </span><br><span class="line">    //nz(close[1]) 防止价格为0的操作</span><br><span class="line">    DirectionalMovementPlus = high - nz(high[1]) &gt; nz(low[1]) - low ? math.max(high - nz(high[1]), 0) : 0</span><br><span class="line">    DirectionalMovementMinus = nz(low[1]) - low &gt; high - nz(high[1]) ? math.max(nz(low[1]) - low, 0) : 0</span><br><span class="line">    SmoothedTrueRange := nz(SmoothedTrueRange[1]) - nz(SmoothedTrueRange[1]) / _len + TrueRange</span><br><span class="line">    SmoothedDirectionalMovementPlus := nz(SmoothedDirectionalMovementPlus[1]) - nz(SmoothedDirectionalMovementPlus[1]) / _len + DirectionalMovementPlus</span><br><span class="line">    SmoothedDirectionalMovementMinus := nz(SmoothedDirectionalMovementMinus[1]) - nz(SmoothedDirectionalMovementMinus[1]) / _len + DirectionalMovementMinus</span><br><span class="line">    DIP = SmoothedDirectionalMovementPlus / SmoothedTrueRange * 100</span><br><span class="line">    DIM = SmoothedDirectionalMovementMinus / SmoothedTrueRange * 100</span><br><span class="line">    DX = math.abs(DIP - DIM) / (DIP + DIM) * 100</span><br><span class="line">    adx = ta.sma(DX, _len)</span><br><span class="line">    [DIP, DIM, adx]</span><br><span class="line">//adx为最终获取的趋势移动平均线</span><br><span class="line">//基本每一行都的换算赋值方法都能看懂，但是为什么要这样加就需要继续深入研究</span><br><span class="line">[DIPlusC, DIMinusC, ADXC] = calcADX(ADX_len)</span><br><span class="line">[DIPlusM, DIMinusM, ADXM] = calcADX_Masanakamura(ADX_len)</span><br><span class="line">//根据传入的ADX_len参数，传入对应的函数，获取到的对应值</span><br><span class="line">DIPlus = ADX_options == &#x27;CLASSIC&#x27; ? DIPlusC : DIPlusM</span><br><span class="line">DIMinus = ADX_options == &#x27;CLASSIC&#x27; ? DIMinusC : DIMinusM</span><br><span class="line">ADX = ADX_options == &#x27;CLASSIC&#x27; ? ADXC : ADXM</span><br><span class="line">//根据设置的ADX_options值,来取决于启动什么数据</span><br><span class="line">// condt</span><br><span class="line">L_adx = DIPlus &gt; DIMinus and ADX &gt; th</span><br><span class="line">S_adx = DIPlus &lt; DIMinus and ADX &gt; th</span><br><span class="line">//adx的趋势判断，后续将使用于开单的条件</span><br></pre></td></tr></table></figure>
 
-<h4 id="对照解读"><a href="#对照解读" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Support and Resistance</span><br><span class="line">此段代码的备注为Support and Resistance，意思为支持与不支持</span><br><span class="line">inputs为默认的参数</span><br><span class="line">left = input.int(6, title=&#x27;  Left&#x27;, group=&#x27;Support and Resistance&#x27;)</span><br><span class="line">左   =    默认参数6   标题为  Left    组   =&#x27;Support and Resistance’</span><br><span class="line">// calc不知道什么意思</span><br><span class="line">hih = ta.pivothigh(high, left, right) //hih = 当前K线是否为 = 左边6个+右边6个，也就是12跟柱子的最高点柱</span><br></pre></td></tr></table></figure>
-<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/1.png" class title="This is an example image">
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top = ta.valuewhen(hih, high[right], 0) //top = 最近一次出现条件为hih时，high[right]的值</span><br></pre></td></tr></table></figure>
-<p>结合top</p>
-<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/2.png" class title="This is an example image">
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lol = ta.pivotlow(low, left, right) //lol= 当前K线是否为 = 左边6个+右边6个，也就是12跟柱子的最低点柱</span><br></pre></td></tr></table></figure>
-<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/3.png" class title="This is an example image">
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bot = ta.valuewhen(lol, low[right], 0)//bot= 最近一次出现条件为lol时，low[right]的值</span><br></pre></td></tr></table></figure>
-<p>结合bot</p>
-<img src="/2022/12/01/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/4.png" class title="This is an example image">
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RS_Long_condt = close &gt; top //当前K线收盘价大于top线</span><br><span class="line">RS_Short_condt = close &lt; bot//当前K线收盘价小于bot线</span><br><span class="line">此两Boolean值后续用于开单的条件</span><br><span class="line">L_cross = ta.crossover(close, top)//当前收盘K线上穿top线</span><br><span class="line">S_cross = ta.crossunder(close, bot)//当前收盘K线下穿bot线</span><br><span class="line">此两Boolean值后续用于画线</span><br></pre></td></tr></table></figure>
-
-<h4 id="ChatGPT解读"><a href="#ChatGPT解读" class="headerlink" title="ChatGPT解读"></a>ChatGPT解读</h4><p>基于高、低、近值以及左、右输入计算RS_Long_condt、RS_Short_condt、L_cross和S_cross值。<br>如果关闭值大于顶部值，RS_Long_condt值为真;如果关闭值小于bot值，RS_Short_condt值为真。如果close值越过top值，则L_cross值为真;如果’ closeclose值越过bot值，则S_cross值为真。<br>为了使用这段代码，你需要high, low和close输入。另外，rs_long_condt和’ RS_RS_Short_condt值关闭值为top或bot值</p>
+<h4 id="ChatGPT解读"><a href="#ChatGPT解读" class="headerlink" title="ChatGPT解读"></a>ChatGPT解读</h4><p>根据平均方向指数(ADX)和指定的阈值计算多头和空头交易的L_adx和S_adx条件。ADX计算可以使用经典方法或Masanakamura方法执行，这取决于ADX_options输入的值。<br>为了使用这段代码，您需要为高输入和低输入提供值。<br>此外，您可能想要考虑为函数定义添加ADX_options输入的默认值，因为目前如果不提供ADX_options输入，该函数将无法工作。您可能还想考虑使用更具描述性的变量名，以使代码更容易理解。</p>
 
       
     </div>
@@ -287,7 +260,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/24/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/26/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/24/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/26/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
