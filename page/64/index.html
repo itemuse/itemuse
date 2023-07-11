@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">MarkDown基本语法</a>
+          <a href="/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">解读闹钟代码</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-01-17 18:04:11" itemprop="dateCreated datePublished" datetime="2018-01-17T18:04:11+08:00">2018-01-17</time>
+      <time title="创建时间：2018-07-21 17:47:35" itemprop="dateCreated datePublished" datetime="2018-07-21T17:47:35+08:00">2018-07-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 21:57:31" itemprop="dateModified" datetime="2023-01-30T21:57:31+08:00">2023-01-30</time>
+      <time title="修改时间：2023-01-30 21:56:37" itemprop="dateModified" datetime="2023-01-30T21:56:37+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MarkDown/" itemprop="url" rel="index"><span itemprop="name">MarkDown</span></a>
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
         </span>
     </span>
 
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="MarkDown基本语法" href="/2018/01/17/2021-03-07-MarkDown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::fd53a931058ad6ae46b6de82d6c47927" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="解读闹钟代码" href="/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::5a9e1117e38b00220a662082dfbc3a4c" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,170 +224,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-Markdown"><a href="#一-Markdown" class="headerlink" title="一.Markdown"></a>一.Markdown</h3><p>是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
-<h3 id="二-代码"><a href="#二-代码" class="headerlink" title="二.代码"></a>二.代码</h3><ol>
-<li><p><strong>单行代码：</strong><br>代码之间分别用一个反引号包起来<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`create database hero;`</span><br></pre></td></tr></table></figure>
-<p><strong>效果</strong><br><code>create database hero;</code></p>
-</li>
-<li><p><strong>代码块：</strong><br>代码之间分别用三个反引号包起来，且两边的反引号单独占一行<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(```)</span><br><span class="line">    function fun()&#123;</span><br><span class="line">         echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    fun();</span><br><span class="line">(```)</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun()&#123;</span><br><span class="line">     echo &quot;这是一句非常牛逼的代码&quot;;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="三-字体"><a href="#三-字体" class="headerlink" title="三.字体"></a>三.字体</h3><ol>
-<li><p><strong>加粗</strong><br>要加粗的文字左右分别用两个*号包起来</p>
-</li>
-<li><p><strong>斜体</strong><br>要倾斜的文字左右分别用一个*号包起来</p>
-</li>
-<li><p><strong>斜体加粗</strong><br>要倾斜和加粗的文字左右分别用三个*号包起来</p>
-</li>
-<li><p><strong>删除线</strong><br>要加删除线的文字左右分别用两个~~号包起来</p>
-</li>
-</ol>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">**这是加粗的文字**</span><br><span class="line">*这是倾斜的文字*`</span><br><span class="line">***这是斜体加粗的文字***</span><br><span class="line">~~这是加删除线的文字~~</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<p>  <strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>&#96;<br><em><strong>这是斜体加粗的文字</strong></em><br><del>这是加删除线的文字</del></p>
-<h3 id="四-引用"><a href="#四-引用" class="headerlink" title="四.引用"></a>四.引用</h3><p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>n个…<br>貌似可以一直加下去，但没神马卵用</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;这是引用的内容</span><br><span class="line">&gt;&gt;这是引用的内容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<blockquote>
-<p>这是引用的内容</p>
-<blockquote>
-<p>这是引用的内容</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>这是引用的内容</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h3 id="五-分割线"><a href="#五-分割线" class="headerlink" title="五.分割线"></a>五.分割线</h3><p>三个 - 或者 * 都可以。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+          <h3 id="一-代码位置"><a href="#一-代码位置" class="headerlink" title="一.代码位置"></a>一.代码位置</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/AlarmManagerClock">AlarmManagerClock</a><br>此文是在此基础上做的讲解,用于加深印象</li>
+</ul>
+<h3 id="二-界面截图"><a href="#二-界面截图" class="headerlink" title="二.界面截图"></a>二.界面截图</h3><img src="/2018/07/21/2021-03-06-%E8%A7%A3%E8%AF%BB%E9%97%B9%E9%92%9F%E4%BB%A3%E7%A0%81/ui.png" class title="This is an example image">
 
-<p><strong>效果如下：</strong></p>
-<hr>
-<hr>
-<p>可以看到，显示效果是一样的。</p>
-<h3 id="六-图片"><a href="#六-图片" class="headerlink" title="六.图片"></a>六.图片</h3><p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![图片alt](图片地址 &#x27;&#x27;图片title&#x27;&#x27;)</span><br><span class="line">&#123;% asset_img img1.png This is an example image %&#125;</span><br></pre></td></tr></table></figure>
-<p>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</span><br><span class="line">u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg &quot;区块链&quot;)</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong><br>![blockchain](<a target="_blank" rel="noopener" href="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/">https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/</a><br>u&#x3D;702257389,1274025419&amp;fm&#x3D;27&amp;gp&#x3D;0.jpg “区块链”)</p>
-<p>上传本地图片直接点击导航栏的图片标志，选择图片即可</p>
-<h3 id="七-超链接"><a href="#七-超链接" class="headerlink" title="七.超链接"></a>七.超链接</h3><p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[超链接名](超链接地址 &quot;超链接title&quot;)</span><br></pre></td></tr></table></figure>
-<p>title可加可不加<br><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[简书](http://jianshu.com)</span><br><span class="line">[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<p><a target="_blank" rel="noopener" href="http://jianshu.com/">简书</a><br><a target="_blank" rel="noopener" href="http://baidu.com/">百度</a></p>
-<h3 id="八-列表"><a href="#八-列表" class="headerlink" title="八.列表"></a>八.列表</h3><ol>
-<li><strong>无序列表</strong><br><strong>语法：</strong><br>无序列表用 - + * 任何一种都可以<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br></pre></td></tr></table></figure>
-注意：- + * 跟内容之间都要有一个空格</li>
-</ol>
-<p>  <strong>效果如下：</strong></p>
+<h3 id="三-类"><a href="#三-类" class="headerlink" title="三.类"></a>三.类</h3><ul>
+<li><p><strong>AlarmActivity.java</strong><br>是处理弹出提示窗口的一个Activity；</p>
+</li>
+<li><p><strong>AlarmAlertActivity.java</strong><br>Main类，设置时间周期等操作</p>
+</li>
+<li><p><strong>AlarmOpreation.java</strong><br>核心逻辑处理类，负责计算周期时间，然后将时间通过AlarmManager发送定时广播；</p>
+</li>
+<li><p><strong>AlarmReceiver.java</strong><br>广播类，负责处理3发送的广播类型，弹出1；</p>
+</li>
+<li><p><strong>AlarmsSetting.java</strong><br>设置的时间信息的存取类；</p>
+</li>
+<li><p><strong>SharedPreferenceUtil.java</strong><br>配合5的一个存储类；</p>
+</li>
+<li><p><strong>TimePickerFragment.java</strong><br>设置时间的工具类；</p>
+</li>
+<li><p><strong>WeekGridAdpter.java</strong><br>设置星期的工具类；</p>
+</li>
+</ul>
+<h3 id="四-顺着去看"><a href="#四-顺着去看" class="headerlink" title="四.顺着去看"></a>四.顺着去看</h3><p><strong>核心api：Android原生定时器AlarmManager</strong></p>
 <ul>
-<li>列表内容</li>
+<li>从<strong>AlarmActivity</strong>点击时间开始</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">	public void onClick(View v) &#123;</span><br><span class="line">		switch (v.getId()) &#123;</span><br><span class="line">		case R.id.switch_in: //上班打卡开关</span><br><span class="line">			if (v.isSelected()) &#123;</span><br><span class="line">				alarmsSetting.setInEnble(false);</span><br><span class="line">				v.setSelected(false);</span><br><span class="line">				AlarmOpreation.cancelAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_IN);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				alarmsSetting.setInEnble(true);</span><br><span class="line">				v.setSelected(true);</span><br><span class="line">				AlarmOpreation.enableAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_IN, alarmsSetting);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		case R.id.switch_out://下班打卡开关</span><br><span class="line">			if (v.isSelected()) &#123;</span><br><span class="line">				alarmsSetting.setOutEnble(false);</span><br><span class="line">				v.setSelected(false);</span><br><span class="line">				AlarmOpreation.cancelAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_OUT);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				alarmsSetting.setOutEnble(true);</span><br><span class="line">				v.setSelected(true);</span><br><span class="line">				AlarmOpreation.enableAlert(AlarmActivity.this, AlarmsSetting.ALARM_SETTING_TYPE_OUT, alarmsSetting);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		case R.id.set_in_time: //设置上班时间</span><br><span class="line">			showTimePickerDialog(AlarmsSetting.ALARM_SETTING_TYPE_IN);</span><br><span class="line">			break;</span><br><span class="line">		case R.id.set_out_time://设置下班时间</span><br><span class="line">			showTimePickerDialog(AlarmsSetting.ALARM_SETTING_TYPE_OUT);</span><br><span class="line">			break;</span><br><span class="line">		case R.id.btn_dynamic: //灵活打卡</span><br><span class="line">			showSingSelect();</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中设置时间的方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void showTimePickerDialog(final int type) &#123;</span><br><span class="line">	TimePickerFragment timePicker = new TimePickerFragment();</span><br><span class="line">	if (type == AlarmsSetting.ALARM_SETTING_TYPE_IN) &#123;</span><br><span class="line">		timePicker.setTime(alarmsSetting.getInHour(), alarmsSetting.getInMinutes());</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		timePicker.setTime(alarmsSetting.getOutHour(), alarmsSetting.getOutMinutes());</span><br><span class="line">	&#125;</span><br><span class="line">	timePicker.show(getFragmentManager(), &quot;timePicker&quot;);</span><br><span class="line">	timePicker.setOnSelectListener(new TimePickerFragment.OnSelectListener() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void getValue(int hourOfDay, int minute) &#123;</span><br><span class="line">			setTime1(type,hourOfDay,minute);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>列表内容</li>
+<li><strong>TimePickerFragment窗口</strong><br>此类实质上就是继承至 <strong>DialogFragment</strong>调用 TimePickerDialog向外提供获取小时和分钟的接口！</li>
+<li><strong>WeekGridAdpter.java</strong><br>而星期的周期复杂些，此行星期选项列表是一排 GridView,WeekGridAdpter就是它的 Adapter，在构造方法的 GetView中，可以看出，大神将周一至周日，组成一个二进制数据：</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if(v.isSelected())&#123;</span><br><span class="line">    selected = selected - (int)(1 &lt;&lt; position);</span><br><span class="line">    if(selected &lt;= 0) &#123;//至少选一个</span><br><span class="line">        selected = selected + (int)(1 &lt;&lt; position);</span><br><span class="line">        return ;</span><br><span class="line">    &#125;</span><br><span class="line">    v.setSelected(false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    selected = selected + (int)(1 &lt;&lt; position);</span><br><span class="line">    v.setSelected(true);</span><br><span class="line">&#125;</span><br><span class="line">if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN)&#123;</span><br><span class="line">    alarmsSetting.setInDays(selected);</span><br><span class="line">&#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT)&#123;</span><br><span class="line">    alarmsSetting.setOutDays(selected);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>传入对应参数到<strong>AlarmOpreation</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AlarmOpreation.cancelAlert(context,type);</span><br><span class="line">AlarmOpreation.enableAlert(context, type, alarmsSetting);</span><br></pre></td></tr></table></figure>
 <ul>
-<li>列表内容</li>
+<li><strong>AlarmOpreation.class</strong></li>
 </ul>
-<ol start="2">
-<li><p><strong>有序列表</strong><br><strong>语法：</strong><br>数字加点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line">3. 列表内容</span><br></pre></td></tr></table></figure>
-<p>注意：序号跟内容之间要有空格<br><strong>效果如下：</strong></p>
-</li>
-<li><p>列表内容</p>
-</li>
-<li><p>列表内容</p>
-</li>
-<li><p>列表内容</p>
-</li>
-<li><p><strong>列表嵌套</strong><br>上一级和下一级之间敲三个空格即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 一级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">释放</span><br><span class="line">**/</span><br><span class="line">public static void cancelAlert(Context context, int type) &#123;</span><br><span class="line">		AlarmManager mAlarmManager = (AlarmManager)</span><br><span class="line">				context.getSystemService(Context.ALARM_SERVICE);</span><br><span class="line">		Intent intent = new Intent(AlarmsSetting.ALARM_ALERT_ACTION);</span><br><span class="line">		intent.putExtra(&quot;type&quot;, type);</span><br><span class="line">		intent.setClass(context, AlarmReceiver.class);</span><br><span class="line">		PendingIntent pi = PendingIntent.getBroadcast(context, type, intent,</span><br><span class="line">				PendingIntent.FLAG_CANCEL_CURRENT);</span><br><span class="line">		mAlarmManager.cancel(pi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置:主要是将存储好的时间设置信息（小时，分钟，星期），通过 cacluteNextAlarm方法设置成一个特殊的 Calendar值用于定时，然后将对应的 type和 Action组成一个通过广播 pi！通过 AlarmManager的 set方法定时， mAlarmManager.set(AlarmManager.RTC_WAKEUP,mCalendar.getTimeInMillis(),pi);，定时将 pi中的内容发送出去！<br>核心就是这样！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">设置</span><br><span class="line">**/</span><br><span class="line">public static void enableAlert(Context context, int type, AlarmsSetting alarmsSetting) &#123;</span><br><span class="line">		if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN &amp;&amp; !alarmsSetting.isInEnble())&#123;</span><br><span class="line">			return ;</span><br><span class="line">		&#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT &amp;&amp; !alarmsSetting.isOutEnble())&#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		int rantime = alarmsSetting.getDynamic();</span><br><span class="line">		AlarmManager mAlarmManager = (AlarmManager)</span><br><span class="line">				context.getSystemService(Context.ALARM_SERVICE);</span><br><span class="line">		int hours = 0,minute=0,dayOfweek=0;</span><br><span class="line">		if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN)&#123;</span><br><span class="line">			hours = alarmsSetting.getInHour();</span><br><span class="line">			minute=alarmsSetting.getInMinutes();</span><br><span class="line">			dayOfweek = alarmsSetting.getInDays();</span><br><span class="line">		&#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT)&#123;</span><br><span class="line">			hours = alarmsSetting.getOutHour();</span><br><span class="line">			minute=alarmsSetting.getOutMinutes();</span><br><span class="line">			dayOfweek=alarmsSetting.getOutDays();</span><br><span class="line">		&#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>处理成循环周期</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">public static Calendar cacluteNextAlarm(int hour, int minute, int dayOfweek)&#123;</span><br><span class="line">	Calendar mCalendar = Calendar.getInstance();</span><br><span class="line">	mCalendar.setTimeInMillis(System.currentTimeMillis());</span><br><span class="line">	mCalendar.set(Calendar.HOUR_OF_DAY,hour);</span><br><span class="line">	mCalendar.set(Calendar.MINUTE, minute);</span><br><span class="line">	int differDays = getNextAlarmDifferDays(dayOfweek,mCalendar.get(Calendar.DAY_OF_WEEK), mCalendar.getTimeInMillis());</span><br><span class="line">	int nextYear = getNextAlarmYear(mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.DAY_OF_YEAR), mCalendar.getActualMaximum(Calendar.DAY_OF_YEAR), differDays);</span><br><span class="line">	int nextMonth = getNextAlarmMonth(mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), mCalendar.getActualMaximum(Calendar.DATE), differDays);</span><br><span class="line">	int nextDay = getNextAlarmDay(mCalendar.get(Calendar.DAY_OF_MONTH), mCalendar.getActualMaximum(Calendar.DATE), differDays);</span><br><span class="line">	mCalendar.set(Calendar.YEAR,nextYear);</span><br><span class="line">	mCalendar.set(Calendar.MONTH, nextMonth % 12);//月份从0开始</span><br><span class="line">	mCalendar.set(Calendar.DAY_OF_MONTH, nextDay);</span><br><span class="line">	mCalendar.set(Calendar.SECOND, 0);</span><br><span class="line">	mCalendar.set(Calendar.MILLISECOND, 0);</span><br><span class="line">	return mCalendar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">//获取下次闹钟相差的天数</span><br><span class="line">private static int getNextAlarmDifferDays(int data, int currentDayOfWeek,long timeInMills)&#123;</span><br><span class="line">	int nextDayOfWeek =  getNextDayOfWeek(data, currentDayOfWeek,timeInMills);</span><br><span class="line">	return currentDayOfWeek&lt;=nextDayOfWeek?(nextDayOfWeek-currentDayOfWeek):(7 - currentDayOfWeek + nextDayOfWeek);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//考虑年进位的情况</span><br><span class="line">private static int getNextAlarmYear(int year,int dayOfYears, int actualMaximum, int differDays) &#123;</span><br><span class="line">	int temp = actualMaximum-dayOfYears-differDays;</span><br><span class="line">	return temp &gt;= 0?year:year+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//考虑月进位的情况</span><br><span class="line">private static int getNextAlarmMonth(int month,int dayOfMonth,int actualMaximum, int differDays) &#123;</span><br><span class="line">	int temp = actualMaximum-dayOfMonth-differDays;</span><br><span class="line">	return temp &gt;= 0?month:month+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取下次闹钟的day</span><br><span class="line">private static int getNextAlarmDay(int thisDayOfMonth, int actualMaximum, int differDays) &#123;</span><br><span class="line">	int temp = actualMaximum - thisDayOfMonth-differDays;</span><br><span class="line">	if (temp&lt;0)&#123;</span><br><span class="line">		return thisDayOfMonth + differDays - actualMaximum;</span><br><span class="line">	&#125;</span><br><span class="line">	return thisDayOfMonth + differDays;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取下次显示是星期几</span><br><span class="line">private static int getNextDayOfWeek(int data, int cWeek,long timeInMillis) &#123;</span><br><span class="line">	int tempBack = data &gt;&gt; cWeek - 1;</span><br><span class="line">	int tempFront = data ;</span><br><span class="line"></span><br><span class="line">	if(tempBack%2==1)&#123;</span><br><span class="line">		if(System.currentTimeMillis()&lt;timeInMillis)  return cWeek;</span><br><span class="line">	&#125;</span><br><span class="line">	tempBack = tempBack&gt;&gt;1;</span><br><span class="line">		int m=1,n=0;</span><br><span class="line">		while (tempBack != 0) &#123;</span><br><span class="line">			if (tempBack % 2 == 1 ) return cWeek + m;</span><br><span class="line">			tempBack = tempBack / 2;</span><br><span class="line">			m++;</span><br><span class="line">		&#125;</span><br><span class="line">		while(n&lt;cWeek)&#123;</span><br><span class="line">			if (tempFront % 2 == 1)  return n+1;</span><br><span class="line">			tempFront =tempFront/2;</span><br><span class="line">			n++;</span><br><span class="line">		&#125;</span><br><span class="line">		return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后通过<strong>SharedPreferenceUtil</strong>将设置的值存储下来</p>
+<p>当设置好定时器后，系统就会在指定的时间发送广播过来通知</p>
 <ul>
-<li>一级无序列表内容<ul>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
+<li><strong>AlarmReceiver.class</strong></li>
 </ul>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 一级有序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">2. 一级有序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br><span class="line">   - 二级无序列表内容</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>效果如下</strong></p>
-<ol>
-<li>一级有序列表内容<ul>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-</ul>
-</li>
-<li>一级有序列表内容<ul>
-<li>二级无序列表内容</li>
-<li>二级无序列表内容</li>
-</ul>
-</li>
-</ol>
-<h3 id="九-表格"><a href="#九-表格" class="headerlink" title="九.表格"></a>九.表格</h3><p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br></pre></td></tr></table></figure>
-<p><strong>第二行分割表头和内容。</strong></p>
-<ul>
-<li>两边加：表示文字居中</li>
-<li>右边加：表示文字居右<br>注：原生的语法两边都要用 | 包起来。此处省略</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">姓名|最强技能|排位名次</span><br><span class="line">--|:--:|--:</span><br><span class="line">刘备|哭|大哥</span><br><span class="line">关羽|打|二哥</span><br><span class="line">张飞|骂|三弟</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th align="center">最强技能</th>
-<th align="right">排位名次</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>刘备</td>
-<td align="center">哭</td>
-<td align="right">大哥</td>
-</tr>
-<tr>
-<td>关羽</td>
-<td align="center">打</td>
-<td align="right">二哥</td>
-</tr>
-<tr>
-<td>张飞</td>
-<td align="center">骂</td>
-<td align="right">三弟</td>
-</tr>
-</tbody></table>
-<h3 id="十-标题"><a href="#十-标题" class="headerlink" title="十.标题"></a>十.标题</h3><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
-<p><strong>注：</strong>标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这是二级标题</span><br><span class="line">### 这是三级标题</span><br><span class="line">#### 这是四级标题</span><br><span class="line">##### 这是五级标题</span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
-<p><strong>效果如下：</strong></p>
-<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><hr>
-<p>整理自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/191d1e21f7edhttps://www.jianshu.com/p/191d1e21f7ed">简书</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        alarmsSetting = new AlarmsSetting(context);</span><br><span class="line">        int type = intent.getIntExtra(&quot;type&quot;,0);</span><br><span class="line">//        Log.e(&quot;#######################&quot;, &quot;getRecevier_ACtion&quot; + intent.getAction());</span><br><span class="line"></span><br><span class="line">        //如果已经设置闹钟w不可用，先拦截</span><br><span class="line">        if(type==AlarmsSetting.ALARM_SETTING_TYPE_IN &amp;&amp; !alarmsSetting.isInEnble())&#123;</span><br><span class="line">            return ;</span><br><span class="line">        &#125;else if(type==AlarmsSetting.ALARM_SETTING_TYPE_OUT &amp;&amp; !alarmsSetting.isOutEnble())&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(intent.getAction().equals(AlarmsSetting.ALARM_ALERT_ACTION) &amp;&amp; type !=0) &#123;</span><br><span class="line">            SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy年MM月dd日——HH时mm分ss秒SSS毫秒&quot;);</span><br><span class="line">            Log.e(&quot;###########此次闹钟#######&quot;, &quot;alarmsSetting.getNextAlarm()&quot; + formatter.format(new Date(alarmsSetting.getNextAlarm())));</span><br><span class="line">            Log.e(&quot;###########当前系统时间###&quot;, &quot;System.currentTimeMillis()&quot; + formatter.format(new Date(System.currentTimeMillis())));</span><br><span class="line">            if (alarmsSetting.getNextAlarm() + 1000 * 30 &lt; System.currentTimeMillis())&#123;//解决闹钟广播比设置时间闹钟快的问题</span><br><span class="line">                Log.e(&quot;###########无效闹钟#######&quot;, &quot;不执行&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;###########准备弹出提示框###&quot;, &quot; &quot;);</span><br><span class="line">            intent.setClass(context, AlarmAlertActivity.class);</span><br><span class="line">            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">            context.startActivity(intent);</span><br><span class="line">            AlarmOpreation.cancelAlert(context, type);</span><br><span class="line">            AlarmOpreation.enableAlert(context, type, new AlarmsSetting(context));</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            AlarmOpreation.cancelAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_IN);</span><br><span class="line">            AlarmOpreation.enableAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_IN, new AlarmsSetting(context));</span><br><span class="line">            AlarmOpreation.cancelAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_OUT);</span><br><span class="line">            AlarmOpreation.enableAlert(context,  AlarmsSetting.ALARM_SETTING_TYPE_OUT, new AlarmsSetting(context));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -407,7 +298,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
