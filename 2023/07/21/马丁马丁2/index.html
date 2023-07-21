@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1.代码开发完毕从7月7日提交首个demo至今，已经两周，加上之前开发的时间，总计大约16天左右。期间经过不断的调试测试修改，完成了自己预期要求。 提交记录:    代码结构:    2.马丁数据模拟工具为了更好更直观地设置参数，我还整了个模拟工具  调节绿色区域的设置参数可以模拟出仓位的实际运行情况，通过浮亏、仓位等数据可以更加便利地设置马丁参数。 3.新的测试服务器这个到没什么说的，因为服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="马丁马丁2">
+<meta property="og:url" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/index.html">
+<meta property="og:site_name" content="自由侠">
+<meta property="og:description" content="1.代码开发完毕从7月7日提交首个demo至今，已经两周，加上之前开发的时间，总计大约16天左右。期间经过不断的调试测试修改，完成了自己预期要求。 提交记录:    代码结构:    2.马丁数据模拟工具为了更好更直观地设置参数，我还整了个模拟工具  调节绿色区域的设置参数可以模拟出仓位的实际运行情况，通过浮亏、仓位等数据可以更加便利地设置马丁参数。 3.新的测试服务器这个到没什么说的，因为服务器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/1.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/2.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/3.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/4.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/5.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/6.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/7.png">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/9.jpg">
+<meta property="og:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/8.jpg">
+<meta property="article:published_time" content="2023-07-21T09:41:31.000Z">
+<meta property="article:modified_time" content="2023-07-21T10:44:39.514Z">
+<meta property="article:author" content="项勇">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/1.jpg">
+
+
+<link rel="canonical" href="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/","path":"2023/07/21/马丁马丁2/","title":"马丁马丁2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>马丁马丁2 | 自由侠</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">自由侠</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E5%AE%8C%E6%AF%95"><span class="nav-number">1.</span> <span class="nav-text">1.代码开发完毕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%A9%AC%E4%B8%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E6%8B%9F%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">2.马丁数据模拟工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%96%B0%E7%9A%84%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">3.新的测试服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-TradingView%E7%AD%96%E7%95%A5"><span class="nav-number">4.</span> <span class="nav-text">4.TradingView策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%A9%AC%E4%B8%81%E7%9A%84%E6%A8%A1%E6%8B%9F%E6%B5%8B%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">5.马丁的模拟测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%8E%A5%E4%B8%8B%E6%9D%A5%E5%8D%8A%E5%B9%B4%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">6.接下来半年：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%BB%93%E8%AF%AD"><span class="nav-number">7.</span> <span class="nav-text">7.结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">项勇</p>
+  <div class="site-description" itemprop="description">万里苍穹，星辰大海</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="项勇">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自由侠">
+      <meta itemprop="description" content="万里苍穹，星辰大海">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="马丁马丁2 | 自由侠">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          马丁马丁2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-21 17:41:31 / 修改时间：18:44:39" itemprop="dateCreated datePublished" datetime="2023-07-21T17:41:31+08:00">2023-07-21</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="马丁马丁2" href="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::dcc0e085ecfffd724a5b2775b07e2967" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1-代码开发完毕"><a href="#1-代码开发完毕" class="headerlink" title="1.代码开发完毕"></a>1.代码开发完毕</h3><p>从7月7日提交首个demo至今，已经两周，加上之前开发的时间，总计大约16天左右。<br>期间经过不断的调试测试修改，完成了自己预期要求。</p>
+<p>提交记录:</p>
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/1.jpg" class title="This is an example image">
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/2.jpg" class title="This is an example image">
+
+<p>代码结构:</p>
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/3.jpg" class title="This is an example image">
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/4.jpg" class title="This is an example image">
+
+<h3 id="2-马丁数据模拟工具"><a href="#2-马丁数据模拟工具" class="headerlink" title="2.马丁数据模拟工具"></a>2.马丁数据模拟工具</h3><p>为了更好更直观地设置参数，我还整了个模拟工具</p>
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/5.jpg" class title="This is an example image">
+<p>调节绿色区域的设置参数可以模拟出仓位的实际运行情况，通过浮亏、仓位等数据可以更加便利地设置马丁参数。</p>
+<h3 id="3-新的测试服务器"><a href="#3-新的测试服务器" class="headerlink" title="3.新的测试服务器"></a>3.新的测试服务器</h3><p>这个到没什么说的，因为服务器只能有一个80监听端口，所以新建了一个新的服务器用于测试，后续也将会为主力服务器。</p>
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/6.jpg" class title="This is an example image">
+
+<h3 id="4-TradingView策略"><a href="#4-TradingView策略" class="headerlink" title="4.TradingView策略"></a>4.TradingView策略</h3><p>为了配合马丁策略的运行，在TradingView中在现有策略的基础上修改了一版用于马丁开仓的策略。<br>该策略设置止盈2%，止损7%，回测的历史胜率为80%。<br>马丁会完全根据策略发出的方向执行对应的操作。</p>
+<h3 id="5-马丁的模拟测试"><a href="#5-马丁的模拟测试" class="headerlink" title="5.马丁的模拟测试"></a>5.马丁的模拟测试</h3><p>为了提高模拟测试效率，代码支持了多策略同时运行，目前我根据TradingView策略的止盈止损参数，在马丁数据模拟工具的加持下，选出了10种参数用于测试。</p>
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/7.png" class title="This is an example image">
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/9.jpg" class title="This is an example image">
+<img src="/2023/07/21/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%812/8.jpg" class title="This is an example image">
+
+<h3 id="6-接下来半年："><a href="#6-接下来半年：" class="headerlink" title="6.接下来半年："></a>6.接下来半年：</h3><ol>
+<li>视测试情况平替掉旧的策略解析脚本</li>
+<li>马丁模拟数据测试一段时间，精选出最佳参数</li>
+<li>放开马丁下单代码实盘测试</li>
+<li>实盘一段时间后，视情况采用还是弃用</li>
+</ol>
+<h3 id="7-结语"><a href="#7-结语" class="headerlink" title="7.结语"></a>7.结语</h3><p>马丁是震荡策略，现运行的策略都是趋势策略，我只当是一种行情补充，实际运行的话风险也会增加。<br>每一次折腾都不一定能达到预想的结果，放平心态，降低预期。</p>
+<p>个人也是把交易bot当作终身学习开发的事情，也不会急于一时求成。</p>
+<p>此篇没有代码分析，稳定盈利的话，整个交易系统可以免费提供给需要的朋友使用，当然，盈亏自负了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/11/%E9%A9%AC%E4%B8%81%E9%A9%AC%E4%B8%81/" rel="prev" title="马丁马丁">
+                  <i class="fa fa-chevron-left"></i> 马丁马丁
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="SOHUCS" sid="dcc0e085ecfffd724a5b2775b07e2967"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">项勇</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cywvflwLk","appkey":"d695a29e122384601d747339bd6f5df4","count":true}</script>
+<script src="/js/third-party/comments/changyan.js"></script>
+
+</body>
+</html>
