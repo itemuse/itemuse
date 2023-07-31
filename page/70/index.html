@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/02/29/%E6%A0%87%E7%AD%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/02/29/%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">标签</a>
+          <a href="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">Activity基础篇-保存数据</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2016-02-29 08:00:00" itemprop="dateCreated datePublished" datetime="2016-02-29T08:00:00+08:00">2016-02-29</time>
+      <time title="创建时间：2017-12-21 11:20:24" itemprop="dateCreated datePublished" datetime="2017-12-21T11:20:24+08:00">2017-12-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-31 11:35:02" itemprop="dateModified" datetime="2023-01-31T11:35:02+08:00">2023-01-31</time>
+      <time title="修改时间：2023-01-30 21:58:24" itemprop="dateModified" datetime="2023-01-30T21:58:24+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="标签" href="/2016/02/29/%E6%A0%87%E7%AD%BE/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::4980cbdef455e0f97f26b4d5e4f42826" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="Activity基础篇-保存数据" href="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::71cb1cb3a8f6709bdd7d412f1d80db2a" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,90 +224,59 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-个人项目"><a href="#一-个人项目" class="headerlink" title="一.个人项目"></a>一.个人项目</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib">工具Jar</a></p>
+          <h3 id="一-有哪些状态是需要保存的"><a href="#一-有哪些状态是需要保存的" class="headerlink" title="一.有哪些状态是需要保存的"></a>一.有哪些状态是需要保存的</h3><p>有哪些状态是需要保存的呢？最简单明了的就是对一些数据的保存，比如你正在操作一些数据，当面临突发情况，你的数据还没有操作完，这时候你就需要将数据进行保存，以便我们再次回到这个页面的时候不用重头再来。</p>
+<h3 id="二-什么情况下需要Activity状态的保存与恢复"><a href="#二-什么情况下需要Activity状态的保存与恢复" class="headerlink" title="二.什么情况下需要Activity状态的保存与恢复"></a>二.什么情况下需要Activity状态的保存与恢复</h3><p>那么在什么情况下需要对Activity的状态进行保存与恢复呢？官方文档的说法是在处理运行时配置变更的时候，来看官方文档介绍的一段话<br>有些设备配置可能会在运行时发生变化（例如屏幕方向、键盘可用性及语言）。 发生这种变化时，Android 会重启正在运行的 Activity（先后调用 onDestroy() 和 onCreate()）。重启行为旨在通过利用与新设备配置匹配的备用资源自动重新加载您的应用，来帮助它适应新配置。<br>要妥善处理重启行为，Activity 必须通过常规的Activity 生命周期恢复其以前的状态，在 Activity 生命周期中，Android 会在销毁 Activity 之前调用 onSaveInstanceState()，以便您保存有关应用状态的数据。 然后，您可以在 onCreate() 或 onRestoreInstanceState() 期间恢复 Activity 状态。<br>这里面提到了各种回调方法，其中也有本文介绍的重点，不急，我们一步步来，首先我总结有如下几种情况是需要对数据进行保存的 </p>
 <ul>
-<li>版本<a target="_blank" rel="noopener" href="https://jitpack.io/#itemuse/XLib"><img src="https://jitpack.io/v/itemuse/XLib.svg"></a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/app/XApplication.java">Application</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/array/XArray.java">Array</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/bar/navigationbar/XNavigationBar.java">NavigationBar</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/bar/systemui/XSystemUI.java">SystemUi</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/file/XFile.java">File</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/file/XFileIO.java">FileIO</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/fragment/XFragment.java">Fragment</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/image/XImage.java">Image</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/log/XLog.java">Log</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/map/XMap.java">Map</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/network/XNetwork.java">Network</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/permissions/XPermission.java">Permission</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/resource/XResource.java">Resource</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/screen/XScreen.java">Screen</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/sdcard/XSDCard.java">SDCard</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/service/XService.java">Service</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/sharedpreferences/XSPUtils.java">sharedpreferences</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/size/XSize.java">Size</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/spannable/XSpanned.java">Spanned</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/string/XString.java">String</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/tab/XTab.java">Tab</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/thread/XThread.java">Thread</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/time/XTime.java">Time</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/toast/XToast.java">Toast</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XLib/blob/master/library/src/main/java/cn/xy/library/util/zip/XZip.java">Zip</a></li>
+<li>点击了返回键 </li>
+<li>锁屏 </li>
+<li>点击home键 </li>
+<li>有其他APP进入前台（比如接听电话） </li>
+<li>启动了新的Activity </li>
+<li>屏幕方向发生旋转 </li>
+<li>APP被杀死</li>
 </ul>
-</li>
-<li><p>独立项目</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XMusic">XMusic</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XVideo">XVideo</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/MVP">MVP</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/Dialog">Dialag</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/AlarmManagerClock">AlarmManagerClock</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/itemuse/XTester">XTester</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="二-官方"><a href="#二-官方" class="headerlink" title="二.官方"></a>二.官方</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/">谷歌官方api文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/android">掘金Android</a></li>
-</ul>
-<h3 id="三-API收集"><a href="#三-API收集" class="headerlink" title="三.API收集"></a>三.API收集</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://hndeveloper.github.io/2017/github-android-ui.html">GitHub上受欢迎的Android UI Library</a></li>
-<li><a target="_blank" rel="noopener" href="https://microzz.com/2017/02/03/API/?tdsourcetag=s_pctim_aiomsg#%E9%9F%B3%E4%B9%90">中国国内可用API合集</a></li>
-<li><a target="_blank" rel="noopener" href="https://qibilly.com/SmartSwipe-tutorial/">测滑返回SwipeBackLayout</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/gyf-dev/ImmersionBar">沉浸式状态栏和导航栏ImmersionBar</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/huanghaibin_dev/CalendarView">日历CalendarView</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/huo108/article/details/82428129?tdsourcetag=s_pctim_aiomsg">内存泄漏工具LeakCanary使用详细教程</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/barteksc/AndroidPdfViewer">pdf解析显示</a></li>
-<li>音乐视频<ul>
-<li><a target="_blank" rel="noopener" href="https://developer.android.google.cn/guide/topics/media/mediaplayer?hl=zh_cn">MediaPlayer官方讲解</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014606081/article/details/79927057">MediaPlayer详解和使用</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014606081/article/details/76181049">ExoPlayer</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/CarGuo/GSYVideoPlayer">GSYVideoPlayer</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="五-精选博客文章"><a href="#五-精选博客文章" class="headerlink" title="五.精选博客文章"></a>五.精选博客文章</h3><ul>
-<li>View<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/88679fed9ecb">TabLayout基本属性全解</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6952842356554989582">修改Preferences默认样式</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6949186887609221133">ConstraintLayout</a></li>
-</ul>
-</li>
-<li>线程<ul>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903889678893063">Java线程池解析</a></li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903917835419661">JAVA 泛型中的通配符 T，E，K，V，？</a></li>
-</ul>
-<h3 id="四-工具"><a href="#四-工具" class="headerlink" title="四.工具"></a>四.工具</h3><ul>
-<li>github<ul>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/docmirror/dev-sidecar">github加速</a></li>
-<li><a target="_blank" rel="noopener" href="https://toolwa.com/github/">github镜像</a></li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.jikedaohang.com/index/">极客导航</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/JasonWu1111/Android-Review">Android复习资料汇总</a></li>
-</ul>
+<h3 id="三-状态为什么会丢失"><a href="#三-状态为什么会丢失" class="headerlink" title="三.状态为什么会丢失"></a>三.状态为什么会丢失</h3><p>紧接着，我们来说一下为什么状态会丢失，这里面到底发什么了什么操作？这里我们用代码来演示一下，就是一个Activity，我们复写它的onCreat和onDestroy方法，分别打上log，然后启动再点击旋转屏幕（本文主要以屏幕旋转为例）看看这个过程方法是如何执行的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11-25 12:51:27.419 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 12:51:33.459 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroy</span><br><span class="line">11-25 12:51:33.539 4153-4153/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br></pre></td></tr></table></figure>
+<p>我们从log中可知，当应用启动，首先运行onCreat方法，当我们点击旋转屏幕会发现当前的Activity被销毁了，然后又重新执行了onCreat方法，这是怎么回事，Activity发生了什么样的变化呢？我们在log中打印出当前Activity的hashcodekankan。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">11-25 12:57:20.934 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreatecom.ithuangqing.activitysavedemo.MainActivity@4a79f318</span><br><span class="line">11-25 12:57:26.184 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroycom.ithuangqing.activitysavedemo.MainActivity@4a79f318</span><br><span class="line">11-25 12:57:26.224 4439-4439/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreatecom.ithuangqing.activitysavedemo.MainActivity@4a7d4274</span><br></pre></td></tr></table></figure>
+<p>原来当点击了屏幕旋转之后，当前Activity会被销毁，然后会重新创建一个新的Activity，如此一来我们在之前Activity的数据如果不保存的话就又可能丢失了。<br>好了，到了这一步你至少要明白这么一件事，就是当在第二部分中说的几种情况出现时比如屏幕发生旋转，当前的Activity会被销毁而且会重新创建一个全新的Activity。<br>下面我们举一个数据丢失的例子，让你看的更清楚。首先设置布局，布局很简单，一个文本框，一个按钮，给按钮设置一个点击事件，点击按钮让文本框中的数字从一递增。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    mMNumber = findViewById(R.id.number);</span><br><span class="line">    mBtAdd = findViewById(R.id.btAdd);</span><br><span class="line">    mBtAdd.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View v) &#123;</span><br><span class="line">            a = ++a;</span><br><span class="line">            mMNumber.setText(&quot;&quot;+a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Log.d(TAG, &quot;onCreate&quot;+this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行之后点击按钮，如图</p>
+<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/0.png" class title="This is an example image">
+
+<p>现在文本框中的数字是5，接下来我们点击屏幕旋转看看会发生什么，如图</p>
+<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/1.png" class title="This is an example image">
+
+<p>果不其然，数据丢失了。</p>
+<h3 id="四-如何保存与恢复"><a href="#四-如何保存与恢复" class="headerlink" title="四.如何保存与恢复"></a>四.如何保存与恢复</h3><p>既然数据会丢失，那么我们该如何保存数据，或者如何解决这些问题呢？我们拿屏幕旋转这个变更来说，首先我们知道，如果屏幕发生旋转，当前Activity会被销毁，因此我们可以限定屏幕的方向，这样一来即使我们点击屏幕旋转，屏幕的方向是没有发什么变化的，所以Activity不会被销毁，数据自然不会丢失，另外一种方法就是我们可以自己处理变更，我们可以在当前的Activity的配置文件中添加这么一行代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:configChanges=&quot;orientation|screenSize|keyboard&quot;</span><br></pre></td></tr></table></figure>
+<p>这句代码的意思就是告诉系统我们自己来处理变更，这两种方法不是今天的主菜，真正的主菜是onSaveInstanceState和onRestoreInstanceState，终于说到我们的重点了，我相信看完本文的介绍，大家会对这个东西有种终于认识的感觉，那就是每次创建Axtivity中自动创建的onCreat方法中的参数。首先我们在我们的Acticiry中复写 onSaveInstanceState 和 onRestoreInstanceState 同时打上log。看一下 输出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">11-25 13:38:57.383 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 13:39:13.133 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onSaveInstanceState</span><br><span class="line">11-25 13:39:13.133 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onDestroy</span><br><span class="line">11-25 13:39:13.163 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onCreate</span><br><span class="line">11-25 13:39:13.163 5242-5242/com.ithuangqing.activitysavedemo D/mainactivity--vv: onRestoreInstanceState</span><br></pre></td></tr></table></figure>
+<p>从log中我们可以看到，当我们点击屏幕旋转之后，在当前Activity被销毁之前会调用onSaveInstanceState，然后销毁当前Activity，创建新的Activity之后会调用onCreat方法之后会紧接着调用onRestoreInstanceState，那么这两个方法有什么用呢？其实也可以猜到，onSaveInstanceState是用来保存我们当前activity中的数据的，而onRestoreInstanceState可以让我们获取之前保存的数据从而在新的activity中进行设置。<br>那数据以何种形式进行保存呢？我们来看下这两个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> @Override</span><br><span class="line"> public void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">     super.onSaveInstanceState(outState);</span><br><span class="line">     //保存销毁之前的数据</span><br><span class="line"></span><br><span class="line">     Log.d(TAG, &quot;onSaveInstanceState&quot;);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line"> protected void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line">     Log.d(TAG, &quot;onRestoreInstanceState&quot;);   </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>我们发现他们的参数是Bundle，有印象了吧！我们就是通过Bundle来进行数据保存和读取的，大家都知道这是一种键值对的保存与读取方式。<br>接下来再看一个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    mMNumber = findViewById(R.id.number);</span><br><span class="line">    mBtAdd = findViewById(R.id.btAdd);</span><br><span class="line">    mBtAdd.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View v) &#123;</span><br><span class="line">            a = ++a;</span><br><span class="line">            mMNumber.setText(&quot;&quot;+a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    Log.d(TAG, &quot;onCreate&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看看onCreat函数的参数，你发现了什么嘛？前面说过我们可以在onRestoreInstanceState中通过Bundle拿到我们之前保存的数据，其实在onCreat中也能达到相同的效果。<br>下面我们就具体代码演示一遍吧！<br>首先是在onSaveInstanceState中保存数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">      super.onSaveInstanceState(outState);</span><br><span class="line">      //保存销毁之前的数据</span><br><span class="line">      outState.putString(&quot;number&quot;,mMNumber.getText().toString());</span><br><span class="line">      Log.d(TAG, &quot;onSaveInstanceState&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>紧接着在onRestoreInstanceState对数据进行恢复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> protected void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line">     Log.d(TAG, &quot;onRestoreInstanceState&quot;);</span><br><span class="line">     //恢复数据</span><br><span class="line">    String s = savedInstanceState.getString(&quot;number&quot;);</span><br><span class="line">    mMNumber.setText(s);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>接下来运行程序</p>
+<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/2.png" class title="This is an example image">
+<p>然后我们旋转屏幕</p>
+<img src="/2017/12/21/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE/3.png" class title="This is an example image">
+
+<p>发现数据被成功保留了下来，<br>到这里我们总结一下这个方法的调用过程，当运行时配置发生变更的时候，程序总的会销毁当前的Activity，然后重新创建一个新的Activity，在这个过程中，销毁当前Activity之前会先调用onSaveInstanceState让我们来保存数据，然后重建Activity在调用onCreat方发之后会调用onRestoreInstanceState让我们来对数据进行恢复，当然也可以在onCret中进行数据恢复，方法原理相同。</p>
+<h3 id="五-这个知识点你需要注意的地方"><a href="#五-这个知识点你需要注意的地方" class="headerlink" title="五.这个知识点你需要注意的地方"></a>五.这个知识点你需要注意的地方</h3><p>通过以上的讲诉，相信你对Activity状态的保存与恢复已经掌握的差不多了，在这里我再补充几点<br>**关于onSaveInstanceState **</p>
+<p>这个方法默认情况下会自动保存有关Activity的视图层次结构的状态信息，简单举个例子，我们以系统控件EditText来说，系统默认会保存有关这个控件的一个信息，也就是当你在这个控件中输入内容的时候，即使旋转屏幕内容也不会丢失，因为系统已经默认为其实现了我们说的那两个方法，但是有个前提，这个控件必须设置id，否则数据依旧会丢失，另外如果你重写了onRestoreInstanceState也要保证必须有这行代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">super.onRestoreInstanceState(savedInstanceState);</span><br></pre></td></tr></table></figure>
+<p><strong>关于旋转屏幕无法调用onSaveInstanceState的问题。</strong></p>
+<p>出现这种问题你复写的肯定以下方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onSaveInstanceState (Bundle outState, PersistableBundle outPersistentState)；</span><br></pre></td></tr></table></figure>
+<p>改成以下方法即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void onSaveInstanceState (Bundle outState)；</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>来自<a target="_blank" rel="noopener" href="http://blog.csdn.net/sinat_33921105">博客</a></p>
 
       
     </div>
@@ -327,7 +296,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/69/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><span class="page-number current">70</span><a class="page-number" href="/page/71/">71</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/71/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/69/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/69/">69</a><span class="page-number current">70</span><a class="page-number" href="/page/71/">71</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/">73</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/71/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

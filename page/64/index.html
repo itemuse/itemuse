@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/05/26/2021-03-11-%E5%B9%BF%E6%92%AD%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">Activity基础篇-启动模式详解</a>
+          <a href="/2020/05/26/2021-03-11-%E5%B9%BF%E6%92%AD%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">广播基础</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-19 10:39:40" itemprop="dateCreated datePublished" datetime="2020-05-19T10:39:40+08:00">2020-05-19</time>
+      <time title="创建时间：2020-05-26 09:31:14" itemprop="dateCreated datePublished" datetime="2020-05-26T09:31:14+08:00">2020-05-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-30 22:01:19" itemprop="dateModified" datetime="2023-01-30T22:01:19+08:00">2023-01-30</time>
+      <time title="修改时间：2023-01-30 22:06:22" itemprop="dateModified" datetime="2023-01-30T22:06:22+08:00">2023-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -209,8 +209,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="Activity基础篇-启动模式详解" href="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::1e97ee17877b74cbc6366aa8d9f9969c" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="广播基础" href="/2020/05/26/2021-03-11-%E5%B9%BF%E6%92%AD%E5%9F%BA%E7%A1%80/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::41711c279ae4257bc8d57df23f39f1ef" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,125 +224,92 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-启动模式"><a href="#一-启动模式" class="headerlink" title="一.启动模式"></a>一.启动模式</h3><img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/640.png" class title="This is an example image">
-
-<p>Activity 一共有四种 launchMode ：<strong>standard</strong> 、<strong>singleTop</strong> 、<strong>singleTask</strong> 、<strong>singleInstance</strong> 。</p>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/641.png" class title="This is an example image">
-
-<p><strong>Standard 模式（默认模式）</strong></p>
-<ol>
-<li>说明：每次启动一个 Activity 都会又一次创建一个新的实例入栈，无论这个实例是否存在。</li>
-<li>生命周期：每次被创建的实例 Activity 的生命周期符合典型情况，它的 onCreate 、onStart 、onResume 都会被调用。</li>
-<li>举例：此时 Activity 栈中以此有 A 、B 、C 三个 Activity ，此时C处于栈顶，启动模式为 Standard 模式。若在 C Activity 中加入点击事件，须要跳转到还有一个同类型的 C Activity 。结果是还有一个 C Activity 进入栈中，成为栈顶。</li>
-</ol>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/642.png" class title="This is an example image">
-
-<p><strong>SingleTop 模式（栈顶复用模式）</strong></p>
-<ol>
-<li>说明：分两种处理情况：须要创建的 Activity 已经处于栈顶时，此时会直接复用栈顶的 Activity 。不会再创建新的 Activity ；若须要创建的 Activity 不处于栈顶，此时会又一次创建一个新的 Activity 入栈，同 Standard 模式一样。</li>
-<li>生命周期：若情况一中栈顶的 Activity 被直接复用时，它的 onCreate 、onStart 不会被系统调用，由于它并没有发生改变。可是一个新的方法 onNewIntent 会被回调（ Activity 被正常创建时不会回调此方法）。</li>
-<li>举例：此时 Activity 栈中以此有 A 、B 、C 三个 Activity ，此时 C 处于栈顶，启动模式为 SingleTop 模式。情况一：在 C Activity 中加入点击事件，须要跳转到还有一个同类型的 C Activity 。结果是直接复用栈顶的 C Activity。情况二：在 C Activity 中加入点击事件，须要跳转到还有一个 A Activity。结果是创建一个新的 Activity 入栈。成为栈顶。</li>
-</ol>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/643.png" class title="This is an example image">
-
-<p><strong>SingleTask 模式（栈内复用模式）</strong></p>
-<ol>
-<li>说明：若须要创建的 Activity 已经处于栈中时，此时不会创建新的 Activity ，而是将存在栈中的 Activity 上面的其他 Activity 所有销毁，使它成为栈顶。</li>
-<li>如果是在别的应用程序中启动它，则会新建一个 task ，并在该task中启动这个 Activity ，singleTask 允许别的 Activity 与其在一个 task 中共存，也就是说，如果我在这个 singleTask 的实例中再打开新的 Activity ，这个新的 Activity 还是会在 singleTask 的实例的 task 中。</li>
-<li>生命周期：同 SingleTop 模式中的情况一同样。仅仅会又一次回调 Activity 中的 onNewIntent 方法</li>
-<li>举例：此时 Activity 栈中以此有 A 、B 、C 三个 Activity 。此时 C 处于栈顶，启动模式为 SingleTask 模式。情况一：在 C Activity 中加入点击事件，须要跳转到还有一个同类型的 C Activity 。结果是直接用栈顶的 C Activity 。情况二：在 C Activity 中加入点击事件，须要跳转到还有一个 A Activity 。结果是将 A Activity 上面的 B 、C 所有销毁，使 A Activity 成为栈顶。</li>
-</ol>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/644.png" class title="This is an example image">
-
-<p><strong>SingleInstance 模式（单实例模式）</strong></p>
-<ol>
-<li>说明：SingleInstance 比较特殊，是全局单例模式，是一种加强的 SingleTask 模式。它除了具有它所有特性外，还加强了一点：只有一个实例，并且这个实例独立运行在一个 task 中，这个 task 只有这个实例，不允许有别的 Activity 存在。</li>
-<li>这个经常使用于系统中的应用，比如 Launch 、锁屏键的应用等等，整个系统中仅仅有一个！所以在我们的应用中一般不会用到。了解就可以。</li>
-<li>举例：比方 A Activity 是该模式，启动 A 后。系统会为它创建一个单独的任务栈，由于栈内复用的特性。兴许的请求均不会创建新的 Activity ，除非这个独特的任务栈被系统销毁。</li>
-</ol>
-<h3 id="二-启动模式的使用方式"><a href="#二-启动模式的使用方式" class="headerlink" title="二.启动模式的使用方式"></a>二.启动模式的使用方式</h3><img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/645.png" class title="This is an example image">
-
-<p>在 Manifest.xml 中指定 Activity 启动模式</p>
-<ol>
-<li>一种静态的指定方法</li>
-<li>在 Manifest.xml 文件里声明 Activity 的同一时候指定它的启动模式</li>
-<li>这样在代码中跳转时会依照指定的模式来创建 Activity 。</li>
-</ol>
-<p>启动 Activity 时。在 Intent 中指定启动模式去创建 Activity</p>
-<ol>
-<li>一种动态的启动模式</li>
-<li>在 new 一个 Intent 后</li>
-<li>通过 Intent 的 addFlags 方法去动态指定一个启动模式。</li>
-</ol>
-<p>注意：以上两种方式都能够为 Activity 指定启动模式，可是二者还是有差别的。</p>
-<ol>
-<li>优先级：动态指定方式即另外一种比第一种优先级要高，若两者同一时候存在，以另外一种方式为准。</li>
-<li>限定范围：第一种方式无法为 Activity 直接指定 FLAG_ACTIVITY_CLEAR_TOP 标识，另外一种方式无法为 Activity 指定 singleInstance 模式。</li>
-</ol>
-<h3 id="三-启动模式的实际应用场景"><a href="#三-启动模式的实际应用场景" class="headerlink" title="三.启动模式的实际应用场景"></a>三.启动模式的实际应用场景</h3><p>这四种模式中的 Standard 模式是最普通的一种，没有什么特别注意。而 SingleInstance 模式是整个系统的单例模式，在我们的应用中一般不会应用到。所以，这里就具体解说  SingleTop 和 SingleTask 模式的运用场景：</p>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/646.png" class title="This is an example image">
-<p><strong>SingleTask 模式的运用场景</strong></p>
-<ol>
-<li>最常见的应用场景就是保持我们应用开启后仅仅有一个 Activity 的实例。</li>
-<li>最典型的样例就是应用中展示的主页（ Home 页）。</li>
-<li>假设用户在主页跳转到其他页面，运行多次操作后想返回到主页，假设不使用 SingleTask 模式，在点击返回的过程中会多次看到主页，这明显就是设计不合理了。</li>
-</ol>
-<p><strong>SingleTop 模式的运用场景</strong></p>
-<ol>
-<li>假设你在当前的 Activity 中又要启动同类型的 Activity</li>
-<li>此时建议将此类型 Activity 的启动模式指定为 SingleTop ，能够降低Activity的创建，节省内存！</li>
-</ol>
-<p>注意：复用 Activity 时的生命周期回调</p>
-<ol>
-<li>这里还须要考虑一个 Activity 跳转时携带页面參数的问题。</li>
-<li>由于当一个 Activity 设置了 SingleTop 或者 SingleTask 模式后，跳转此 Activity 出现复用原有 Activity 的情况时，此 Activity 的 onCreate 方法将不会再次运行。onCreate 方法仅仅会在第一次创建 Activity 时被运行。</li>
-<li>而一般 onCreate 方法中会进行该页面的数据初始化、UI 初始化，假设页面的展示数据无关页面跳转传递的參数，则不必操心此问题</li>
-<li>若页面展示的数据就是通过 getInten() 方法来获取，那么问题就会出现：getInten() 获取的一直都是老数据，根本无法接收跳转时传送的新数据！</li>
-</ol>
-<p>以下，通过一个样例来具体解释：</p>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/647.png" class title="This is an example image">
-
-<p>以上代码中的 CourseDetailActivity 在配置文件里设置了启动模式是 SingleTop 模式，依据上面启动模式的介绍可得知，当 CourseDetailActivity 处于栈顶时。</p>
-<p>再次跳转页面到 CourseDetailActivity 时会直接复用原有的 Activity ，并且此页面须要展示的数据是从 getIntent() 方法得来，可是 initData() 方法不会再次被调用，此时页面就无法显示新的数据。</p>
-<p>当然这样的情况系统早就为我们想过了，这时我们须要另外一个回调 onNewIntent（Intent intent）方法。此方法会传入最新的 intent ，这样我们就能够解决上述问题。这里建议的方法是又一次去 setIntent 。然后又一次去初始化数据和 UI 。</p>
-<p>代码例如以下所看到的：</p>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/648.png" class title="This is an example image">
-
-<p>这样，在一个页面中能够反复跳转并显示不同的内容。</p>
-<h3 id="四-快速启动一个-Activity"><a href="#四-快速启动一个-Activity" class="headerlink" title="四.快速启动一个 Activity"></a>四.快速启动一个 Activity</h3><img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/649.png" class title="This is an example image">
-
-<p>这个问题其实也是比较简单的，就是不要在 Activity 的 onCreate 方法中执行过多繁重的操作，并且在 onPasue 方法中同样不能做过多的耗时操作。</p>
-<h3 id="五-Activity-的-Flags"><a href="#五-Activity-的-Flags" class="headerlink" title="五.Activity 的 Flags"></a>五.Activity 的 Flags</h3><img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/650.png" class title="This is an example image">
-
-<ul>
-<li>标记位既能够设定Activity的启动模式，如同上面介绍的，在动态指定启动模式，比方 <strong>FLAG_ACTIVITY_NEW_TASK</strong> 和 <strong>FLAG_ACTIVITY_SINGLE_TOP</strong> 等。它还能够影响 Activity 的运行状态 ，比方 <strong>FLAG_ACTIVITY_CLEAN_TOP</strong> 和 <strong>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</strong> 等。</li>
-<li>以下介绍几个基本的标记位，切勿死记，理解几个就可以，须要时再查官方文档。</li>
+          <h3 id="一-广播"><a href="#一-广播" class="headerlink" title="一.广播"></a>一.广播</h3><ul>
+<li><p>广播的生命周期很短，经过调用对象–&gt;实现onReceive–&gt;结束，整个过程就结束了。从实现的复杂度和代码量来看，广播无疑是最迷你的Android 组件，实现往往只需几行代码。广播对象被构造出来后通常只执行BroadcastReceiver.onReceive方法，便结束了其生命周期。所以有的时候我们可以把它当做函数看也未必不可。</p>
+</li>
+<li><p>和所有组件一样，广播对象也是在应用进程的主线程中被构造，所以广播对象的执行必须是要同步且快速的。也不推荐在里面开子线程，因为往往线程还未结束，广播对象就已经执行完毕被系统销毁。如果需要完成一项比较耗时的工作 , 应该通过发送 Intent 给 Service, 由 Service 来完成。</p>
+</li>
+<li><p>每次广播到来时 , 会重新创建 BroadcastReceiver 对象 , 并且调用 onReceive() 方法 , 执行完以后 , 该对象即被销毁 . 当 onReceive() 方法在 10 秒内没有执行完毕， Android 会认为该程序无响应。</p>
+</li>
 </ul>
-<img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/651.png" class title="This is an example image">
-
-<p><strong>FLAG_ACTIVITY_NEW_TASK</strong></p>
-<p>作用是为 Activity 指定 “SingleTask” 启动模式。跟在 AndroidMainfest.xml 指定效果同样</p>
-<p><strong>FLAG_ACTIVITY_SINGLE_TOP</strong></p>
-<p>作用是为 Activity 指定 “SingleTop” 启动模式，跟在 AndroidMainfest.xml 指定效果同样。</p>
-<p><strong>FLAG_ACTIVITY_CLEAN_TOP</strong></p>
+<h3 id="二-接收系统广播："><a href="#二-接收系统广播：" class="headerlink" title="二.接收系统广播："></a>二.接收系统广播：</h3><p>广播接收器可以自由地对自己感兴趣的广播进行注册，这样当有相应的广播发出时，广播接收器就能收到该广播，并在内部处理相应的逻辑。注册广播的方式有两种，在代码中注册和在清单文件中注册，前者称为动态注册，后者称为静态注册。</p>
 <ol>
-<li>具有此标记位的 Activity ，启动时会将与该 Activity 在同一任务栈的其他 Activity 出栈。</li>
-<li>一般与 SingleTask 启动模式一起出现。</li>
-<li>它会完毕 SingleTask 的作用。</li>
-<li>但事实上 SingleTask 启动模式默认具有此标记位的作用</li>
+<li><p>动态注册监听网络变化：<br>新建工程文件，首先在MainActivity中定义一个内部类netWorkChangeReceiver，并重写父类的onReceive()方法，这样每当网络状态发生变化时，onReceive()方法就会得到执行，这里使用Toast提示一段文本信息，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class netWorkChangeReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            Toast.makeText(context, &quot;network changes&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>紧接着在onCreate方法中进行动态注册，然后在onDestroy方法中进行取消注册：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> private IntentFilter intentFilter;</span><br><span class="line"> private netWorkChangeReceiver netWorkChangeReceiver;</span><br><span class="line"> </span><br><span class="line"> @Override</span><br><span class="line"> protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">     </span><br><span class="line">     //动态注册：创建一个IntentFilter的实例，添加网络变化的广播(功能是对组件进行过滤，只获取需要的消息)</span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAction(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);</span><br><span class="line">   //创建NetWorkChangeReceiver的实例，并调用registerReceiver()方法进行注册</span><br><span class="line">   netWorkChangeReceiver = new netWorkChangeReceiver();</span><br><span class="line">    registerReceiver(netWorkChangeReceiver, intentFilter);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//取消注册，一定要记得，不然系统会报错</span><br><span class="line">@Override</span><br><span class="line">protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    unregisterReceiver(netWorkChangeReceiver);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上方代码解释如下：<br>11行：给意图过滤器intentFilter添加一个值为android.net.conn.CONNECTIVITY_CHANGE的action。因为每当网络状态发生变化时，系统就会发出一条值为android.net.conn.CONNECTIVITY_CHANG的广播。<br>注：最后要记得，动态注册的广播接收器一定要取消注册才行。<br>运行程序，就可以了。<br>不过只是提醒网络发生变化还不够人性化，为了能够准确的告诉用户当前是有网络还是没有网络，我们还需要对上述代码进一步优化，修改netWorkChangeReceiver中的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class netWorkChangeReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        //通过getSystemService()方法得到connectionManager这个系统服务类，专门用于管理网络连接</span><br><span class="line">        ConnectivityManager connectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line">        NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();</span><br><span class="line">        if(networkInfo != null &amp;&amp; networkInfo.isAvailable())&#123;</span><br><span class="line">            Toast.makeText(context, &quot;network is available&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            Toast.makeText(context, &quot;network is unavailable&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上方代码解释：<br>06行：在onReceive()方法中，首先通过通过getSystemService()方法得到connectionManager这个系统服务类，专门用于管理网络连接。<br>07行：然后调用它的getActiveNetworkInfo()方法可以得到NetworkInfo的实例，接着调用NetworkInfo的isAvailable()方法，就可以判断当前是否有网络了，最后通过Toast提示用户。<br>另外，查询系统的网络状态是需要申明权限的，打开清单文件，添加如下权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>注：访问<a target="_blank" rel="noopener" href="http://developer.android.com/reference/android/Manifest.permission.html%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8BAndroid%E7%B3%BB%E7%BB%9F%E6%89%80%E6%9C%89%E7%9A%84%E5%8F%AF%E5%A3%B0%E6%98%8E%E7%9A%84%E6%9D%83%E9%99%90%E3%80%82">http://developer.android.com/reference/android/Manifest.permission.html可以查看Android系统所有的可声明的权限。</a><br>现在运行程序，就可以了。<br>上方程序完整版代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package com.example.m05_broadcastreceiver01;</span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.content.BroadcastReceiver;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.IntentFilter;</span><br><span class="line">import android.net.ConnectivityManager;</span><br><span class="line">import android.net.NetworkInfo;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line">    private netWorkChangeReceiver netWorkChangeReceiver;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        // 动态注册：创建一个IntentFilter的实例，添加网络变化的广播</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        intentFilter.addAction(&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;);</span><br><span class="line">        // 创建NetWorkChangeReceiver的实例，并调用registerReceiver()方法进行注册</span><br><span class="line">        netWorkChangeReceiver = new netWorkChangeReceiver();</span><br><span class="line">        registerReceiver(netWorkChangeReceiver, intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line">    // 取消注册，一定要记得，不然系统会报错</span><br><span class="line">    @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(netWorkChangeReceiver);</span><br><span class="line">    &#125;</span><br><span class="line">    class netWorkChangeReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            //通过getSystemService()方法得到connectionManager这个系统服务类，专门用于管理网络连接</span><br><span class="line">            ConnectivityManager connectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);</span><br><span class="line">            NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();</span><br><span class="line">            if(networkInfo != null &amp;&amp; networkInfo.isAvailable())&#123;</span><br><span class="line">                Toast.makeText(context, &quot;network is available&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                Toast.makeText(context, &quot;network is unavailable&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>静态注册实现开机启动：<br>动态注册的方式比较灵活，但缺点是：必须在程序启动之后才能接收到广播，因为注册的逻辑是写在onCreate()方法中的。为了让程序在未启动的情况下就能接收到广播，这里就需要使用到静态注册。<br>这里我们准备让程序接收一条开机广播，当收到这条广播时，就可以在onReceive()方法中执行相应的逻辑，从而实现开机启动的功能。<br>新建一个类：BootCompleteReceiver，让他继承BroadcastReceiver，在onReceive()方法中简单地Toast一下，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class BootCompleteReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        Toast.makeText(context, &quot;Boot Complete&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，这里不再使用内部类的方式来定义广播接收器，因为稍后我们需要在清单文件AndroidManifest.xml中将这个广播接收器的类名注册进去。<br>然后修改清单文件AndroidManifest.xml，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-sdk</span><br><span class="line">        android:minSdkVersion=&quot;8&quot;</span><br><span class="line">        android:targetSdkVersion=&quot;16&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;application</span><br><span class="line">        android:allowBackup=&quot;true&quot;</span><br><span class="line">        android:icon=&quot;@drawable/ic_launcher&quot;</span><br><span class="line">        android:label=&quot;@string/app_name&quot;</span><br><span class="line">        android:theme=&quot;@style/AppTheme&quot; &gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:name=&quot;com.example.m05_broadcastreceiver01.MainActivity&quot;</span><br><span class="line">            android:label=&quot;@string/app_name&quot; &gt;</span><br><span class="line">            &lt;intent-filter&gt;</span><br><span class="line">                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</span><br><span class="line"></span><br><span class="line">                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;receiver android:name=&quot;.BootCompleteReceiver&quot;&gt;</span><br><span class="line">            &lt;intent-filter &gt;</span><br><span class="line">                &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot;/&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line">        &lt;/receiver&gt;</span><br><span class="line">    &lt;/application&gt;</span><br></pre></td></tr></table></figure>
+<p>代码解释如下：<br>终于，<application>标签内多了个子标签<receiver>，所有的静态注册的广播接收器都是在这里进行注册的。<br>22行：name中为广播接收器的名字<br>24行：想要接收的广播。Android系统启动完成后，会发出这条名为android.intent.action.BOOT_COMPLETED的广播。<br>05行：监听系统开机广播需要声明权限。<br>运行程序后，将手机关机重启，就能收到这条广播了。</receiver></application></p>
+</li>
 </ol>
-<p><strong>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</strong></p>
+<h3 id="三-发送自定义广播"><a href="#三-发送自定义广播" class="headerlink" title="三.发送自定义广播"></a>三.发送自定义广播</h3><ol>
+<li><p>发送标准广播　　<br>新建工程文件。在发广播之前，我们先定义一个广播接收器来接收此广播才行。因此，新建一个类：MyBroadcastReceiver，让他继承BroadcastReceiver，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        Toast.makeText(context, &quot;received in MyBroadcastReceiver&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，当MyBroadcastReceiver 收到自定义的广播时，就会执行onReceive()方法中的逻辑，弹出一个Toast。<br>紧接着，要在清单文件AndroidManifest.xml中对这个广播接收器进行注册：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    android:allowBackup=&quot;true&quot;</span><br><span class="line">    android:icon=&quot;@drawable/ic_launcher&quot;</span><br><span class="line">    android:label=&quot;@string/app_name&quot;</span><br><span class="line">    android:theme=&quot;@style/AppTheme&quot; &gt;</span><br><span class="line">    &lt;activity</span><br><span class="line">        android:name=&quot;com.example.m05_broadcastreceiver02.MainActivity&quot;</span><br><span class="line">        android:label=&quot;@string/app_name&quot; &gt;</span><br><span class="line">        &lt;intent-filter&gt;</span><br><span class="line">            &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</span><br><span class="line"> </span><br><span class="line">            &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</span><br><span class="line">        &lt;/intent-filter&gt;</span><br><span class="line">    &lt;/activity&gt;</span><br><span class="line">    </span><br><span class="line">   &lt;receiver android:name=&quot;.MyBroadcastReceiver&quot;&gt;</span><br><span class="line">        &lt;intent-filter &gt;</span><br><span class="line">            &lt;action android:name=&quot;com.example.m05_broadcastreceiver02.MY_BROADCAST&quot;/&gt;</span><br><span class="line">        &lt;/intent-filter&gt;</span><br><span class="line">    &lt;/receiver&gt;</span><br><span class="line">&lt;/application&gt;</span><br></pre></td></tr></table></figure>
+<p>代码解释：<br>18行：让MyBroadcastReceiver接收一条值为om.example.m05_broadcastreceiver02.MY_BROADCAST的广播，因此待会儿在发送广播的时候，我们就需要发出这样的一条广播。<br>紧接着，修改activity.xml中的代码，添加一个按钮Button。<br>然后，修改MainActivity.java中的代码，添加Button的监听事件：点击按钮时，发送广播</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Button button1=(Button)findViewById(R.id.button1);</span><br><span class="line">button1.setOnClickListener(new OnClickListener() &#123;            </span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        Intent intent =new Intent(&quot;com.example.m05_broadcastreceiver02.MY_BROADCAST&quot;);</span><br><span class="line">        sendBroadcast(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>总结：可以看到，点击按钮时，发送com.example.m05_broadcastreceiver02.MY_BROADCAST这条广播，这样，所有能够监听com.example.m05_broadcastreceiver02.MY_BROADCAST这条广播的广播接收器就都会同时收到消息，此时发出去的就是一条标准广播，即无序广播。所以接下来就需要讲到有序广播。</p>
+</li>
+<li><p>发送有序广播：<br>广播是一种可以跨进程的通信方式，其他应用程序是可以收到的。现在我们来发一条有序广播。<br>有序广播不仅有先后顺序，而且前面的广播还可以将后面的广播截断。<br>在3.1的代码基础之上，将按钮的监听事件修改如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Button button1=(Button)findViewById(R.id.button1);</span><br><span class="line">button1.setOnClickListener(new OnClickListener() &#123;            </span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        Intent intent =new Intent(&quot;com.example.m05_broadcastreceiver02.MY_BROADCAST&quot;);</span><br><span class="line">        sendOrderedBroadcast(intent, null);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>即将06行代码修改一下，将sendBroadcast()方法改为sendOrderedBroadcast()方法，sendOrderedBroadcast()方法接收两个参数，第二个参数是一个与权限相关的字符串，这里传入null即可。<br>紧接着，修改清单文件AndroidManifest.xml中对广播接收器的注册，设置优先级：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;receiver android:name=&quot;.MyBroadcastReceiver&quot;&gt;</span><br><span class="line">    &lt;intent-filter android:priority=&quot;100&quot;&gt;</span><br><span class="line">       &lt;action android:name=&quot;com.example.m05_broadcastreceiver02.MY_BROADCAST&quot;/&gt;</span><br><span class="line">    &lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<p>即添加第02行代码。可以看到，通过android:priority属性给广播接收器设置了优先级。这个属性的范围在-1000到1000，数值越大，优先级越高。<br>接下来，如果想要拦截这个广播，防止让后面的广播接收器也接收到了这个广播。可以修改MyBroadcastReceiver中的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        Toast.makeText(context, &quot;received in MyBroadcastReceiver&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">        abortBroadcast();//拦截广播，防止后面的接收到</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即添加第06行代码。如果在onReceive()方法中调用了abortBroadcast()方法，就表示是将这条广播拦截，后面的广播接收器将无法再接收到。<br>特别关注：<br>广播接收器的生命周期：关键在于BroadcastReceiver中的onReceive()方法，从onReceive()里的第一行代码开始，onReceive()里的最后一行代码结束。<br>一个广播到来的时候，用什么方式提醒用户是最友好的呢？第一种方式是吐司，第二种方式是通知。注：不要使用对话框，以免中断了用户正在进行的操作。</p>
+</li>
+</ol>
+<h3 id="四-使用本地广播："><a href="#四-使用本地广播：" class="headerlink" title="四.使用本地广播："></a>四.使用本地广播：</h3><p>之前我们发送和接收的广播全部都是属于全局广播，即发出去的广播可以被其他任何应用程序接收到，并且我们也可以接收来自于其他任何应用程序的广播。这样一来，必然会造成安全问题。于是便有了本地广播：即只能在本应用程序中发送和接收广播。这就要使用到了LocalBroadcastManager这个类来对广播进行管理。<br>我们修改2.1中动态注册广播接收器的代码，即修改MainActivity.java中的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">package com.example.broadcasttest;</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.content.BroadcastReceiver;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.IntentFilter;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.support.v4.content.LocalBroadcastManager;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.View.OnClickListener;</span><br><span class="line">import android.widget.Button;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line">    private IntentFilter intentFilter;</span><br><span class="line"></span><br><span class="line">    private LocalReceiver localReceiver;</span><br><span class="line"></span><br><span class="line">    private LocalBroadcastManager localBroadcastManager;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        //通过LocalBroadcastManager的getInstance()方法得到它的一个实例</span><br><span class="line">        localBroadcastManager = LocalBroadcastManager.getInstance(this);</span><br><span class="line">        Button button = (Button) findViewById(R.id.button);</span><br><span class="line">        button.setOnClickListener(new OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                Intent intent = new Intent(</span><br><span class="line">                        &quot;com.example.broadcasttest.LOCAL_BROADCAST&quot;);</span><br><span class="line">                localBroadcastManager.sendBroadcast(intent);//调用sendBroadcast()方法发送广播</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        //动态注册本地的广播接收器</span><br><span class="line">        intentFilter = new IntentFilter();</span><br><span class="line">        intentFilter.addAction(&quot;com.example.broadcasttest.LOCAL_BROADCAST&quot;);</span><br><span class="line">        localReceiver = new LocalReceiver();</span><br><span class="line">        localBroadcastManager.registerReceiver(localReceiver, intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        localBroadcastManager.unregisterReceiver(localReceiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class LocalReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            Toast.makeText(context, &quot;received local broadcast&quot;,</span><br><span class="line">                    Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：本地广播是无法通过静态注册的方式来接收的。其实也完全可以理解，因为静态注册主要就是为了让程序在未启动的情况下也能收到广播。而发送本地广播时，我们的程序肯定是已经启动了，没有必要使用到静态注册的功能。</p>
+<h3 id="五-各种各样的广播："><a href="#五-各种各样的广播：" class="headerlink" title="五.各种各样的广播："></a>五.各种各样的广播：</h3><p>在android中有很多系统自带的intent.action，通过监听这些事件我们可以完成很多功能。</p>
 <ol>
-<li>具有此标记位的 Activity 不会出如今历史 Activity 的列表中</li>
-<li>使用场景：当某些情况下我们不希望用户通过历史列表回到 Activity 时，此标记位便体现了它的效果。</li>
-<li>它等同于在 xml 中指定 Activity 的属性.</li>
+<li>开机：<br>String BOOT_COMPLETED_ACTION 广播：在系统启动后。这个动作被广播一次（只有一次）。监听： <code>android.intent.action.BOOT_COMPLETED</code></li>
+<li>电话拨入：<br>String ANSWER_ACTION 动作：处理拨入的电话。监听： <code>android.intent.action.ANSWER</code></li>
+<li>电量变化：<br>String BATTERY_CHANGED_ACTION 广播：充电状态，或者电池的电量发生变化。监听： <code>android.intent.action.BATTERY_CHANGED</code></li>
+<li>日期改变：<br>String DATE_CHANGED_ACTION 广播：日期被改变。 监听：<code>android.intent.action.DATE_CHANGED</code></li>
+<li>取消更新下载：<br>String FOTA_CANCEL_ACTION 广播：取消所有被挂起的 (pending) 更新下载。 监听：<code>android.server.checkin.FOTA_CANCEL</code></li>
+<li>更新开始安装：<br>String FOTA_READY_ACTION 广播：更新已经被下载 可以开始安装。监听 <code>android.server.checkin.FOTA_READY</code></li>
+<li>主屏幕：<br>String HOME_CATEGORY 类别：主屏幕 (activity)。设备启动后显示的第一个 activity。 监听：”android.intent.category.HOME&#96;</li>
+<li>新应用：<br>String PACKAGE_ADDED_ACTION 广播：设备上新安装了一个应用程序包。监听： <code>android.intent.action.PACKAGE_ADDED</code></li>
+<li>删除应用：<br>String PACKAGE_REMOVED_ACTION 广播：设备上删除了一个应用程序包。监听： <code>android.intent.action.PACKAGE_REMOVED</code></li>
+<li>屏幕关闭：<br>String SCREEN_OFF_ACTION 广播：屏幕被关闭。监听： <code>android.intent.action.SCREEN_OFF</code></li>
+<li>屏幕开启：<br>String SCREEN_ON_ACTION 广播：屏幕已经被打开。 监听：<code>android.intent.action.SCREEN_ON</code></li>
+<li>时区改变：<br>String TIMEZONE_CHANGED_ACTION 广播：时区已经改变。监听： <code>android.intent.action.TIMEZONE_CHANGED</code></li>
+<li>时间改变：<br>String TIME_CHANGED_ACTION 广播：时间已经改变（重新设置）。 <code>android.intent.action.TIME_SET</code></li>
+<li>时间流逝：<br>String TIME_TICK_ACTION 广播：当前时间已经变化（正常的时间流逝）。 <code>android.intent.action.TIME_TICK</code></li>
+<li>进入大容量存储模式：<br>String UMS_CONNECTED_ACTION 广播：设备进入 USB 大容量存储模式。 <code>android.intent.action.UMS_CONNECTED</code></li>
+<li>退出大容量存储模式：<br>String UMS_DISCONNECTED_ACTION 广播：设备从 USB 大容量存储模式退出。 <code>android.intent.action.UMS_DISCONNECTED</code></li>
+<li>壁纸改变：<br>String WALLPAPER_CHANGED_ACTION 广播：系统的墙纸已经改变。 <code>android.intent.action.WALLPAPER_CHANGED</code></li>
+<li>web搜索：<br>String WEB_SEARCH_ACTION 动作：执行 web 搜索。 <code>android.intent.action.WEB_SEARCH</code></li>
+<li>网络变化：<br>String CONNECTIVITY_CHANGE_ACTION 动作：网络变化。<code>android.intent.action.CONNECTIVITY_CHANGE_ACTION</code></li>
 </ol>
-<h3 id="六-onNewInstent-方法什么时候执行"><a href="#六-onNewInstent-方法什么时候执行" class="headerlink" title="六.onNewInstent()方法什么时候执行"></a>六.onNewInstent()方法什么时候执行</h3><img src="/2020/05/19/2021-03-08-Activity%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/652.png" class title="This is an example image">
-
-<p>这个是启动模式中的了，当此 Activity 的实例已经存在，并且此时的启动模式为 SingleTask 和 SingleInstance ，另外当这个实例位于栈顶且启动模式为 SingleTop 时也会触发 onNewInstent()。</p>
-<h3 id="七-启动流程"><a href="#七-启动流程" class="headerlink" title="七.启动流程"></a>七.启动流程</h3><ul>
-<li>注意！这里并不是要回答 Activity 的生命周期！</li>
-<li><a target="_blank" rel="noopener" href="https://juejin.im/entry/58f5b68e61ff4b005807ab47">3 分钟看懂 Activity 启动流程</a></li>
+<h3 id="六-实例：使用动态注册，监听手机的电量变化。"><a href="#六-实例：使用动态注册，监听手机的电量变化。" class="headerlink" title="六.实例：使用动态注册，监听手机的电量变化。"></a>六.实例：使用动态注册，监听手机的电量变化。</h3><p>完整版代码如下：</p>
+<ul>
+<li><p>activity_main.xml代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</span><br><span class="line">    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</span><br><span class="line">   android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</span><br><span class="line">    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</span><br><span class="line">    tools:context=&quot;.MainActivity&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/textView1&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;30dp&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MainActivity.java的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">package com.example.m05_broadcastreceiver02;</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.content.BroadcastReceiver;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.IntentFilter;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    private BatteryBroadcastReceiver batteryBroadcastReceiver;</span><br><span class="line">    private TextView textView;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        textView=(TextView)findViewById(R.id.textView1);</span><br><span class="line">        </span><br><span class="line">        //动态注册监听电量的广播接收器</span><br><span class="line">        IntentFilter intentFilter = new IntentFilter();</span><br><span class="line">        intentFilter.addAction(&quot;android.intent.action.BATTERY_CHANGED&quot;);</span><br><span class="line">        batteryBroadcastReceiver = new BatteryBroadcastReceiver();</span><br><span class="line">        registerReceiver(batteryBroadcastReceiver, intentFilter);       </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //取消注册监听电量的广播接收器</span><br><span class="line">    @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        unregisterReceiver(batteryBroadcastReceiver);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //新建一个广播接收器，监听电量的变化</span><br><span class="line">    public class BatteryBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            if(intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)) &#123;</span><br><span class="line">                //获取当前电量</span><br><span class="line">                int level = intent.getIntExtra(&quot;level&quot;, 0);</span><br><span class="line">                //电量的总刻度</span><br><span class="line">                int scale = intent.getIntExtra(&quot;scale&quot;, 100);</span><br><span class="line">                textView.setText(&quot;电池电量为&quot;+((level*100) / scale)+&quot;%&quot;);</span><br><span class="line">                </span><br><span class="line">                //当电量低时，可以进行一些操作，例如弹出通知等</span><br><span class="line">/*                if(level&lt;15)&#123;</span><br><span class="line">                    do something</span><br><span class="line">                &#125;*/</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;         </span><br><span class="line">   &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>紧接着，在清单文件中进行权限声明：</p>
+<uses-permission android:name="android.permission.BATTERY_STATS">
+MainActivity.java的代码解释如下：
+40至45行：固定代码，用于获取当前电量
+48至50行：当电量低时，可以进行一些操作，例如弹出通知等
+</uses-permission></li>
+<li><p>运行后，界面如下：</p>
+<img src="/2020/05/26/2021-03-11-%E5%B9%BF%E6%92%AD%E5%9F%BA%E7%A1%80/img.png" class title="This is an example image"></li>
 </ul>
 
       
@@ -363,7 +330,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/71/">71</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/">73</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
