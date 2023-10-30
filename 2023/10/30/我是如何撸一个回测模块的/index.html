@@ -19,25 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="万里苍穹，星辰大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="自由侠">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="这是过去一直是困扰着我的一个模块，本月底交易系统的更新完成之后，回测也正式完成初始功能的开发，现在我就简单梳理一下过程。 1234567版本:V2开发时间:2023&#x2F;6&#x2F;26 - 2023&#x2F;10&#x2F;231. 增加自定义指标模块2. 增加震荡、趋势仓位管理3. 增加保存K线以及价格数据4. 增加完整的回测模块5. 可完整脱离TV自运行  1.回测功能的作用要相信一个策略是否能盈利，最起码要告诉我它过去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我是如何撸一个回测模块的">
+<meta property="og:url" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/index.html">
 <meta property="og:site_name" content="自由侠">
-<meta property="og:description" content="万里苍穹，星辰大海">
+<meta property="og:description" content="这是过去一直是困扰着我的一个模块，本月底交易系统的更新完成之后，回测也正式完成初始功能的开发，现在我就简单梳理一下过程。 1234567版本:V2开发时间:2023&#x2F;6&#x2F;26 - 2023&#x2F;10&#x2F;231. 增加自定义指标模块2. 增加震荡、趋势仓位管理3. 增加保存K线以及价格数据4. 增加完整的回测模块5. 可完整脱离TV自运行  1.回测功能的作用要相信一个策略是否能盈利，最起码要告诉我它过去">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/1.png">
+<meta property="og:image" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/2.png">
+<meta property="og:image" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/3.png">
+<meta property="og:image" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/4.png">
+<meta property="og:image" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/5.png">
+<meta property="article:published_time" content="2023-10-30T03:32:16.000Z">
+<meta property="article:modified_time" content="2023-10-30T03:40:56.333Z">
 <meta property="article:author" content="项勇">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/1.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/","path":"2023/10/30/我是如何撸一个回测模块的/","title":"我是如何撸一个回测模块的"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>自由侠</title>
+<title>我是如何撸一个回测模块的 | 自由侠</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=351441835"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":351441835,"only_pageview":false}</script>
@@ -70,7 +78,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">自由侠</h1>
+      <p class="site-title">自由侠</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -92,7 +100,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -105,6 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9B%9E%E6%B5%8B%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">1.回测功能的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="nav-number">2.</span> <span class="nav-text">2.数据的获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%81%8D%E5%8E%86%E6%95%B0%E6%8D%AE"><span class="nav-number">3.</span> <span class="nav-text">3.遍历数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%B6%E4%BB%96"><span class="nav-number">4.</span> <span class="nav-text">4.其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1%E7%AD%96%E7%95%A5%E9%9C%80%E8%A6%81%E5%AF%B9%E5%BA%94%E5%A2%9E%E5%8A%A0%E4%B8%80%E7%A7%8D%E6%B5%8B%E8%AF%95%E7%8A%B6%E6%80%81"><span class="nav-number">4.1.</span> <span class="nav-text">4.1策略需要对应增加一种测试状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2%E6%97%B6%E9%97%B4%E9%99%90%E5%88%B6"><span class="nav-number">4.2.</span> <span class="nav-text">4.2时间限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">4.3.</span> <span class="nav-text">4.3测试结果分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%90%8E%E7%BB%AD%E7%9A%84%E5%8D%87%E7%BA%A7%E6%96%B9%E5%90%91"><span class="nav-number">4.4.</span> <span class="nav-text">5.后续的升级方向</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -142,16 +151,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -165,13 +175,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 自由侠">
+      <meta itemprop="name" content="我是如何撸一个回测模块的 | 自由侠">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/" class="post-title-link" itemprop="url">我是如何撸一个回测模块的</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          我是如何撸一个回测模块的
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -209,7 +219,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>这是过去一直是困扰着我的一个模块，本月底交易系统的更新完成之后，回测也正式完成初始功能的开发，现在我就简单梳理一下过程。</p>
+        <p>这是过去一直是困扰着我的一个模块，本月底交易系统的更新完成之后，回测也正式完成初始功能的开发，现在我就简单梳理一下过程。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">版本:V2</span><br><span class="line">开发时间:2023/6/26 - 2023/10/23</span><br><span class="line">1. 增加自定义指标模块</span><br><span class="line">2. 增加震荡、趋势仓位管理</span><br><span class="line">3. 增加保存K线以及价格数据</span><br><span class="line">4. 增加完整的回测模块</span><br><span class="line">5. 可完整脱离TV自运行</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-回测功能的作用"><a href="#1-回测功能的作用" class="headerlink" title="1.回测功能的作用"></a>1.回测功能的作用</h3><p>要相信一个策略是否能盈利，最起码要告诉我它过去是盈利的。</p>
@@ -253,7 +263,6 @@
 <p>后续的改进方向，首先是优化代码，优化参数的输入方式，提升整体的效率；</p>
 <p>然后是需要得到更多的回测数据，例如盈亏本比，盈利因子，回测率，夏普比例。</p>
 
-      
     </div>
 
     
@@ -261,8 +270,18 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/" rel="prev" title="交易月报-第8期">
+                  <i class="fa fa-chevron-left"></i> 交易月报-第8期
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -270,10 +289,9 @@
 
 
 
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/">75</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
+
+    <div class="comments" id="SOHUCS" sid="b49e12131c39032468bddc8b9839eadb"></div>
 </div>
   </main>
 
