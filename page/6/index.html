@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/" class="post-title-link" itemprop="url">交易月报-第8期</a>
+          <a href="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/" class="post-title-link" itemprop="url">我是如何撸一个回测模块的</a>
         </h2>
 
         <div class="post-meta-container">
@@ -180,15 +180,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-08-30 10:57:24" itemprop="dateCreated datePublished" datetime="2023-08-30T10:57:24+08:00">2023-08-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-30 11:42:24" itemprop="dateModified" datetime="2023-10-30T11:42:24+08:00">2023-10-30</time>
+      <time title="创建时间：2023-10-30 11:32:16 / 修改时间：11:40:56" itemprop="dateCreated datePublished" datetime="2023-10-30T11:32:16+08:00">2023-10-30</time>
     </span>
 
   
@@ -200,8 +194,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="交易月报-第8期" href="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::692127db8cbb298d40860ed1a560329a" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="我是如何撸一个回测模块的" href="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::b49e12131c39032468bddc8b9839eadb" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -215,53 +209,49 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="一-今日行情："><a href="#一-今日行情：" class="headerlink" title="一.今日行情："></a>一.今日行情：</h3><ul>
-<li><p>BTC汇率(USD):27195</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/1.jpg" class title="This is an example image">
-</li>
-<li><p>美元汇率(CNY):7.29</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/2.jpg" class title="This is an example image"></li>
-</ul>
-<h3 id="二-仓位统计："><a href="#二-仓位统计：" class="headerlink" title="二.仓位统计："></a>二.仓位统计：</h3><h4 id="1-账户动态"><a href="#1-账户动态" class="headerlink" title="1.账户动态"></a>1.账户动态</h4><img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/3.jpg" class title="This is an example image">
+          <p>这是过去一直是困扰着我的一个模块，本月底交易系统的更新完成之后，回测也正式完成初始功能的开发，现在我就简单梳理一下过程。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">版本:V2</span><br><span class="line">开发时间:2023/6/26 - 2023/10/23</span><br><span class="line">1. 增加自定义指标模块</span><br><span class="line">2. 增加震荡、趋势仓位管理</span><br><span class="line">3. 增加保存K线以及价格数据</span><br><span class="line">4. 增加完整的回测模块</span><br><span class="line">5. 可完整脱离TV自运行</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-月底调仓"><a href="#2-月底调仓" class="headerlink" title="2.月底调仓"></a>2.月底调仓</h4><p>移除N3</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/4.jpg" class title="This is an example image">
+<h3 id="1-回测功能的作用"><a href="#1-回测功能的作用" class="headerlink" title="1.回测功能的作用"></a>1.回测功能的作用</h3><p>要相信一个策略是否能盈利，最起码要告诉我它过去是盈利的。</p>
+<p>这个就是回测功能，之前一直只使用TradingView的交易策略，就是因为有一个功能完善的回测的功能。</p>
+<h3 id="2-数据的获取"><a href="#2-数据的获取" class="headerlink" title="2.数据的获取"></a>2.数据的获取</h3><p>之前，回测功能运行逻辑一直还没在脑子里形成概念，主要是因为没有可用的实时数据，根据币安的api文档，我发现其实可以利用获取K线数据的方法，获取过去短时间内的价格数据。</p>
+<p>把这个获取K线的时间周期interval改为‘1S’，就可以获取过去一段时间里，每秒交易对的价格数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f&#x27;https://api.binance.com/api/v3/klines?symbol=&#123;symbol&#125;&amp;interval=&#123;interval&#125;&amp;limit=1&#x27;</span><br></pre></td></tr></table></figure>
+<p>然而，币安api只能获取最多1000条的历史K线数据，于是我决定从当前开始，实时收录好需要的交易对每秒的历史数据（包括历史K线数据）了。</p>
+<p>然后我开一个每秒循环的线程，获取价格的api改为获取当前价格的api，从10月13日开始收录一些自己想要的交易对的价格数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url = f&#x27;https://api.binance.com/api/v3/ticker/price?symbol=&#123;symbol&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<p>这是数据包</p>
+<img src="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/1.png" class title="This is an example image">
 
+<p>有了价格数据包，用同样的方法，自然也可以获取到K线数据包</p>
+<img src="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/2.png" class title="This is an example image">
 
-<h3 id="三-月资产浮动曲线（包含资金转移，盈亏）："><a href="#三-月资产浮动曲线（包含资金转移，盈亏）：" class="headerlink" title="三.月资产浮动曲线（包含资金转移，盈亏）："></a>三.月资产浮动曲线（包含资金转移，盈亏）：</h3><ul>
-<li><p>仓位N1</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/11.jpg" class title="This is an example image">
-</li>
-<li><p>仓位N2</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/12.jpg" class title="This is an example image">
-</li>
-<li><p>仓位N3</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/13.jpg" class title="This is an example image">
-</li>
-<li><p>仓位N4</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/14.jpg" class title="This is an example image">
-</li>
-<li><p>仓位N5</p>
-<img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/15.jpg" class title="This is an example image"></li>
-</ul>
-<h3 id="四-广告"><a href="#四-广告" class="headerlink" title="四.广告"></a>四.广告</h3><img src="/2023/08/30/%E4%BA%A4%E6%98%93%E6%9C%88%E6%8A%A5-%E7%AC%AC8%E6%9C%9F/18.jpg" class title="This is an example image">
+<h3 id="3-遍历数据"><a href="#3-遍历数据" class="headerlink" title="3.遍历数据"></a>3.遍历数据</h3><p>有了数据后，流程突然就闪现在脑海里，我通过遍历价格数据，然后根据时间戳是不是就可以获取对应的K线数据，再传入指标，通过指标和实时价格，那不就可以模拟出过去的数据了！</p>
+<p>说干就干，遍历时间数据包，然后改造一下策略代码，将时间和对应价格的数据传进来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">price_data = pd.read_csv(&#x27;./data/&#x27;+symbol+&#x27;-1s.csv&#x27;)</span><br><span class="line"></span><br><span class="line">for row in price_data.itertuples(index=False):</span><br><span class="line">          # 获取到文档的时间戳和开盘价</span><br><span class="line">        timestamp = row.timestamp</span><br><span class="line">        last_price = row.open</span><br><span class="line">          #原时间，用于给打印附加时间</span><br><span class="line">        current_datetime = datetime.datetime.strptime(timestamp, &#x27;%Y-%m-%d %H:%M:%S&#x27;) </span><br><span class="line"></span><br><span class="line">        update_price_retest(last_price,str(current_datetime))</span><br></pre></td></tr></table></figure>
+<p>然后就是K线数据的获取</p>
+<p>模拟实际的运行状态，需要在对应的时间节点获取对应K线的数据传入指标，得到指标结果。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if  current_time.hour in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] and current_time.minute == 0 and current_time.second &gt;= 0 and current_time.second &lt;= 3 and timestamp_test - nonelast_update_time &gt;= 5:</span><br><span class="line">            nonelast_update_time = timestamp_test</span><br><span class="line">            current_datetime = str(current_datetime)</span><br></pre></td></tr></table></figure>
+<p>在遍历价格的循环内，我通过如上方法，每当时间第一次走到整时时会触发一次，然后在触发的方法内，在获取1H 4H 1D的K线数据，以1H为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> # 1h的判断</span><br><span class="line">if current_time.hour in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]:</span><br><span class="line">                current_datetime_test = current_datetime_test.replace(second=0) #先把秒置为0</span><br><span class="line">                current_datetime_1h = current_datetime_test</span><br><span class="line">                current_datetime_1h -= datetime.timedelta(hours=1) #再减1时，用于拿到上个收线K</span><br><span class="line">                regex_pattern = f&#x27;^&#123;current_datetime_1h&#125;&#x27;</span><br><span class="line">                filtered_data_1h = kline_data_1h.loc[kline_data_1h[0].str.contains(regex_pattern)]  </span><br><span class="line">                filtered_data_1h.loc[:, &#x27;cumsum&#x27;] = filtered_data_1h.index.to_series().cumsum()</span><br><span class="line">                response_pd_1h = kline_data_1h.loc[0:filtered_data_1h[&#x27;cumsum&#x27;].max()].copy()</span><br><span class="line">                response_pd_1h.columns = response_pd_1h.iloc[0]</span><br><span class="line">                response_pd_1h = response_pd_1h[1:].reset_index(drop=True)</span><br><span class="line">                buildIndicator_1h(response_pd_1h,current_datetime,logger_1h)</span><br></pre></td></tr></table></figure>
+<p>代码最终获取的response_pd_1h 即为每个整时状态下，需要获取的K线数据，过程中也是遇到很多坑，包括时差问题，数据问题。</p>
+<p>在方法中，通过传入的pd数据，就可根据指标计算出需要的结果，再传入到策略中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update_direction_retest(trend_KDJ,str(datetime))</span><br></pre></td></tr></table></figure>
+<p>至此，回测需要的两个最重要的数据，价格和K线数据，就完成了获取，完善好这个，整个回测功能突然就感觉差不多了。</p>
+<h3 id="4-其他"><a href="#4-其他" class="headerlink" title="4.其他"></a>4.其他</h3><h4 id="4-1策略需要对应增加一种测试状态"><a href="#4-1策略需要对应增加一种测试状态" class="headerlink" title="4.1策略需要对应增加一种测试状态"></a>4.1策略需要对应增加一种测试状态</h4><h4 id="4-2时间限制"><a href="#4-2时间限制" class="headerlink" title="4.2时间限制"></a>4.2时间限制</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">end_timestamp   = &#x27;2024-10-11 2:40:41&#x27;</span><br><span class="line">start_datetime = datetime.datetime.strptime(start_timestamp, &#x27;%Y-%m-%d %H:%M:%S&#x27;)</span><br><span class="line">end_datetime = datetime.datetime.strptime(end_timestamp, &#x27;%Y-%m-%d %H:%M:%S&#x27;)</span><br></pre></td></tr></table></figure>
+<p>通过条件限制，就会只在对应的时间范围内测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f start_datetime &lt;= current_datetime &lt;= end_datetime:</span><br></pre></td></tr></table></figure>
+<h4 id="4-3测试结果分析"><a href="#4-3测试结果分析" class="headerlink" title="4.3测试结果分析"></a>4.3测试结果分析</h4><p>我目前是同步会测试将近100组测试参数，同时测试两个交易对的情况下，回测一个月的数据，将近需要30分钟。</p>
+<img src="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/3.png" class title="This is an example image">
 
-<h4 id="合作白皮书："><a href="#合作白皮书：" class="headerlink" title="合作白皮书："></a>合作白皮书：</h4><h5 id="a-交易机器人："><a href="#a-交易机器人：" class="headerlink" title="a.交易机器人："></a>a.交易机器人：</h5><ol>
-<li>主攻币安BTC的U本位合约</li>
-<li>托管交易实盘-图1</li>
-<li>交易风格:趋势策略（震荡策略正在测试）</li>
-<li>交易杠杆:不超过3倍</li>
-</ol>
-<h5 id="b-要求您"><a href="#b-要求您" class="headerlink" title="b.要求您:"></a>b.要求您:</h5><ol>
-<li>币安跟单 或 提供币安api托管</li>
-<li>闲置资金交易</li>
-<li>不急于赚钱、回本、暴富</li>
-<li>仓位托管给我后，不能手动操作</li>
-</ol>
-<h5 id="c-合作佣金"><a href="#c-合作佣金" class="headerlink" title="c.合作佣金:"></a>c.合作佣金:</h5><ol>
-<li>月盈利10%</li>
-<li>如果出现月亏损，亏损额会纳入接下来的周期进行收益结算</li>
-</ol>
+<img src="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/4.png" class title="This is an example image">
+
+<p>通过结果可以很清晰地知道不同的测试组过去一段时间内的运行情况，当然，拿到好的测试参数也不用高兴太早，考虑滑点问题，任何回测数据也是仅供参数。</p>
+<h4 id="5-后续的升级方向"><a href="#5-后续的升级方向" class="headerlink" title="5.后续的升级方向"></a>5.后续的升级方向</h4><p>目前回测功能是完备的，但是整体还是灵活性不够，包括参数的更改之类的，整体目前也有2300+行代码，太多了。</p>
+<img src="/2023/10/30/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E6%92%B8%E4%B8%80%E4%B8%AA%E5%9B%9E%E6%B5%8B%E6%A8%A1%E5%9D%97%E7%9A%84/5.png" class title="This is an example image">
+
+<p>后续的改进方向，首先是优化代码，优化参数的输入方式，提升整体的效率；</p>
+<p>然后是需要得到更多的回测数据，例如盈亏本比，盈利因子，回测率，夏普比例。</p>
 
       
     </div>
@@ -281,7 +271,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -293,7 +283,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
