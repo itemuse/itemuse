@@ -117,7 +117,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/30/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/" class="post-title-link" itemprop="url">使用加密货币续费TradingView</a>
+          <a href="/2022/11/30/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/" class="post-title-link" itemprop="url">策略pine代码拆解学习（1）strategy和src</a>
         </h2>
 
         <div class="post-meta-container">
@@ -181,14 +181,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-11-25 14:06:20" itemprop="dateCreated datePublished" datetime="2022-11-25T14:06:20+08:00">2022-11-25</time>
+      <time title="创建时间：2022-11-30 14:18:47" itemprop="dateCreated datePublished" datetime="2022-11-30T14:18:47+08:00">2022-11-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-01-31 14:17:10" itemprop="dateModified" datetime="2023-01-31T14:17:10+08:00">2023-01-31</time>
+      <time title="修改时间：2023-01-31 15:35:41" itemprop="dateModified" datetime="2023-01-31T15:35:41+08:00">2023-01-31</time>
     </span>
 
   
@@ -200,8 +200,8 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="使用加密货币续费TradingView" href="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/#SOHUCS" itemprop="discussionUrl">
-      <span id="sourceId::73fba3d797aa09af7c8631b9b7c58e3b" class="cy_cmt_count" itemprop="commentCount"></span>
+    <a title="策略pine代码拆解学习（1）strategy和src" href="/2022/11/30/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::b1a27327d7a3fc6e9965d875e944cc89" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -215,35 +215,58 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>这几天TradingView一年一度的黑色星期五促销活动支持加密货币支付，特来续期体验一下，同时这也是我首次使用加密货币进行替代法币交易。</p>
-<p>我的方案续期一年的费用是$108，节省40%左右。</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/1.png" class title="This is an example image">
+          <h3 id="代码片段-strategy"><a href="#代码片段-strategy" class="headerlink" title="代码片段-strategy"></a>代码片段-strategy</h3><h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strategy(&#x27;btc [4h]&#x27;, overlay=true, pyramiding=100, initial_capital=1000, default_qty_type=strategy.percent_of_equity, default_qty_value=33, calc_on_order_fills=false, slippage=0, commission_type=strategy.commission.percent, commission_value=0.03)</span><br></pre></td></tr></table></figure>
+<h4 id="官方文档解释"><a href="#官方文档解释" class="headerlink" title="官方文档解释"></a>官方文档解释</h4><p><strong>strategy</strong><br>此声明语句将脚本指定为策略并设置许多与策略相关的属性。</p>
+<p>参数</p>
+<p><strong>title (const string)</strong> 脚本标题。当没有使用<code>shorttitle</code>参数时，它会显示在图表上，并在发布脚本时成为出版物的默认标题。</p>
+<p><strong>shorttitle (const string)</strong> 脚本在图表上的显示名称。如果指定，它将替换大多数图表相关窗口中的<code>title</code>参数。可选。默认值是用于<code>title</code>的参数。</p>
+<p><strong>overlay (const bool)</strong> 如果true，策略将显示在图表上。如果false，它将被添加到单独的窗格中。无论此设置如何，显示进入和退出的策略特定标签都将显示在主图表上。可选。默认值为false。</p>
+<p><strong>format (const string)</strong> 指定脚本显示值的格式。可能的值：format.inherit、format.price、format.volume。可选。默认值为format.inherit。</p>
+<p><strong>precision (const int)</strong> 指定脚本显示值的浮点数之后的位数。必须是不大于16的非负整数。如果<code>format</code>设置为format.inherit并指定了<code>precision</code>，则格式将改为设置为format.price。可选。默认值继承自图表商品的精度。</p>
+<p><strong>scale (scale_type)</strong> 使用的价格等级。可能的值：scale.right、scale.left、scale.none。scale.none值只能与<code>overlay = true</code>结合使用。可选。默认情况下，脚本使用与图表相同的比例。</p>
+<p><strong>pyramiding (const int)</strong> 同一方向允许的最大条目数。如果值为0，则只能开同一个方向的挂单，拒绝追加挂单。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为0。</p>
+<p><strong>calc_on_order_fills (const bool)</strong> 指定是否应在订单成交后重新计算策略。如果true，策略会在订单成交后重新计算，而不是仅在K线关闭时重新计算。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为false。</p>
+<p><strong>calc_on_every_tick (const bool)</strong> 指定是否应在每个实时tick上重新计算策略。如果true，当策略在实时K线上运行时，它将在每次图表更新时重新计算。如果false，策略仅在实时K线关闭时计算。使用的参数不影响历史数据的策略计算。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为false。</p>
+<p><strong>max_bars_back (const int)</strong> 脚本为每个变量和函数保留的历史缓冲区的长度，它决定了使用 <code>[]</code> 历史引用运算符可以引用多少过去的值。Pine Script™运行时会自动检测所需的缓冲区大小。仅当由于自动检测失败而发生运行时错误时才需要使用此参数。有关历史缓冲区基本机制的更多信息，请参阅我们的帮助中心。可选。默认值为0。</p>
+<p><strong>backtest_fill_limits_assumption (const int)</strong> 以tick为单位的限价单执行阈值。使用时，限价单仅在市场价格超过定单的限价水平指定的tick数时才会执行。可选。默认值为0。</p>
+<p><strong>default_qty_type (const string)</strong> 指定用于<code>default_qty_value</code>的单位。可能的值是：strategy.fixed 代表合约&#x2F;股票&#x2F;手数，strategy.cash代表货币金额，或strategy.percent_of_equity代表可用权益的百分比。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为strategy.fixed。</p>
+<p><strong>default_qty_value (const int&#x2F;float)</strong> 默认交易数量，单位由与<code>default_qty_type</code>参数一起使用的参数确定。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为1。</p>
+<p><strong>initial_capital (const int&#x2F;float)</strong> 最初可用于策略交易的资金量，以<code>currency</code>为单位。可选。默认值为1000000。</p>
+<p><strong>currency (const string)</strong> 策略在货币相关计算中使用的货币。通过将<code>currency</code>转换为图表商品的货币，仍然可以打开市场仓位。使用的转换率基于FX_IDC对的前一天的每日汇率（相对于进行计算的K线）。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为currency.NONE，在这种情况下使用图表的货币。可能的值：<code>currency.*</code> 命名空间中的常量之一，例如currency.USD。</p>
+<p><strong>slippage (const int)</strong> 滑点以tick表示。这个值被添加到市场单&#x2F;止损单的执行价格中或从中减去，以使执行价格对策略不太有利。例如，如果syminfo.mintick为0.01 并且<code>slippage</code>设置为5，则多头市价单将在实际价格上方5 * 0.01&#x3D;0.05点处进入。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为0。</p>
+<p><strong>commission_type (const string)</strong> 确定传递给<code>commission_value</code>的数字表示什么：strategy.commission.percent表示订单现金量的百分比，strategy.commission.cash_per_contract表示每份合约的货币，strategy .commission.cash_per_order每个订单的货币。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为strategy.commission.percent。</p>
+<p><strong>commission_value (const int&#x2F;float)</strong> 佣金应用于策略订单，单位由传递给“commission_type”参数的参数确定。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为0。</p>
+<p><strong>process_orders_on_close (const bool)</strong> 当设置为true时，在K线关闭和策略计算完成后生成额外的执行订单尝试。如果订单是市价单，则经纪商模拟器会在下一根K线开盘前执行它们。如果订单依赖于价格，则只有在满足价格条件时才会成交。如果您希望在当前K线上平仓，此选项很有用。默认值为false。</p>
+<p><strong>close_entries_rule (const string)</strong> 确定关闭交易的顺序。可能的值是：“FIFO”（先进先出）如果最早的退出订单必须关闭最早的进入订单。如果订单基于strategy.exit函数的<code>from_entry</code>参数关闭，则为 “ANY”。“FIFO”只能用于股票、期货和美国外汇（NFA合规规则2-43b），而“ANY”允许用于非美国外汇。可选。默认值为“FIFO”。</p>
+<p><strong>max_lines_count (const int)</strong> 最后显示的line绘图数量。可能的值：1-500。可选。默认值为50。</p>
+<p><strong>max_labels_count (const int)</strong> 最后显示的label绘图数量。可能的值：1-500。可选。默认值为50。</p>
+<p><strong>max_boxes_count (const int)</strong> 最后显示的box绘图数量。可能的值：1-500。可选。默认值为50。</p>
+<p><strong>margin_long (const int&#x2F;float)</strong> 多头保证金是多头仓位必须以现金或抵押品覆盖的证券购买价格的百分比。必须是非负数。在帮助中心解释了用于模拟追加保证金的逻辑。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为0，在这种情况下，策略不会对仓位大小施加任何限制。</p>
+<p><strong>margin_short (const int&#x2F;float)</strong> 空头保证金是必须以现金或空头仓位抵押品覆盖的证券购买价格的百分比。必须是非负数。在帮助中心解释了用于模拟追加保证金的逻辑。此设置也可以在策略的“设置&#x2F;属性”标签页中更改。可选。默认值为0，在这种情况下，策略不会对仓位大小施加任何限制。</p>
+<p><strong>explicit_plot_zorder (const bool)</strong> 指定脚本的绘图、填充和水平线的渲染顺序。如果true，绘图将按照它们在脚本代码中出现的顺序绘制，每个较新的绘图都绘制在之前的绘图之上。这仅适用于<code>plot*()</code>函数、fill和hline。可选。默认值为false。</p>
+<p><strong>risk_free_rate (const int&#x2F;float)</strong> 无风险收益率是指风险最小或为零的投资价值的年度百分比变化。它用于计算Sharpe和Sortino比率。可选。默认值为2。</p>
+<p><strong>use_bar_magnifier (const bool)</strong> 如果为true，经纪商模拟器在历史回测期间使用较短的时间周期数据来获得更真实的结果。可选。默认值为false。只有Premium帐户可以使用此功能。</p>
+<h4 id="对照解读"><a href="#对照解读" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">strategy(&#x27;btc [4h]&#x27;  //脚本标题</span><br><span class="line">, overlay=true //策略将显示在图表上</span><br><span class="line">, pyramiding=100 //同一个方向运行开的最大订单数量</span><br><span class="line">, initial_capital=1000 //最初可用于策略交易的资金量为1000</span><br><span class="line">, default_qty_type=strategy.percent_of_equity //它指定initial_capital的百分比(0-100%)的净值将用于进入交易</span><br><span class="line">, default_qty_value=33 //默认交易数量,由于 default_qty_type参数设置，所以每笔交易量为initial_capital * default_qty_value %，即为33%</span><br><span class="line">, calc_on_order_fills=false //不在订单成交后重新计算策略</span><br><span class="line">, slippage=0 //滑点</span><br><span class="line">, commission_type=strategy.commission.percent //佣金类型为订单量的百分比</span><br><span class="line">, commission_value=0.03 //佣金比例   佣金 = 0.03% * 订单金额</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>对应如下设置项</p>
+<img src="/2022/11/30/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/1.png" class title="This is an example image">
 
-<p>跳转到加密货币支付的方式进行支付，我选择了LTC，交易所提现费用低，转账手续费也低。</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/2.png" class title="This is an example image">
+<h3 id="代码片段-src"><a href="#代码片段-src" class="headerlink" title="代码片段-src"></a>代码片段-src</h3><h4 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//SOURCE </span><br><span class="line">src = input(open)</span><br></pre></td></tr></table></figure>
+<p>官方文档解释</p>
+<p><strong>open</strong><br>当前开盘价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。open[1]，open[2]。</p>
+<p><strong>close</strong><br>当前K线关闭时的收盘价，或尚未完成的实时K线的最后交易价格。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。 close[1]，close[2]。</p>
+<p><strong>high</strong><br>当前最高价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。 high[1]，high[2]。</p>
+<p><strong>low</strong><br>当前最低价。</p>
+<p>备注</p>
+<p>可使用方括号运算符 []来访问以前的值，例如。low[1]，low[2]。</p>
+<h4 id="对照解读-1"><a href="#对照解读-1" class="headerlink" title="对照解读"></a>对照解读</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//SOURCE</span><br><span class="line">src = input(open) //取开盘数据</span><br></pre></td></tr></table></figure>
+<img src="/2022/11/30/%E7%AD%96%E7%95%A5pine%E4%BB%A3%E7%A0%81%E6%8B%86%E8%A7%A3%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/2.png" class title="This is an example image">
 
-<p>首先去交易所购买了1.4个LTC</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/3.png" class title="This is an example image">
-
-<p>然后提现到自己的onekey硬件钱包</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/4.jpg" class title="This is an example image">
-
-<p>这里我没有直接支付给TradingView，是想体验一下自己的安全支付流程。</p>
-<p>3分钟到账，提现手续费忽略固定0.001LTC，手续费是加密货币的优势之一，你提几个亿也是这个手续费。</p>
-<p>钱包到账！</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/5.png" class title="This is an example image">
-
-<p>然后个人钱包进行支付</p>
-<p>输入支付地址，输入数量。</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/6.jpg" class title="This is an example image">
-
-<p>硬件钱包支付确认就行了。</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/7.jpg" class title="This is an example image">
-
-<p>然后TradingView显示支付完成了</p>
-<img src="/2022/11/25/%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%BB%AD%E8%B4%B9TradingView/8.png" class title="This is an example image">
-
-<p>就此支付完成，诚然这种支付方式进入日常支付系统还有很长路要走，相信未来这个领域不仅能存活下去，还能慢慢渗透人们的日常生活。</p>
 
       
     </div>
@@ -263,7 +286,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/41/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/43/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/41/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><span class="page-number current">42</span><a class="page-number" href="/page/43/">43</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/43/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
